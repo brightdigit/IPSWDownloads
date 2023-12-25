@@ -11,7 +11,7 @@ import struct Foundation.Date
 #endif
 import HTTPTypes
 /// Download current and previous versions of Apple's iOS Firmware, iTunes and OTA updates.
-internal struct Client: APIProtocol {
+public struct Client: APIProtocol {
     /// The underlying HTTP client.
     private let client: UniversalClient
     /// Creates a new client.
@@ -22,7 +22,7 @@ internal struct Client: APIProtocol {
     ///   - configuration: A set of configuration values for the client.
     ///   - transport: A transport that performs HTTP operations.
     ///   - middlewares: A list of middlewares to call before the transport.
-    internal init(
+    public init(
         serverURL: Foundation.URL,
         configuration: Configuration = .init(),
         transport: any ClientTransport,
@@ -38,18 +38,18 @@ internal struct Client: APIProtocol {
     private var converter: Converter {
         client.converter
     }
-    /// V 4 . Get Firmwares For Device
+    /// Get Firmwares For Device
     ///
     /// GetFirmwaresForDevice returns Firmwares for a given Device. An optional "type" get parameter may be
     /// specified to retrieve OTA Firmwares instead of normal IPSW files. 
     /// As of 2021-03-04, it is recommended that you use the "boards" property of the device, as devices can have multiple boards.
     ///
     /// - Remark: HTTP `GET /device/{identifier}`.
-    /// - Remark: Generated from `#/paths//device/{identifier}/get(V 4 . Get Firmwares For Device)`.
-    internal func V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device(_ input: Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Input) async throws -> Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Output {
+    /// - Remark: Generated from `#/paths//device/{identifier}/get(firmwaresForDevice)`.
+    public func firmwaresForDevice(_ input: Operations.firmwaresForDevice.Input) async throws -> Operations.firmwaresForDevice.Output {
         try await client.send(
             input: input,
-            forOperation: Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.id,
+            forOperation: Operations.firmwaresForDevice.id,
             serializer: { input in
                 let path = try converter.renderedPath(
                     template: "/device/{}",
@@ -78,7 +78,7 @@ internal struct Client: APIProtocol {
             deserializer: { response, responseBody in
                 switch response.status.code {
                 case 200:
-                    let headers: Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Output.Ok.Headers = .init(
+                    let headers: Operations.firmwaresForDevice.Output.Ok.Headers = .init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: try converter.getOptionalHeaderFieldAsURI(
                             in: response.headerFields,
                             name: "Access-Control-Allow-Methods",
@@ -106,7 +106,7 @@ internal struct Client: APIProtocol {
                         )
                     )
                     let contentType = converter.extractContentTypeIfPresent(in: response.headerFields)
-                    let body: Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Output.Ok.Body
+                    let body: Operations.firmwaresForDevice.Output.Ok.Body
                     let chosenContentType = try converter.bestContentType(
                         received: contentType,
                         options: [
@@ -118,7 +118,7 @@ internal struct Client: APIProtocol {
                     switch chosenContentType {
                     case "application/json":
                         body = try await converter.getResponseBodyAsJSON(
-                            Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Output.Ok.Body.jsonPayload.self,
+                            Operations.firmwaresForDevice.Output.Ok.Body.jsonPayload.self,
                             from: responseBody,
                             transforming: { value in
                                 .json(value)
@@ -148,7 +148,7 @@ internal struct Client: APIProtocol {
                         body: body
                     ))
                 case 404:
-                    let headers: Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Output.NotFound.Headers = .init(
+                    let headers: Operations.firmwaresForDevice.Output.NotFound.Headers = .init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: try converter.getOptionalHeaderFieldAsURI(
                             in: response.headerFields,
                             name: "Access-Control-Allow-Methods",
@@ -186,7 +186,7 @@ internal struct Client: APIProtocol {
     ///
     /// - Remark: HTTP `GET /devices`.
     /// - Remark: Generated from `#/paths//devices/get(V 4 . Get Devices)`.
-    internal func V_space_4_space__period__space_Get_space_Devices(_ input: Operations.V_space_4_space__period__space_Get_space_Devices.Input) async throws -> Operations.V_space_4_space__period__space_Get_space_Devices.Output {
+    public func V_space_4_space__period__space_Get_space_Devices(_ input: Operations.V_space_4_space__period__space_Get_space_Devices.Input) async throws -> Operations.V_space_4_space__period__space_Get_space_Devices.Output {
         try await client.send(
             input: input,
             forOperation: Operations.V_space_4_space__period__space_Get_space_Devices.id,
@@ -303,7 +303,7 @@ internal struct Client: APIProtocol {
     ///
     /// - Remark: HTTP `GET /ipsw/download/{identifier}/{buildid}`.
     /// - Remark: Generated from `#/paths//ipsw/download/{identifier}/{buildid}/get(V 4 . Download IPSW)`.
-    internal func V_space_4_space__period__space_Download_space_IPSW(_ input: Operations.V_space_4_space__period__space_Download_space_IPSW.Input) async throws -> Operations.V_space_4_space__period__space_Download_space_IPSW.Output {
+    public func V_space_4_space__period__space_Download_space_IPSW(_ input: Operations.V_space_4_space__period__space_Download_space_IPSW.Input) async throws -> Operations.V_space_4_space__period__space_Download_space_IPSW.Output {
         try await client.send(
             input: input,
             forOperation: Operations.V_space_4_space__period__space_Download_space_IPSW.id,
@@ -406,11 +406,11 @@ internal struct Client: APIProtocol {
     /// GetIPSWInformation returns all known information for an IPSW as specified by identifier and buildid
     ///
     /// - Remark: HTTP `GET /ipsw/{identifier}/{buildid}`.
-    /// - Remark: Generated from `#/paths//ipsw/{identifier}/{buildid}/get(V 4 . Get IPSW Information)`.
-    internal func V_space_4_space__period__space_Get_space_IPSW_space_Information(_ input: Operations.V_space_4_space__period__space_Get_space_IPSW_space_Information.Input) async throws -> Operations.V_space_4_space__period__space_Get_space_IPSW_space_Information.Output {
+    /// - Remark: Generated from `#/paths//ipsw/{identifier}/{buildid}/get(ipswByIdentifierAndBuild)`.
+    public func ipswByIdentifierAndBuild(_ input: Operations.ipswByIdentifierAndBuild.Input) async throws -> Operations.ipswByIdentifierAndBuild.Output {
         try await client.send(
             input: input,
-            forOperation: Operations.V_space_4_space__period__space_Get_space_IPSW_space_Information.id,
+            forOperation: Operations.ipswByIdentifierAndBuild.id,
             serializer: { input in
                 let path = try converter.renderedPath(
                     template: "/ipsw/{}/{}",
@@ -433,7 +433,7 @@ internal struct Client: APIProtocol {
             deserializer: { response, responseBody in
                 switch response.status.code {
                 case 200:
-                    let headers: Operations.V_space_4_space__period__space_Get_space_IPSW_space_Information.Output.Ok.Headers = .init(
+                    let headers: Operations.ipswByIdentifierAndBuild.Output.Ok.Headers = .init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: try converter.getOptionalHeaderFieldAsURI(
                             in: response.headerFields,
                             name: "Access-Control-Allow-Methods",
@@ -461,7 +461,7 @@ internal struct Client: APIProtocol {
                         )
                     )
                     let contentType = converter.extractContentTypeIfPresent(in: response.headerFields)
-                    let body: Operations.V_space_4_space__period__space_Get_space_IPSW_space_Information.Output.Ok.Body
+                    let body: Operations.ipswByIdentifierAndBuild.Output.Ok.Body
                     let chosenContentType = try converter.bestContentType(
                         received: contentType,
                         options: [
@@ -473,7 +473,7 @@ internal struct Client: APIProtocol {
                     switch chosenContentType {
                     case "application/json":
                         body = try await converter.getResponseBodyAsJSON(
-                            Operations.V_space_4_space__period__space_Get_space_IPSW_space_Information.Output.Ok.Body.jsonPayload.self,
+                            Operations.ipswByIdentifierAndBuild.Output.Ok.Body.jsonPayload.self,
                             from: responseBody,
                             transforming: { value in
                                 .json(value)
@@ -503,7 +503,7 @@ internal struct Client: APIProtocol {
                         body: body
                     ))
                 case 404:
-                    let headers: Operations.V_space_4_space__period__space_Get_space_IPSW_space_Information.Output.NotFound.Headers = .init(
+                    let headers: Operations.ipswByIdentifierAndBuild.Output.NotFound.Headers = .init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: try converter.getOptionalHeaderFieldAsURI(
                             in: response.headerFields,
                             name: "Access-Control-Allow-Methods",
@@ -539,7 +539,7 @@ internal struct Client: APIProtocol {
     ///
     /// - Remark: HTTP `GET /ipsw/{version}`.
     /// - Remark: Generated from `#/paths//ipsw/{version}/get(V 4 . Get IPSW List For Version)`.
-    internal func V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version(_ input: Operations.V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version.Input) async throws -> Operations.V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version.Output {
+    public func V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version(_ input: Operations.V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version.Input) async throws -> Operations.V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version.Output {
         try await client.send(
             input: input,
             forOperation: Operations.V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version.id,
@@ -670,7 +670,7 @@ internal struct Client: APIProtocol {
     ///
     /// - Remark: HTTP `GET /itunes/download/{platform}/{version}`.
     /// - Remark: Generated from `#/paths//itunes/download/{platform}/{version}/get(V 4 . Download Itunes)`.
-    internal func V_space_4_space__period__space_Download_space_Itunes(_ input: Operations.V_space_4_space__period__space_Download_space_Itunes.Input) async throws -> Operations.V_space_4_space__period__space_Download_space_Itunes.Output {
+    public func V_space_4_space__period__space_Download_space_Itunes(_ input: Operations.V_space_4_space__period__space_Download_space_Itunes.Input) async throws -> Operations.V_space_4_space__period__space_Download_space_Itunes.Output {
         try await client.send(
             input: input,
             forOperation: Operations.V_space_4_space__period__space_Download_space_Itunes.id,
@@ -762,7 +762,7 @@ internal struct Client: APIProtocol {
     ///
     /// - Remark: HTTP `GET /itunes/{platform}`.
     /// - Remark: Generated from `#/paths//itunes/{platform}/get(V 4 . Find Itunes)`.
-    internal func V_space_4_space__period__space_Find_space_Itunes(_ input: Operations.V_space_4_space__period__space_Find_space_Itunes.Input) async throws -> Operations.V_space_4_space__period__space_Find_space_Itunes.Output {
+    public func V_space_4_space__period__space_Find_space_Itunes(_ input: Operations.V_space_4_space__period__space_Find_space_Itunes.Input) async throws -> Operations.V_space_4_space__period__space_Find_space_Itunes.Output {
         try await client.send(
             input: input,
             forOperation: Operations.V_space_4_space__period__space_Find_space_Itunes.id,
@@ -893,7 +893,7 @@ internal struct Client: APIProtocol {
     ///
     /// - Remark: HTTP `GET /keys/device/{identifier}`.
     /// - Remark: Generated from `#/paths//keys/device/{identifier}/get(V 4 . Keys Device List)`.
-    internal func V_space_4_space__period__space_Keys_space_Device_space_List(_ input: Operations.V_space_4_space__period__space_Keys_space_Device_space_List.Input) async throws -> Operations.V_space_4_space__period__space_Keys_space_Device_space_List.Output {
+    public func V_space_4_space__period__space_Keys_space_Device_space_List(_ input: Operations.V_space_4_space__period__space_Keys_space_Device_space_List.Input) async throws -> Operations.V_space_4_space__period__space_Keys_space_Device_space_List.Output {
         try await client.send(
             input: input,
             forOperation: Operations.V_space_4_space__period__space_Keys_space_Device_space_List.id,
@@ -1024,7 +1024,7 @@ internal struct Client: APIProtocol {
     ///
     /// - Remark: HTTP `GET /keys/ipsw/{identifier}/{buildid}`.
     /// - Remark: Generated from `#/paths//keys/ipsw/{identifier}/{buildid}/get(V 4 . Keys For IPSW)`.
-    internal func V_space_4_space__period__space_Keys_space_For_space_IPSW(_ input: Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.Input) async throws -> Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.Output {
+    public func V_space_4_space__period__space_Keys_space_For_space_IPSW(_ input: Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.Input) async throws -> Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.Output {
         try await client.send(
             input: input,
             forOperation: Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.id,
@@ -1156,7 +1156,7 @@ internal struct Client: APIProtocol {
     ///
     /// - Remark: HTTP `GET /model/{model}`.
     /// - Remark: Generated from `#/paths//model/{model}/get(V 4 . Identify Model)`.
-    internal func V_space_4_space__period__space_Identify_space_Model(_ input: Operations.V_space_4_space__period__space_Identify_space_Model.Input) async throws -> Operations.V_space_4_space__period__space_Identify_space_Model.Output {
+    public func V_space_4_space__period__space_Identify_space_Model(_ input: Operations.V_space_4_space__period__space_Identify_space_Model.Input) async throws -> Operations.V_space_4_space__period__space_Identify_space_Model.Output {
         try await client.send(
             input: input,
             forOperation: Operations.V_space_4_space__period__space_Identify_space_Model.id,
@@ -1287,7 +1287,7 @@ internal struct Client: APIProtocol {
     ///
     /// - Remark: HTTP `GET /ota/documentation/{device}/{version}`.
     /// - Remark: Generated from `#/paths//ota/documentation/{device}/{version}/get(V 4 . OTA Documentation)`.
-    internal func V_space_4_space__period__space_OTA_space_Documentation(_ input: Operations.V_space_4_space__period__space_OTA_space_Documentation.Input) async throws -> Operations.V_space_4_space__period__space_OTA_space_Documentation.Output {
+    public func V_space_4_space__period__space_OTA_space_Documentation(_ input: Operations.V_space_4_space__period__space_OTA_space_Documentation.Input) async throws -> Operations.V_space_4_space__period__space_OTA_space_Documentation.Output {
         try await client.send(
             input: input,
             forOperation: Operations.V_space_4_space__period__space_OTA_space_Documentation.id,
@@ -1439,7 +1439,7 @@ internal struct Client: APIProtocol {
     ///
     /// - Remark: HTTP `GET /ota/download/{identifier}/{buildid}`.
     /// - Remark: Generated from `#/paths//ota/download/{identifier}/{buildid}/get(V 4 . Download OTA)`.
-    internal func V_space_4_space__period__space_Download_space_OTA(_ input: Operations.V_space_4_space__period__space_Download_space_OTA.Input) async throws -> Operations.V_space_4_space__period__space_Download_space_OTA.Output {
+    public func V_space_4_space__period__space_Download_space_OTA(_ input: Operations.V_space_4_space__period__space_Download_space_OTA.Input) async throws -> Operations.V_space_4_space__period__space_Download_space_OTA.Output {
         try await client.send(
             input: input,
             forOperation: Operations.V_space_4_space__period__space_Download_space_OTA.id,
@@ -1532,7 +1532,7 @@ internal struct Client: APIProtocol {
     ///
     /// - Remark: HTTP `GET /ota/{identifier}/{buildid}`.
     /// - Remark: Generated from `#/paths//ota/{identifier}/{buildid}/get(V 4 . Get OTA Information)`.
-    internal func V_space_4_space__period__space_Get_space_OTA_space_Information(_ input: Operations.V_space_4_space__period__space_Get_space_OTA_space_Information.Input) async throws -> Operations.V_space_4_space__period__space_Get_space_OTA_space_Information.Output {
+    public func V_space_4_space__period__space_Get_space_OTA_space_Information(_ input: Operations.V_space_4_space__period__space_Get_space_OTA_space_Information.Input) async throws -> Operations.V_space_4_space__period__space_Get_space_OTA_space_Information.Output {
         try await client.send(
             input: input,
             forOperation: Operations.V_space_4_space__period__space_Get_space_OTA_space_Information.id,
@@ -1652,7 +1652,7 @@ internal struct Client: APIProtocol {
     ///
     /// - Remark: HTTP `GET /ota/{version}`.
     /// - Remark: Generated from `#/paths//ota/{version}/get(V 4 . Get OTA List For Version)`.
-    internal func V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version(_ input: Operations.V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version.Input) async throws -> Operations.V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version.Output {
+    public func V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version(_ input: Operations.V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version.Input) async throws -> Operations.V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version.Output {
         try await client.send(
             input: input,
             forOperation: Operations.V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version.id,
@@ -1783,7 +1783,7 @@ internal struct Client: APIProtocol {
     ///
     /// - Remark: HTTP `GET /releases`.
     /// - Remark: Generated from `#/paths//releases/get(V 4 . Releases)`.
-    internal func V_space_4_space__period__space_Releases(_ input: Operations.V_space_4_space__period__space_Releases.Input) async throws -> Operations.V_space_4_space__period__space_Releases.Output {
+    public func V_space_4_space__period__space_Releases(_ input: Operations.V_space_4_space__period__space_Releases.Input) async throws -> Operations.V_space_4_space__period__space_Releases.Output {
         try await client.send(
             input: input,
             forOperation: Operations.V_space_4_space__period__space_Releases.id,

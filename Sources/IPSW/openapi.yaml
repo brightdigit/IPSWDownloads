@@ -1898,8 +1898,8 @@ paths:
               schema:
                 type: string
           content: {}
-      summary: V 4 . Get Firmwares For Device
-      operationId: V 4 . Get Firmwares For Device
+      summary: Get Firmwares For Device
+      operationId: firmwaresForDevice
       description: >-
         GetFirmwaresForDevice returns Firmwares for a given Device. An optional
         "type" get parameter may be
@@ -2577,7 +2577,7 @@ paths:
                 type: string
           content: {}
       summary: V 4 . Get IPSW Information
-      operationId: V 4 . Get IPSW Information
+      operationId: ipswByIdentifierAndBuild
       description: >-
         GetIPSWInformation returns all known information for an IPSW as
         specified by identifier and buildid
@@ -6218,7 +6218,6 @@ paths:
         Downloads database
       tags:
         - Api
-      parameters:
 
 components:
   schemas: {}

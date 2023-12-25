@@ -10,16 +10,16 @@ import struct Foundation.Data
 import struct Foundation.Date
 #endif
 /// A type that performs HTTP operations defined by the OpenAPI document.
-internal protocol APIProtocol: Sendable {
-    /// V 4 . Get Firmwares For Device
+public protocol APIProtocol: Sendable {
+    /// Get Firmwares For Device
     ///
     /// GetFirmwaresForDevice returns Firmwares for a given Device. An optional "type" get parameter may be
     /// specified to retrieve OTA Firmwares instead of normal IPSW files. 
     /// As of 2021-03-04, it is recommended that you use the "boards" property of the device, as devices can have multiple boards.
     ///
     /// - Remark: HTTP `GET /device/{identifier}`.
-    /// - Remark: Generated from `#/paths//device/{identifier}/get(V 4 . Get Firmwares For Device)`.
-    func V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device(_ input: Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Input) async throws -> Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Output
+    /// - Remark: Generated from `#/paths//device/{identifier}/get(firmwaresForDevice)`.
+    func firmwaresForDevice(_ input: Operations.firmwaresForDevice.Input) async throws -> Operations.firmwaresForDevice.Output
     /// V 4 . Get Devices
     ///
     /// GetDevices returns a list of all devices known to IPSW Downloads
@@ -41,8 +41,8 @@ internal protocol APIProtocol: Sendable {
     /// GetIPSWInformation returns all known information for an IPSW as specified by identifier and buildid
     ///
     /// - Remark: HTTP `GET /ipsw/{identifier}/{buildid}`.
-    /// - Remark: Generated from `#/paths//ipsw/{identifier}/{buildid}/get(V 4 . Get IPSW Information)`.
-    func V_space_4_space__period__space_Get_space_IPSW_space_Information(_ input: Operations.V_space_4_space__period__space_Get_space_IPSW_space_Information.Input) async throws -> Operations.V_space_4_space__period__space_Get_space_IPSW_space_Information.Output
+    /// - Remark: Generated from `#/paths//ipsw/{identifier}/{buildid}/get(ipswByIdentifierAndBuild)`.
+    func ipswByIdentifierAndBuild(_ input: Operations.ipswByIdentifierAndBuild.Input) async throws -> Operations.ipswByIdentifierAndBuild.Output
     /// V 4 . Get IPSW List For Version
     ///
     /// GetIPSWListForVersion finds all IPSW files for a given iOS version
@@ -125,20 +125,20 @@ internal protocol APIProtocol: Sendable {
 
 /// Convenience overloads for operation inputs.
 extension APIProtocol {
-    /// V 4 . Get Firmwares For Device
+    /// Get Firmwares For Device
     ///
     /// GetFirmwaresForDevice returns Firmwares for a given Device. An optional "type" get parameter may be
     /// specified to retrieve OTA Firmwares instead of normal IPSW files. 
     /// As of 2021-03-04, it is recommended that you use the "boards" property of the device, as devices can have multiple boards.
     ///
     /// - Remark: HTTP `GET /device/{identifier}`.
-    /// - Remark: Generated from `#/paths//device/{identifier}/get(V 4 . Get Firmwares For Device)`.
-    internal func V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device(
-        path: Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Input.Path,
-        query: Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Input.Query,
-        headers: Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Input.Headers = .init()
-    ) async throws -> Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Output {
-        try await V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device(Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Input(
+    /// - Remark: Generated from `#/paths//device/{identifier}/get(firmwaresForDevice)`.
+    public func firmwaresForDevice(
+        path: Operations.firmwaresForDevice.Input.Path,
+        query: Operations.firmwaresForDevice.Input.Query,
+        headers: Operations.firmwaresForDevice.Input.Headers = .init()
+    ) async throws -> Operations.firmwaresForDevice.Output {
+        try await firmwaresForDevice(Operations.firmwaresForDevice.Input(
             path: path,
             query: query,
             headers: headers
@@ -152,7 +152,7 @@ extension APIProtocol {
     ///
     /// - Remark: HTTP `GET /devices`.
     /// - Remark: Generated from `#/paths//devices/get(V 4 . Get Devices)`.
-    internal func V_space_4_space__period__space_Get_space_Devices(
+    public func V_space_4_space__period__space_Get_space_Devices(
         query: Operations.V_space_4_space__period__space_Get_space_Devices.Input.Query,
         headers: Operations.V_space_4_space__period__space_Get_space_Devices.Input.Headers = .init()
     ) async throws -> Operations.V_space_4_space__period__space_Get_space_Devices.Output {
@@ -167,7 +167,7 @@ extension APIProtocol {
     ///
     /// - Remark: HTTP `GET /ipsw/download/{identifier}/{buildid}`.
     /// - Remark: Generated from `#/paths//ipsw/download/{identifier}/{buildid}/get(V 4 . Download IPSW)`.
-    internal func V_space_4_space__period__space_Download_space_IPSW(
+    public func V_space_4_space__period__space_Download_space_IPSW(
         path: Operations.V_space_4_space__period__space_Download_space_IPSW.Input.Path,
         headers: Operations.V_space_4_space__period__space_Download_space_IPSW.Input.Headers = .init()
     ) async throws -> Operations.V_space_4_space__period__space_Download_space_IPSW.Output {
@@ -181,12 +181,12 @@ extension APIProtocol {
     /// GetIPSWInformation returns all known information for an IPSW as specified by identifier and buildid
     ///
     /// - Remark: HTTP `GET /ipsw/{identifier}/{buildid}`.
-    /// - Remark: Generated from `#/paths//ipsw/{identifier}/{buildid}/get(V 4 . Get IPSW Information)`.
-    internal func V_space_4_space__period__space_Get_space_IPSW_space_Information(
-        path: Operations.V_space_4_space__period__space_Get_space_IPSW_space_Information.Input.Path,
-        headers: Operations.V_space_4_space__period__space_Get_space_IPSW_space_Information.Input.Headers = .init()
-    ) async throws -> Operations.V_space_4_space__period__space_Get_space_IPSW_space_Information.Output {
-        try await V_space_4_space__period__space_Get_space_IPSW_space_Information(Operations.V_space_4_space__period__space_Get_space_IPSW_space_Information.Input(
+    /// - Remark: Generated from `#/paths//ipsw/{identifier}/{buildid}/get(ipswByIdentifierAndBuild)`.
+    public func ipswByIdentifierAndBuild(
+        path: Operations.ipswByIdentifierAndBuild.Input.Path,
+        headers: Operations.ipswByIdentifierAndBuild.Input.Headers = .init()
+    ) async throws -> Operations.ipswByIdentifierAndBuild.Output {
+        try await ipswByIdentifierAndBuild(Operations.ipswByIdentifierAndBuild.Input(
             path: path,
             headers: headers
         ))
@@ -197,7 +197,7 @@ extension APIProtocol {
     ///
     /// - Remark: HTTP `GET /ipsw/{version}`.
     /// - Remark: Generated from `#/paths//ipsw/{version}/get(V 4 . Get IPSW List For Version)`.
-    internal func V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version(
+    public func V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version(
         path: Operations.V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version.Input.Path,
         headers: Operations.V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version.Input.Headers = .init()
     ) async throws -> Operations.V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version.Output {
@@ -212,7 +212,7 @@ extension APIProtocol {
     ///
     /// - Remark: HTTP `GET /itunes/download/{platform}/{version}`.
     /// - Remark: Generated from `#/paths//itunes/download/{platform}/{version}/get(V 4 . Download Itunes)`.
-    internal func V_space_4_space__period__space_Download_space_Itunes(
+    public func V_space_4_space__period__space_Download_space_Itunes(
         path: Operations.V_space_4_space__period__space_Download_space_Itunes.Input.Path,
         query: Operations.V_space_4_space__period__space_Download_space_Itunes.Input.Query,
         headers: Operations.V_space_4_space__period__space_Download_space_Itunes.Input.Headers = .init()
@@ -229,7 +229,7 @@ extension APIProtocol {
     ///
     /// - Remark: HTTP `GET /itunes/{platform}`.
     /// - Remark: Generated from `#/paths//itunes/{platform}/get(V 4 . Find Itunes)`.
-    internal func V_space_4_space__period__space_Find_space_Itunes(
+    public func V_space_4_space__period__space_Find_space_Itunes(
         path: Operations.V_space_4_space__period__space_Find_space_Itunes.Input.Path,
         headers: Operations.V_space_4_space__period__space_Find_space_Itunes.Input.Headers = .init()
     ) async throws -> Operations.V_space_4_space__period__space_Find_space_Itunes.Output {
@@ -244,7 +244,7 @@ extension APIProtocol {
     ///
     /// - Remark: HTTP `GET /keys/device/{identifier}`.
     /// - Remark: Generated from `#/paths//keys/device/{identifier}/get(V 4 . Keys Device List)`.
-    internal func V_space_4_space__period__space_Keys_space_Device_space_List(
+    public func V_space_4_space__period__space_Keys_space_Device_space_List(
         path: Operations.V_space_4_space__period__space_Keys_space_Device_space_List.Input.Path,
         headers: Operations.V_space_4_space__period__space_Keys_space_Device_space_List.Input.Headers = .init()
     ) async throws -> Operations.V_space_4_space__period__space_Keys_space_Device_space_List.Output {
@@ -259,7 +259,7 @@ extension APIProtocol {
     ///
     /// - Remark: HTTP `GET /keys/ipsw/{identifier}/{buildid}`.
     /// - Remark: Generated from `#/paths//keys/ipsw/{identifier}/{buildid}/get(V 4 . Keys For IPSW)`.
-    internal func V_space_4_space__period__space_Keys_space_For_space_IPSW(
+    public func V_space_4_space__period__space_Keys_space_For_space_IPSW(
         path: Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.Input.Path,
         headers: Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.Input.Headers = .init()
     ) async throws -> Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.Output {
@@ -274,7 +274,7 @@ extension APIProtocol {
     ///
     /// - Remark: HTTP `GET /model/{model}`.
     /// - Remark: Generated from `#/paths//model/{model}/get(V 4 . Identify Model)`.
-    internal func V_space_4_space__period__space_Identify_space_Model(
+    public func V_space_4_space__period__space_Identify_space_Model(
         path: Operations.V_space_4_space__period__space_Identify_space_Model.Input.Path,
         headers: Operations.V_space_4_space__period__space_Identify_space_Model.Input.Headers = .init()
     ) async throws -> Operations.V_space_4_space__period__space_Identify_space_Model.Output {
@@ -289,7 +289,7 @@ extension APIProtocol {
     ///
     /// - Remark: HTTP `GET /ota/documentation/{device}/{version}`.
     /// - Remark: Generated from `#/paths//ota/documentation/{device}/{version}/get(V 4 . OTA Documentation)`.
-    internal func V_space_4_space__period__space_OTA_space_Documentation(
+    public func V_space_4_space__period__space_OTA_space_Documentation(
         path: Operations.V_space_4_space__period__space_OTA_space_Documentation.Input.Path,
         headers: Operations.V_space_4_space__period__space_OTA_space_Documentation.Input.Headers = .init()
     ) async throws -> Operations.V_space_4_space__period__space_OTA_space_Documentation.Output {
@@ -304,7 +304,7 @@ extension APIProtocol {
     ///
     /// - Remark: HTTP `GET /ota/download/{identifier}/{buildid}`.
     /// - Remark: Generated from `#/paths//ota/download/{identifier}/{buildid}/get(V 4 . Download OTA)`.
-    internal func V_space_4_space__period__space_Download_space_OTA(
+    public func V_space_4_space__period__space_Download_space_OTA(
         path: Operations.V_space_4_space__period__space_Download_space_OTA.Input.Path,
         query: Operations.V_space_4_space__period__space_Download_space_OTA.Input.Query,
         headers: Operations.V_space_4_space__period__space_Download_space_OTA.Input.Headers = .init()
@@ -322,7 +322,7 @@ extension APIProtocol {
     ///
     /// - Remark: HTTP `GET /ota/{identifier}/{buildid}`.
     /// - Remark: Generated from `#/paths//ota/{identifier}/{buildid}/get(V 4 . Get OTA Information)`.
-    internal func V_space_4_space__period__space_Get_space_OTA_space_Information(
+    public func V_space_4_space__period__space_Get_space_OTA_space_Information(
         path: Operations.V_space_4_space__period__space_Get_space_OTA_space_Information.Input.Path,
         query: Operations.V_space_4_space__period__space_Get_space_OTA_space_Information.Input.Query,
         headers: Operations.V_space_4_space__period__space_Get_space_OTA_space_Information.Input.Headers = .init()
@@ -339,7 +339,7 @@ extension APIProtocol {
     ///
     /// - Remark: HTTP `GET /ota/{version}`.
     /// - Remark: Generated from `#/paths//ota/{version}/get(V 4 . Get OTA List For Version)`.
-    internal func V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version(
+    public func V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version(
         path: Operations.V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version.Input.Path,
         headers: Operations.V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version.Input.Headers = .init()
     ) async throws -> Operations.V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version.Output {
@@ -354,14 +354,14 @@ extension APIProtocol {
     ///
     /// - Remark: HTTP `GET /releases`.
     /// - Remark: Generated from `#/paths//releases/get(V 4 . Releases)`.
-    internal func V_space_4_space__period__space_Releases(headers: Operations.V_space_4_space__period__space_Releases.Input.Headers = .init()) async throws -> Operations.V_space_4_space__period__space_Releases.Output {
+    public func V_space_4_space__period__space_Releases(headers: Operations.V_space_4_space__period__space_Releases.Input.Headers = .init()) async throws -> Operations.V_space_4_space__period__space_Releases.Output {
         try await V_space_4_space__period__space_Releases(Operations.V_space_4_space__period__space_Releases.Input(headers: headers))
     }
 }
 
 /// Server URLs defined in the OpenAPI document.
-internal enum Servers {
-    internal static func server1() throws -> Foundation.URL {
+public enum Servers {
+    public static func server1() throws -> Foundation.URL {
         try Foundation.URL(
             validatingOpenAPIServerURL: "https://api.ipsw.me/v4",
             variables: []
@@ -370,100 +370,100 @@ internal enum Servers {
 }
 
 /// Types generated from the components section of the OpenAPI document.
-internal enum Components {
+public enum Components {
     /// Types generated from the `#/components/schemas` section of the OpenAPI document.
-    internal enum Schemas {}
+    public enum Schemas {}
     /// Types generated from the `#/components/parameters` section of the OpenAPI document.
-    internal enum Parameters {}
+    public enum Parameters {}
     /// Types generated from the `#/components/requestBodies` section of the OpenAPI document.
-    internal enum RequestBodies {}
+    public enum RequestBodies {}
     /// Types generated from the `#/components/responses` section of the OpenAPI document.
-    internal enum Responses {}
+    public enum Responses {}
     /// Types generated from the `#/components/headers` section of the OpenAPI document.
-    internal enum Headers {}
+    public enum Headers {}
 }
 
 /// API operations, with input and output types, generated from `#/paths` in the OpenAPI document.
-internal enum Operations {
-    /// V 4 . Get Firmwares For Device
+public enum Operations {
+    /// Get Firmwares For Device
     ///
     /// GetFirmwaresForDevice returns Firmwares for a given Device. An optional "type" get parameter may be
     /// specified to retrieve OTA Firmwares instead of normal IPSW files. 
     /// As of 2021-03-04, it is recommended that you use the "boards" property of the device, as devices can have multiple boards.
     ///
     /// - Remark: HTTP `GET /device/{identifier}`.
-    /// - Remark: Generated from `#/paths//device/{identifier}/get(V 4 . Get Firmwares For Device)`.
-    internal enum V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device {
-        internal static let id: Swift.String = "V 4 . Get Firmwares For Device"
-        internal struct Input: Sendable, Hashable {
+    /// - Remark: Generated from `#/paths//device/{identifier}/get(firmwaresForDevice)`.
+    public enum firmwaresForDevice {
+        public static let id: Swift.String = "firmwaresForDevice"
+        public struct Input: Sendable, Hashable {
             /// - Remark: Generated from `#/paths/device/{identifier}/GET/path`.
-            internal struct Path: Sendable, Hashable {
+            public struct Path: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/path/identifier`.
-                internal var identifier: Swift.String
+                public var identifier: Swift.String
                 /// Creates a new `Path`.
                 ///
                 /// - Parameters:
                 ///   - identifier:
-                internal init(identifier: Swift.String) {
+                public init(identifier: Swift.String) {
                     self.identifier = identifier
                 }
             }
-            internal var path: Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Input.Path
+            public var path: Operations.firmwaresForDevice.Input.Path
             /// - Remark: Generated from `#/paths/device/{identifier}/GET/query`.
-            internal struct Query: Sendable, Hashable {
+            public struct Query: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/query/type`.
-                internal var _type: Swift.String
+                public var _type: Swift.String
                 /// Creates a new `Query`.
                 ///
                 /// - Parameters:
                 ///   - _type:
-                internal init(_type: Swift.String) {
+                public init(_type: Swift.String) {
                     self._type = _type
                 }
             }
-            internal var query: Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Input.Query
+            public var query: Operations.firmwaresForDevice.Input.Query
             /// - Remark: Generated from `#/paths/device/{identifier}/GET/header`.
-            internal struct Headers: Sendable, Hashable {
-                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.AcceptableContentType>]
+            public struct Headers: Sendable, Hashable {
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.firmwaresForDevice.AcceptableContentType>]
                 /// Creates a new `Headers`.
                 ///
                 /// - Parameters:
                 ///   - accept:
-                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.AcceptableContentType>] = .defaultValues()) {
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.firmwaresForDevice.AcceptableContentType>] = .defaultValues()) {
                     self.accept = accept
                 }
             }
-            internal var headers: Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Input.Headers
+            public var headers: Operations.firmwaresForDevice.Input.Headers
             /// Creates a new `Input`.
             ///
             /// - Parameters:
             ///   - path:
             ///   - query:
             ///   - headers:
-            internal init(
-                path: Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Input.Path,
-                query: Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Input.Query,
-                headers: Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Input.Headers = .init()
+            public init(
+                path: Operations.firmwaresForDevice.Input.Path,
+                query: Operations.firmwaresForDevice.Input.Query,
+                headers: Operations.firmwaresForDevice.Input.Headers = .init()
             ) {
                 self.path = path
                 self.query = query
                 self.headers = headers
             }
         }
-        @frozen internal enum Output: Sendable, Hashable {
-            internal struct Ok: Sendable, Hashable {
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/headers`.
-                internal struct Headers: Sendable, Hashable {
+                public struct Headers: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/headers/Access-Control-Allow-Methods`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
                     /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/headers/Access-Control-Allow-Origin`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
                     /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/headers/Cache-Control`.
-                    internal var Cache_hyphen_Control: Swift.String?
+                    public var Cache_hyphen_Control: Swift.String?
                     /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/headers/Expires`.
-                    internal var Expires: Swift.String?
+                    public var Expires: Swift.String?
                     /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/headers/X-Data-Location`.
-                    internal var X_hyphen_Data_hyphen_Location: Swift.String?
+                    public var X_hyphen_Data_hyphen_Location: Swift.String?
                     /// Creates a new `Headers`.
                     ///
                     /// - Parameters:
@@ -472,7 +472,7 @@ internal enum Operations {
                     ///   - Cache_hyphen_Control:
                     ///   - Expires:
                     ///   - X_hyphen_Data_hyphen_Location:
-                    internal init(
+                    public init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String? = nil,
                         Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String? = nil,
                         Cache_hyphen_Control: Swift.String? = nil,
@@ -487,39 +487,39 @@ internal enum Operations {
                     }
                 }
                 /// Received HTTP response headers
-                internal var headers: Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Output.Ok.Headers
+                public var headers: Operations.firmwaresForDevice.Output.Ok.Headers
                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content`.
-                @frozen internal enum Body: Sendable, Hashable {
+                @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json`.
-                    @frozen internal enum jsonPayload: Codable, Hashable, Sendable {
+                    @frozen public enum jsonPayload: Codable, Hashable, Sendable {
                         /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case1`.
-                        internal struct Case1Payload: Codable, Hashable, Sendable {
+                        public struct Case1Payload: Codable, Hashable, Sendable {
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case1/name`.
-                            internal var name: Swift.String?
+                            public var name: Swift.String?
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case1/identifier`.
-                            internal var identifier: Swift.String?
+                            public var identifier: Swift.String?
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case1/firmwaresPayload`.
-                            internal struct firmwaresPayloadPayload: Codable, Hashable, Sendable {
+                            public struct firmwaresPayloadPayload: Codable, Hashable, Sendable {
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case1/firmwaresPayload/identifier`.
-                                internal var identifier: Swift.String
+                                public var identifier: Swift.String
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case1/firmwaresPayload/version`.
-                                internal var version: Swift.String
+                                public var version: Swift.String
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case1/firmwaresPayload/buildid`.
-                                internal var buildid: Swift.String
+                                public var buildid: Swift.String
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case1/firmwaresPayload/sha1sum`.
-                                internal var sha1sum: Swift.String
+                                public var sha1sum: Swift.String
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case1/firmwaresPayload/md5sum`.
-                                internal var md5sum: Swift.String
+                                public var md5sum: Swift.String
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case1/firmwaresPayload/filesize`.
-                                internal var filesize: Swift.Double
+                                public var filesize: Swift.Double
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case1/firmwaresPayload/url`.
-                                internal var url: Swift.String
+                                public var url: Swift.String
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case1/firmwaresPayload/releasedate`.
-                                internal var releasedate: Swift.String
+                                public var releasedate: Swift.String
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case1/firmwaresPayload/uploaddate`.
-                                internal var uploaddate: Swift.String
+                                public var uploaddate: Swift.String
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case1/firmwaresPayload/signed`.
-                                internal var signed: Swift.Bool
+                                public var signed: Swift.Bool
                                 /// Creates a new `firmwaresPayloadPayload`.
                                 ///
                                 /// - Parameters:
@@ -533,7 +533,7 @@ internal enum Operations {
                                 ///   - releasedate:
                                 ///   - uploaddate:
                                 ///   - signed:
-                                internal init(
+                                public init(
                                     identifier: Swift.String,
                                     version: Swift.String,
                                     buildid: Swift.String,
@@ -556,7 +556,7 @@ internal enum Operations {
                                     self.uploaddate = uploaddate
                                     self.signed = signed
                                 }
-                                internal enum CodingKeys: String, CodingKey {
+                                public enum CodingKeys: String, CodingKey {
                                     case identifier
                                     case version
                                     case buildid
@@ -570,19 +570,19 @@ internal enum Operations {
                                 }
                             }
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case1/firmwares`.
-                            internal typealias firmwaresPayload = [Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Output.Ok.Body.jsonPayload.Case1Payload.firmwaresPayloadPayload]
+                            public typealias firmwaresPayload = [Operations.firmwaresForDevice.Output.Ok.Body.jsonPayload.Case1Payload.firmwaresPayloadPayload]
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case1/firmwares`.
-                            internal var firmwares: Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Output.Ok.Body.jsonPayload.Case1Payload.firmwaresPayload?
+                            public var firmwares: Operations.firmwaresForDevice.Output.Ok.Body.jsonPayload.Case1Payload.firmwaresPayload?
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case1/boardsPayload`.
-                            internal struct boardsPayloadPayload: Codable, Hashable, Sendable {
+                            public struct boardsPayloadPayload: Codable, Hashable, Sendable {
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case1/boardsPayload/boardconfig`.
-                                internal var boardconfig: Swift.String
+                                public var boardconfig: Swift.String
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case1/boardsPayload/platform`.
-                                internal var platform: Swift.String
+                                public var platform: Swift.String
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case1/boardsPayload/cpid`.
-                                internal var cpid: Swift.Double
+                                public var cpid: Swift.Double
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case1/boardsPayload/bdid`.
-                                internal var bdid: Swift.Double
+                                public var bdid: Swift.Double
                                 /// Creates a new `boardsPayloadPayload`.
                                 ///
                                 /// - Parameters:
@@ -590,7 +590,7 @@ internal enum Operations {
                                 ///   - platform:
                                 ///   - cpid:
                                 ///   - bdid:
-                                internal init(
+                                public init(
                                     boardconfig: Swift.String,
                                     platform: Swift.String,
                                     cpid: Swift.Double,
@@ -601,7 +601,7 @@ internal enum Operations {
                                     self.cpid = cpid
                                     self.bdid = bdid
                                 }
-                                internal enum CodingKeys: String, CodingKey {
+                                public enum CodingKeys: String, CodingKey {
                                     case boardconfig
                                     case platform
                                     case cpid
@@ -609,17 +609,17 @@ internal enum Operations {
                                 }
                             }
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case1/boards`.
-                            internal typealias boardsPayload = [Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Output.Ok.Body.jsonPayload.Case1Payload.boardsPayloadPayload]
+                            public typealias boardsPayload = [Operations.firmwaresForDevice.Output.Ok.Body.jsonPayload.Case1Payload.boardsPayloadPayload]
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case1/boards`.
-                            internal var boards: Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Output.Ok.Body.jsonPayload.Case1Payload.boardsPayload?
+                            public var boards: Operations.firmwaresForDevice.Output.Ok.Body.jsonPayload.Case1Payload.boardsPayload?
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case1/boardconfig`.
-                            internal var boardconfig: Swift.String?
+                            public var boardconfig: Swift.String?
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case1/platform`.
-                            internal var platform: Swift.String?
+                            public var platform: Swift.String?
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case1/cpid`.
-                            internal var cpid: Swift.Double?
+                            public var cpid: Swift.Double?
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case1/bdid`.
-                            internal var bdid: Swift.Double?
+                            public var bdid: Swift.Double?
                             /// Creates a new `Case1Payload`.
                             ///
                             /// - Parameters:
@@ -631,11 +631,11 @@ internal enum Operations {
                             ///   - platform:
                             ///   - cpid:
                             ///   - bdid:
-                            internal init(
+                            public init(
                                 name: Swift.String? = nil,
                                 identifier: Swift.String? = nil,
-                                firmwares: Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Output.Ok.Body.jsonPayload.Case1Payload.firmwaresPayload? = nil,
-                                boards: Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Output.Ok.Body.jsonPayload.Case1Payload.boardsPayload? = nil,
+                                firmwares: Operations.firmwaresForDevice.Output.Ok.Body.jsonPayload.Case1Payload.firmwaresPayload? = nil,
+                                boards: Operations.firmwaresForDevice.Output.Ok.Body.jsonPayload.Case1Payload.boardsPayload? = nil,
                                 boardconfig: Swift.String? = nil,
                                 platform: Swift.String? = nil,
                                 cpid: Swift.Double? = nil,
@@ -650,7 +650,7 @@ internal enum Operations {
                                 self.cpid = cpid
                                 self.bdid = bdid
                             }
-                            internal enum CodingKeys: String, CodingKey {
+                            public enum CodingKeys: String, CodingKey {
                                 case name
                                 case identifier
                                 case firmwares
@@ -662,35 +662,35 @@ internal enum Operations {
                             }
                         }
                         /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case1`.
-                        case case1(Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Output.Ok.Body.jsonPayload.Case1Payload)
+                        case case1(Operations.firmwaresForDevice.Output.Ok.Body.jsonPayload.Case1Payload)
                         /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case2`.
-                        internal struct Case2Payload: Codable, Hashable, Sendable {
+                        public struct Case2Payload: Codable, Hashable, Sendable {
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case2/name`.
-                            internal var name: Swift.String?
+                            public var name: Swift.String?
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case2/identifier`.
-                            internal var identifier: Swift.String?
+                            public var identifier: Swift.String?
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case2/firmwaresPayload`.
-                            internal struct firmwaresPayloadPayload: Codable, Hashable, Sendable {
+                            public struct firmwaresPayloadPayload: Codable, Hashable, Sendable {
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case2/firmwaresPayload/identifier`.
-                                internal var identifier: Swift.String
+                                public var identifier: Swift.String
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case2/firmwaresPayload/version`.
-                                internal var version: Swift.String
+                                public var version: Swift.String
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case2/firmwaresPayload/buildid`.
-                                internal var buildid: Swift.String
+                                public var buildid: Swift.String
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case2/firmwaresPayload/sha1sum`.
-                                internal var sha1sum: Swift.String
+                                public var sha1sum: Swift.String
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case2/firmwaresPayload/md5sum`.
-                                internal var md5sum: Swift.String
+                                public var md5sum: Swift.String
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case2/firmwaresPayload/filesize`.
-                                internal var filesize: Swift.Double
+                                public var filesize: Swift.Double
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case2/firmwaresPayload/url`.
-                                internal var url: Swift.String
+                                public var url: Swift.String
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case2/firmwaresPayload/releasedate`.
-                                internal var releasedate: Swift.String
+                                public var releasedate: Swift.String
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case2/firmwaresPayload/uploaddate`.
-                                internal var uploaddate: Swift.String
+                                public var uploaddate: Swift.String
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case2/firmwaresPayload/signed`.
-                                internal var signed: Swift.Bool
+                                public var signed: Swift.Bool
                                 /// Creates a new `firmwaresPayloadPayload`.
                                 ///
                                 /// - Parameters:
@@ -704,7 +704,7 @@ internal enum Operations {
                                 ///   - releasedate:
                                 ///   - uploaddate:
                                 ///   - signed:
-                                internal init(
+                                public init(
                                     identifier: Swift.String,
                                     version: Swift.String,
                                     buildid: Swift.String,
@@ -727,7 +727,7 @@ internal enum Operations {
                                     self.uploaddate = uploaddate
                                     self.signed = signed
                                 }
-                                internal enum CodingKeys: String, CodingKey {
+                                public enum CodingKeys: String, CodingKey {
                                     case identifier
                                     case version
                                     case buildid
@@ -741,19 +741,19 @@ internal enum Operations {
                                 }
                             }
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case2/firmwares`.
-                            internal typealias firmwaresPayload = [Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Output.Ok.Body.jsonPayload.Case2Payload.firmwaresPayloadPayload]
+                            public typealias firmwaresPayload = [Operations.firmwaresForDevice.Output.Ok.Body.jsonPayload.Case2Payload.firmwaresPayloadPayload]
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case2/firmwares`.
-                            internal var firmwares: Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Output.Ok.Body.jsonPayload.Case2Payload.firmwaresPayload?
+                            public var firmwares: Operations.firmwaresForDevice.Output.Ok.Body.jsonPayload.Case2Payload.firmwaresPayload?
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case2/boardsPayload`.
-                            internal struct boardsPayloadPayload: Codable, Hashable, Sendable {
+                            public struct boardsPayloadPayload: Codable, Hashable, Sendable {
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case2/boardsPayload/boardconfig`.
-                                internal var boardconfig: Swift.String?
+                                public var boardconfig: Swift.String?
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case2/boardsPayload/platform`.
-                                internal var platform: Swift.String?
+                                public var platform: Swift.String?
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case2/boardsPayload/cpid`.
-                                internal var cpid: Swift.Double?
+                                public var cpid: Swift.Double?
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case2/boardsPayload/bdid`.
-                                internal var bdid: Swift.Double?
+                                public var bdid: Swift.Double?
                                 /// Creates a new `boardsPayloadPayload`.
                                 ///
                                 /// - Parameters:
@@ -761,7 +761,7 @@ internal enum Operations {
                                 ///   - platform:
                                 ///   - cpid:
                                 ///   - bdid:
-                                internal init(
+                                public init(
                                     boardconfig: Swift.String? = nil,
                                     platform: Swift.String? = nil,
                                     cpid: Swift.Double? = nil,
@@ -772,7 +772,7 @@ internal enum Operations {
                                     self.cpid = cpid
                                     self.bdid = bdid
                                 }
-                                internal enum CodingKeys: String, CodingKey {
+                                public enum CodingKeys: String, CodingKey {
                                     case boardconfig
                                     case platform
                                     case cpid
@@ -780,17 +780,17 @@ internal enum Operations {
                                 }
                             }
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case2/boards`.
-                            internal typealias boardsPayload = [Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Output.Ok.Body.jsonPayload.Case2Payload.boardsPayloadPayload]
+                            public typealias boardsPayload = [Operations.firmwaresForDevice.Output.Ok.Body.jsonPayload.Case2Payload.boardsPayloadPayload]
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case2/boards`.
-                            internal var boards: Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Output.Ok.Body.jsonPayload.Case2Payload.boardsPayload?
+                            public var boards: Operations.firmwaresForDevice.Output.Ok.Body.jsonPayload.Case2Payload.boardsPayload?
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case2/boardconfig`.
-                            internal var boardconfig: Swift.String?
+                            public var boardconfig: Swift.String?
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case2/platform`.
-                            internal var platform: Swift.String?
+                            public var platform: Swift.String?
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case2/cpid`.
-                            internal var cpid: Swift.Double?
+                            public var cpid: Swift.Double?
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case2/bdid`.
-                            internal var bdid: Swift.Double?
+                            public var bdid: Swift.Double?
                             /// Creates a new `Case2Payload`.
                             ///
                             /// - Parameters:
@@ -802,11 +802,11 @@ internal enum Operations {
                             ///   - platform:
                             ///   - cpid:
                             ///   - bdid:
-                            internal init(
+                            public init(
                                 name: Swift.String? = nil,
                                 identifier: Swift.String? = nil,
-                                firmwares: Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Output.Ok.Body.jsonPayload.Case2Payload.firmwaresPayload? = nil,
-                                boards: Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Output.Ok.Body.jsonPayload.Case2Payload.boardsPayload? = nil,
+                                firmwares: Operations.firmwaresForDevice.Output.Ok.Body.jsonPayload.Case2Payload.firmwaresPayload? = nil,
+                                boards: Operations.firmwaresForDevice.Output.Ok.Body.jsonPayload.Case2Payload.boardsPayload? = nil,
                                 boardconfig: Swift.String? = nil,
                                 platform: Swift.String? = nil,
                                 cpid: Swift.Double? = nil,
@@ -821,7 +821,7 @@ internal enum Operations {
                                 self.cpid = cpid
                                 self.bdid = bdid
                             }
-                            internal enum CodingKeys: String, CodingKey {
+                            public enum CodingKeys: String, CodingKey {
                                 case name
                                 case identifier
                                 case firmwares
@@ -833,35 +833,35 @@ internal enum Operations {
                             }
                         }
                         /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case2`.
-                        case case2(Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Output.Ok.Body.jsonPayload.Case2Payload)
+                        case case2(Operations.firmwaresForDevice.Output.Ok.Body.jsonPayload.Case2Payload)
                         /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case3`.
-                        internal struct Case3Payload: Codable, Hashable, Sendable {
+                        public struct Case3Payload: Codable, Hashable, Sendable {
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case3/name`.
-                            internal var name: Swift.String?
+                            public var name: Swift.String?
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case3/identifier`.
-                            internal var identifier: Swift.String?
+                            public var identifier: Swift.String?
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case3/firmwaresPayload`.
-                            internal struct firmwaresPayloadPayload: Codable, Hashable, Sendable {
+                            public struct firmwaresPayloadPayload: Codable, Hashable, Sendable {
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case3/firmwaresPayload/identifier`.
-                                internal var identifier: Swift.String
+                                public var identifier: Swift.String
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case3/firmwaresPayload/version`.
-                                internal var version: Swift.String
+                                public var version: Swift.String
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case3/firmwaresPayload/buildid`.
-                                internal var buildid: Swift.String
+                                public var buildid: Swift.String
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case3/firmwaresPayload/sha1sum`.
-                                internal var sha1sum: Swift.String
+                                public var sha1sum: Swift.String
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case3/firmwaresPayload/md5sum`.
-                                internal var md5sum: Swift.String
+                                public var md5sum: Swift.String
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case3/firmwaresPayload/filesize`.
-                                internal var filesize: Swift.Double
+                                public var filesize: Swift.Double
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case3/firmwaresPayload/url`.
-                                internal var url: Swift.String
+                                public var url: Swift.String
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case3/firmwaresPayload/releasedate`.
-                                internal var releasedate: OpenAPIRuntime.OpenAPIValueContainer?
+                                public var releasedate: OpenAPIRuntime.OpenAPIValueContainer?
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case3/firmwaresPayload/uploaddate`.
-                                internal var uploaddate: Swift.String
+                                public var uploaddate: Swift.String
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case3/firmwaresPayload/signed`.
-                                internal var signed: Swift.Bool
+                                public var signed: Swift.Bool
                                 /// Creates a new `firmwaresPayloadPayload`.
                                 ///
                                 /// - Parameters:
@@ -875,7 +875,7 @@ internal enum Operations {
                                 ///   - releasedate:
                                 ///   - uploaddate:
                                 ///   - signed:
-                                internal init(
+                                public init(
                                     identifier: Swift.String,
                                     version: Swift.String,
                                     buildid: Swift.String,
@@ -898,7 +898,7 @@ internal enum Operations {
                                     self.uploaddate = uploaddate
                                     self.signed = signed
                                 }
-                                internal enum CodingKeys: String, CodingKey {
+                                public enum CodingKeys: String, CodingKey {
                                     case identifier
                                     case version
                                     case buildid
@@ -912,19 +912,19 @@ internal enum Operations {
                                 }
                             }
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case3/firmwares`.
-                            internal typealias firmwaresPayload = [Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Output.Ok.Body.jsonPayload.Case3Payload.firmwaresPayloadPayload]
+                            public typealias firmwaresPayload = [Operations.firmwaresForDevice.Output.Ok.Body.jsonPayload.Case3Payload.firmwaresPayloadPayload]
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case3/firmwares`.
-                            internal var firmwares: Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Output.Ok.Body.jsonPayload.Case3Payload.firmwaresPayload?
+                            public var firmwares: Operations.firmwaresForDevice.Output.Ok.Body.jsonPayload.Case3Payload.firmwaresPayload?
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case3/boardsPayload`.
-                            internal struct boardsPayloadPayload: Codable, Hashable, Sendable {
+                            public struct boardsPayloadPayload: Codable, Hashable, Sendable {
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case3/boardsPayload/boardconfig`.
-                                internal var boardconfig: Swift.String?
+                                public var boardconfig: Swift.String?
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case3/boardsPayload/platform`.
-                                internal var platform: Swift.String?
+                                public var platform: Swift.String?
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case3/boardsPayload/cpid`.
-                                internal var cpid: Swift.Double?
+                                public var cpid: Swift.Double?
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case3/boardsPayload/bdid`.
-                                internal var bdid: Swift.Double?
+                                public var bdid: Swift.Double?
                                 /// Creates a new `boardsPayloadPayload`.
                                 ///
                                 /// - Parameters:
@@ -932,7 +932,7 @@ internal enum Operations {
                                 ///   - platform:
                                 ///   - cpid:
                                 ///   - bdid:
-                                internal init(
+                                public init(
                                     boardconfig: Swift.String? = nil,
                                     platform: Swift.String? = nil,
                                     cpid: Swift.Double? = nil,
@@ -943,7 +943,7 @@ internal enum Operations {
                                     self.cpid = cpid
                                     self.bdid = bdid
                                 }
-                                internal enum CodingKeys: String, CodingKey {
+                                public enum CodingKeys: String, CodingKey {
                                     case boardconfig
                                     case platform
                                     case cpid
@@ -951,17 +951,17 @@ internal enum Operations {
                                 }
                             }
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case3/boards`.
-                            internal typealias boardsPayload = [Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Output.Ok.Body.jsonPayload.Case3Payload.boardsPayloadPayload]
+                            public typealias boardsPayload = [Operations.firmwaresForDevice.Output.Ok.Body.jsonPayload.Case3Payload.boardsPayloadPayload]
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case3/boards`.
-                            internal var boards: Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Output.Ok.Body.jsonPayload.Case3Payload.boardsPayload?
+                            public var boards: Operations.firmwaresForDevice.Output.Ok.Body.jsonPayload.Case3Payload.boardsPayload?
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case3/boardconfig`.
-                            internal var boardconfig: Swift.String?
+                            public var boardconfig: Swift.String?
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case3/platform`.
-                            internal var platform: Swift.String?
+                            public var platform: Swift.String?
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case3/cpid`.
-                            internal var cpid: Swift.Double?
+                            public var cpid: Swift.Double?
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case3/bdid`.
-                            internal var bdid: Swift.Double?
+                            public var bdid: Swift.Double?
                             /// Creates a new `Case3Payload`.
                             ///
                             /// - Parameters:
@@ -973,11 +973,11 @@ internal enum Operations {
                             ///   - platform:
                             ///   - cpid:
                             ///   - bdid:
-                            internal init(
+                            public init(
                                 name: Swift.String? = nil,
                                 identifier: Swift.String? = nil,
-                                firmwares: Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Output.Ok.Body.jsonPayload.Case3Payload.firmwaresPayload? = nil,
-                                boards: Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Output.Ok.Body.jsonPayload.Case3Payload.boardsPayload? = nil,
+                                firmwares: Operations.firmwaresForDevice.Output.Ok.Body.jsonPayload.Case3Payload.firmwaresPayload? = nil,
+                                boards: Operations.firmwaresForDevice.Output.Ok.Body.jsonPayload.Case3Payload.boardsPayload? = nil,
                                 boardconfig: Swift.String? = nil,
                                 platform: Swift.String? = nil,
                                 cpid: Swift.Double? = nil,
@@ -992,7 +992,7 @@ internal enum Operations {
                                 self.cpid = cpid
                                 self.bdid = bdid
                             }
-                            internal enum CodingKeys: String, CodingKey {
+                            public enum CodingKeys: String, CodingKey {
                                 case name
                                 case identifier
                                 case firmwares
@@ -1004,39 +1004,39 @@ internal enum Operations {
                             }
                         }
                         /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case3`.
-                        case case3(Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Output.Ok.Body.jsonPayload.Case3Payload)
+                        case case3(Operations.firmwaresForDevice.Output.Ok.Body.jsonPayload.Case3Payload)
                         /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case4`.
-                        internal struct Case4Payload: Codable, Hashable, Sendable {
+                        public struct Case4Payload: Codable, Hashable, Sendable {
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case4/name`.
-                            internal var name: Swift.String?
+                            public var name: Swift.String?
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case4/identifier`.
-                            internal var identifier: Swift.String?
+                            public var identifier: Swift.String?
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case4/firmwaresPayload`.
-                            internal struct firmwaresPayloadPayload: Codable, Hashable, Sendable {
+                            public struct firmwaresPayloadPayload: Codable, Hashable, Sendable {
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case4/firmwaresPayload/identifier`.
-                                internal var identifier: Swift.String
+                                public var identifier: Swift.String
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case4/firmwaresPayload/buildid`.
-                                internal var buildid: Swift.String
+                                public var buildid: Swift.String
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case4/firmwaresPayload/version`.
-                                internal var version: Swift.String
+                                public var version: Swift.String
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case4/firmwaresPayload/url`.
-                                internal var url: Swift.String
+                                public var url: Swift.String
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case4/firmwaresPayload/filesize`.
-                                internal var filesize: Swift.Double
+                                public var filesize: Swift.Double
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case4/firmwaresPayload/prerequisitebuildid`.
-                                internal var prerequisitebuildid: Swift.String
+                                public var prerequisitebuildid: Swift.String
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case4/firmwaresPayload/prerequisiteversion`.
-                                internal var prerequisiteversion: Swift.String
+                                public var prerequisiteversion: Swift.String
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case4/firmwaresPayload/releasetype`.
-                                internal var releasetype: Swift.String
+                                public var releasetype: Swift.String
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case4/firmwaresPayload/uploaddate`.
-                                internal var uploaddate: Swift.String
+                                public var uploaddate: Swift.String
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case4/firmwaresPayload/releasedate`.
-                                internal var releasedate: Swift.String
+                                public var releasedate: Swift.String
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case4/firmwaresPayload/marketingversion`.
-                                internal var marketingversion: Swift.String
+                                public var marketingversion: Swift.String
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case4/firmwaresPayload/signed`.
-                                internal var signed: Swift.Bool
+                                public var signed: Swift.Bool
                                 /// Creates a new `firmwaresPayloadPayload`.
                                 ///
                                 /// - Parameters:
@@ -1052,7 +1052,7 @@ internal enum Operations {
                                 ///   - releasedate:
                                 ///   - marketingversion:
                                 ///   - signed:
-                                internal init(
+                                public init(
                                     identifier: Swift.String,
                                     buildid: Swift.String,
                                     version: Swift.String,
@@ -1079,7 +1079,7 @@ internal enum Operations {
                                     self.marketingversion = marketingversion
                                     self.signed = signed
                                 }
-                                internal enum CodingKeys: String, CodingKey {
+                                public enum CodingKeys: String, CodingKey {
                                     case identifier
                                     case buildid
                                     case version
@@ -1095,19 +1095,19 @@ internal enum Operations {
                                 }
                             }
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case4/firmwares`.
-                            internal typealias firmwaresPayload = [Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Output.Ok.Body.jsonPayload.Case4Payload.firmwaresPayloadPayload]
+                            public typealias firmwaresPayload = [Operations.firmwaresForDevice.Output.Ok.Body.jsonPayload.Case4Payload.firmwaresPayloadPayload]
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case4/firmwares`.
-                            internal var firmwares: Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Output.Ok.Body.jsonPayload.Case4Payload.firmwaresPayload?
+                            public var firmwares: Operations.firmwaresForDevice.Output.Ok.Body.jsonPayload.Case4Payload.firmwaresPayload?
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case4/boardsPayload`.
-                            internal struct boardsPayloadPayload: Codable, Hashable, Sendable {
+                            public struct boardsPayloadPayload: Codable, Hashable, Sendable {
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case4/boardsPayload/boardconfig`.
-                                internal var boardconfig: Swift.String?
+                                public var boardconfig: Swift.String?
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case4/boardsPayload/platform`.
-                                internal var platform: Swift.String?
+                                public var platform: Swift.String?
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case4/boardsPayload/cpid`.
-                                internal var cpid: Swift.Double?
+                                public var cpid: Swift.Double?
                                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case4/boardsPayload/bdid`.
-                                internal var bdid: Swift.Double?
+                                public var bdid: Swift.Double?
                                 /// Creates a new `boardsPayloadPayload`.
                                 ///
                                 /// - Parameters:
@@ -1115,7 +1115,7 @@ internal enum Operations {
                                 ///   - platform:
                                 ///   - cpid:
                                 ///   - bdid:
-                                internal init(
+                                public init(
                                     boardconfig: Swift.String? = nil,
                                     platform: Swift.String? = nil,
                                     cpid: Swift.Double? = nil,
@@ -1126,7 +1126,7 @@ internal enum Operations {
                                     self.cpid = cpid
                                     self.bdid = bdid
                                 }
-                                internal enum CodingKeys: String, CodingKey {
+                                public enum CodingKeys: String, CodingKey {
                                     case boardconfig
                                     case platform
                                     case cpid
@@ -1134,17 +1134,17 @@ internal enum Operations {
                                 }
                             }
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case4/boards`.
-                            internal typealias boardsPayload = [Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Output.Ok.Body.jsonPayload.Case4Payload.boardsPayloadPayload]
+                            public typealias boardsPayload = [Operations.firmwaresForDevice.Output.Ok.Body.jsonPayload.Case4Payload.boardsPayloadPayload]
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case4/boards`.
-                            internal var boards: Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Output.Ok.Body.jsonPayload.Case4Payload.boardsPayload?
+                            public var boards: Operations.firmwaresForDevice.Output.Ok.Body.jsonPayload.Case4Payload.boardsPayload?
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case4/boardconfig`.
-                            internal var boardconfig: Swift.String?
+                            public var boardconfig: Swift.String?
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case4/platform`.
-                            internal var platform: Swift.String?
+                            public var platform: Swift.String?
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case4/cpid`.
-                            internal var cpid: Swift.Double?
+                            public var cpid: Swift.Double?
                             /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case4/bdid`.
-                            internal var bdid: Swift.Double?
+                            public var bdid: Swift.Double?
                             /// Creates a new `Case4Payload`.
                             ///
                             /// - Parameters:
@@ -1156,11 +1156,11 @@ internal enum Operations {
                             ///   - platform:
                             ///   - cpid:
                             ///   - bdid:
-                            internal init(
+                            public init(
                                 name: Swift.String? = nil,
                                 identifier: Swift.String? = nil,
-                                firmwares: Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Output.Ok.Body.jsonPayload.Case4Payload.firmwaresPayload? = nil,
-                                boards: Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Output.Ok.Body.jsonPayload.Case4Payload.boardsPayload? = nil,
+                                firmwares: Operations.firmwaresForDevice.Output.Ok.Body.jsonPayload.Case4Payload.firmwaresPayload? = nil,
+                                boards: Operations.firmwaresForDevice.Output.Ok.Body.jsonPayload.Case4Payload.boardsPayload? = nil,
                                 boardconfig: Swift.String? = nil,
                                 platform: Swift.String? = nil,
                                 cpid: Swift.Double? = nil,
@@ -1175,7 +1175,7 @@ internal enum Operations {
                                 self.cpid = cpid
                                 self.bdid = bdid
                             }
-                            internal enum CodingKeys: String, CodingKey {
+                            public enum CodingKeys: String, CodingKey {
                                 case name
                                 case identifier
                                 case firmwares
@@ -1187,8 +1187,8 @@ internal enum Operations {
                             }
                         }
                         /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/json/case4`.
-                        case case4(Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Output.Ok.Body.jsonPayload.Case4Payload)
-                        internal init(from decoder: any Decoder) throws {
+                        case case4(Operations.firmwaresForDevice.Output.Ok.Body.jsonPayload.Case4Payload)
+                        public init(from decoder: any Decoder) throws {
                             var errors: [any Error] = []
                             do {
                                 self = .case1(try .init(from: decoder))
@@ -1220,7 +1220,7 @@ internal enum Operations {
                                 errors: errors
                             )
                         }
-                        internal func encode(to encoder: any Encoder) throws {
+                        public func encode(to encoder: any Encoder) throws {
                             switch self {
                             case let .case1(value):
                                 try value.encode(to: encoder)
@@ -1234,12 +1234,12 @@ internal enum Operations {
                         }
                     }
                     /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/application\/json`.
-                    case json(Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Output.Ok.Body.jsonPayload)
+                    case json(Operations.firmwaresForDevice.Output.Ok.Body.jsonPayload)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    internal var json: Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Output.Ok.Body.jsonPayload {
+                    public var json: Operations.firmwaresForDevice.Output.Ok.Body.jsonPayload {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -1258,7 +1258,7 @@ internal enum Operations {
                     ///
                     /// - Throws: An error if `self` is not `.application_x_hyphen_plist`.
                     /// - SeeAlso: `.application_x_hyphen_plist`.
-                    internal var application_x_hyphen_plist: OpenAPIRuntime.HTTPBody {
+                    public var application_x_hyphen_plist: OpenAPIRuntime.HTTPBody {
                         get throws {
                             switch self {
                             case let .application_x_hyphen_plist(body):
@@ -1277,7 +1277,7 @@ internal enum Operations {
                     ///
                     /// - Throws: An error if `self` is not `.xml`.
                     /// - SeeAlso: `.xml`.
-                    internal var xml: OpenAPIRuntime.HTTPBody {
+                    public var xml: OpenAPIRuntime.HTTPBody {
                         get throws {
                             switch self {
                             case let .xml(body):
@@ -1292,15 +1292,15 @@ internal enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                internal var body: Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Output.Ok.Body
+                public var body: Operations.firmwaresForDevice.Output.Ok.Body
                 /// Creates a new `Ok`.
                 ///
                 /// - Parameters:
                 ///   - headers: Received HTTP response headers
                 ///   - body: Received HTTP response body
-                internal init(
-                    headers: Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Output.Ok.Headers = .init(),
-                    body: Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Output.Ok.Body
+                public init(
+                    headers: Operations.firmwaresForDevice.Output.Ok.Headers = .init(),
+                    body: Operations.firmwaresForDevice.Output.Ok.Body
                 ) {
                     self.headers = headers
                     self.body = body
@@ -1308,15 +1308,15 @@ internal enum Operations {
             }
             /// OK
             ///
-            /// - Remark: Generated from `#/paths//device/{identifier}/get(V 4 . Get Firmwares For Device)/responses/200`.
+            /// - Remark: Generated from `#/paths//device/{identifier}/get(firmwaresForDevice)/responses/200`.
             ///
             /// HTTP response code: `200 ok`.
-            case ok(Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Output.Ok)
+            case ok(Operations.firmwaresForDevice.Output.Ok)
             /// The associated value of the enum case if `self` is `.ok`.
             ///
             /// - Throws: An error if `self` is not `.ok`.
             /// - SeeAlso: `.ok`.
-            internal var ok: Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Output.Ok {
+            public var ok: Operations.firmwaresForDevice.Output.Ok {
                 get throws {
                     switch self {
                     case let .ok(response):
@@ -1329,22 +1329,22 @@ internal enum Operations {
                     }
                 }
             }
-            internal struct NotFound: Sendable, Hashable {
+            public struct NotFound: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/404/headers`.
-                internal struct Headers: Sendable, Hashable {
+                public struct Headers: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/404/headers/Access-Control-Allow-Methods`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
                     /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/404/headers/Access-Control-Allow-Origin`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
                     /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/404/headers/X-Data-Location`.
-                    internal var X_hyphen_Data_hyphen_Location: Swift.String?
+                    public var X_hyphen_Data_hyphen_Location: Swift.String?
                     /// Creates a new `Headers`.
                     ///
                     /// - Parameters:
                     ///   - Access_hyphen_Control_hyphen_Allow_hyphen_Methods:
                     ///   - Access_hyphen_Control_hyphen_Allow_hyphen_Origin:
                     ///   - X_hyphen_Data_hyphen_Location:
-                    internal init(
+                    public init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String? = nil,
                         Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String? = nil,
                         X_hyphen_Data_hyphen_Location: Swift.String? = nil
@@ -1355,26 +1355,26 @@ internal enum Operations {
                     }
                 }
                 /// Received HTTP response headers
-                internal var headers: Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Output.NotFound.Headers
+                public var headers: Operations.firmwaresForDevice.Output.NotFound.Headers
                 /// Creates a new `NotFound`.
                 ///
                 /// - Parameters:
                 ///   - headers: Received HTTP response headers
-                internal init(headers: Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Output.NotFound.Headers = .init()) {
+                public init(headers: Operations.firmwaresForDevice.Output.NotFound.Headers = .init()) {
                     self.headers = headers
                 }
             }
             /// Not Found
             ///
-            /// - Remark: Generated from `#/paths//device/{identifier}/get(V 4 . Get Firmwares For Device)/responses/404`.
+            /// - Remark: Generated from `#/paths//device/{identifier}/get(firmwaresForDevice)/responses/404`.
             ///
             /// HTTP response code: `404 notFound`.
-            case notFound(Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Output.NotFound)
+            case notFound(Operations.firmwaresForDevice.Output.NotFound)
             /// The associated value of the enum case if `self` is `.notFound`.
             ///
             /// - Throws: An error if `self` is not `.notFound`.
             /// - SeeAlso: `.notFound`.
-            internal var notFound: Operations.V_space_4_space__period__space_Get_space_Firmwares_space_For_space_Device.Output.NotFound {
+            public var notFound: Operations.firmwaresForDevice.Output.NotFound {
                 get throws {
                     switch self {
                     case let .notFound(response):
@@ -1392,12 +1392,12 @@ internal enum Operations {
             /// A response with a code that is not documented in the OpenAPI document.
             case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
         }
-        @frozen internal enum AcceptableContentType: AcceptableProtocol {
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
             case json
             case application_x_hyphen_plist
             case xml
             case other(Swift.String)
-            internal init?(rawValue: Swift.String) {
+            public init?(rawValue: Swift.String) {
                 switch rawValue.lowercased() {
                 case "application/json":
                     self = .json
@@ -1409,7 +1409,7 @@ internal enum Operations {
                     self = .other(rawValue)
                 }
             }
-            internal var rawValue: Swift.String {
+            public var rawValue: Swift.String {
                 switch self {
                 case let .other(string):
                     return string
@@ -1421,7 +1421,7 @@ internal enum Operations {
                     return "application/xml"
                 }
             }
-            internal static var allCases: [Self] {
+            public static var allCases: [Self] {
                 [
                     .json,
                     .application_x_hyphen_plist,
@@ -1438,40 +1438,40 @@ internal enum Operations {
     ///
     /// - Remark: HTTP `GET /devices`.
     /// - Remark: Generated from `#/paths//devices/get(V 4 . Get Devices)`.
-    internal enum V_space_4_space__period__space_Get_space_Devices {
-        internal static let id: Swift.String = "V 4 . Get Devices"
-        internal struct Input: Sendable, Hashable {
+    public enum V_space_4_space__period__space_Get_space_Devices {
+        public static let id: Swift.String = "V 4 . Get Devices"
+        public struct Input: Sendable, Hashable {
             /// - Remark: Generated from `#/paths/devices/GET/query`.
-            internal struct Query: Sendable, Hashable {
+            public struct Query: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/devices/GET/query/keysOnly`.
-                internal var keysOnly: Swift.Bool
+                public var keysOnly: Swift.Bool
                 /// Creates a new `Query`.
                 ///
                 /// - Parameters:
                 ///   - keysOnly:
-                internal init(keysOnly: Swift.Bool) {
+                public init(keysOnly: Swift.Bool) {
                     self.keysOnly = keysOnly
                 }
             }
-            internal var query: Operations.V_space_4_space__period__space_Get_space_Devices.Input.Query
+            public var query: Operations.V_space_4_space__period__space_Get_space_Devices.Input.Query
             /// - Remark: Generated from `#/paths/devices/GET/header`.
-            internal struct Headers: Sendable, Hashable {
-                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Get_space_Devices.AcceptableContentType>]
+            public struct Headers: Sendable, Hashable {
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Get_space_Devices.AcceptableContentType>]
                 /// Creates a new `Headers`.
                 ///
                 /// - Parameters:
                 ///   - accept:
-                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Get_space_Devices.AcceptableContentType>] = .defaultValues()) {
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Get_space_Devices.AcceptableContentType>] = .defaultValues()) {
                     self.accept = accept
                 }
             }
-            internal var headers: Operations.V_space_4_space__period__space_Get_space_Devices.Input.Headers
+            public var headers: Operations.V_space_4_space__period__space_Get_space_Devices.Input.Headers
             /// Creates a new `Input`.
             ///
             /// - Parameters:
             ///   - query:
             ///   - headers:
-            internal init(
+            public init(
                 query: Operations.V_space_4_space__period__space_Get_space_Devices.Input.Query,
                 headers: Operations.V_space_4_space__period__space_Get_space_Devices.Input.Headers = .init()
             ) {
@@ -1479,20 +1479,20 @@ internal enum Operations {
                 self.headers = headers
             }
         }
-        @frozen internal enum Output: Sendable, Hashable {
-            internal struct Ok: Sendable, Hashable {
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/devices/GET/responses/200/headers`.
-                internal struct Headers: Sendable, Hashable {
+                public struct Headers: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/devices/GET/responses/200/headers/Access-Control-Allow-Methods`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
                     /// - Remark: Generated from `#/paths/devices/GET/responses/200/headers/Access-Control-Allow-Origin`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
                     /// - Remark: Generated from `#/paths/devices/GET/responses/200/headers/Cache-Control`.
-                    internal var Cache_hyphen_Control: Swift.String?
+                    public var Cache_hyphen_Control: Swift.String?
                     /// - Remark: Generated from `#/paths/devices/GET/responses/200/headers/Expires`.
-                    internal var Expires: Swift.String?
+                    public var Expires: Swift.String?
                     /// - Remark: Generated from `#/paths/devices/GET/responses/200/headers/X-Data-Location`.
-                    internal var X_hyphen_Data_hyphen_Location: Swift.String?
+                    public var X_hyphen_Data_hyphen_Location: Swift.String?
                     /// Creates a new `Headers`.
                     ///
                     /// - Parameters:
@@ -1501,7 +1501,7 @@ internal enum Operations {
                     ///   - Cache_hyphen_Control:
                     ///   - Expires:
                     ///   - X_hyphen_Data_hyphen_Location:
-                    internal init(
+                    public init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String? = nil,
                         Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String? = nil,
                         Cache_hyphen_Control: Swift.String? = nil,
@@ -1516,25 +1516,25 @@ internal enum Operations {
                     }
                 }
                 /// Received HTTP response headers
-                internal var headers: Operations.V_space_4_space__period__space_Get_space_Devices.Output.Ok.Headers
+                public var headers: Operations.V_space_4_space__period__space_Get_space_Devices.Output.Ok.Headers
                 /// - Remark: Generated from `#/paths/devices/GET/responses/200/content`.
-                @frozen internal enum Body: Sendable, Hashable {
+                @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/devices/GET/responses/200/content/jsonPayload`.
-                    internal struct jsonPayloadPayload: Codable, Hashable, Sendable {
+                    public struct jsonPayloadPayload: Codable, Hashable, Sendable {
                         /// - Remark: Generated from `#/paths/devices/GET/responses/200/content/jsonPayload/name`.
-                        internal var name: Swift.String
+                        public var name: Swift.String
                         /// - Remark: Generated from `#/paths/devices/GET/responses/200/content/jsonPayload/identifier`.
-                        internal var identifier: Swift.String
+                        public var identifier: Swift.String
                         /// - Remark: Generated from `#/paths/devices/GET/responses/200/content/jsonPayload/boardsPayload`.
-                        internal struct boardsPayloadPayload: Codable, Hashable, Sendable {
+                        public struct boardsPayloadPayload: Codable, Hashable, Sendable {
                             /// - Remark: Generated from `#/paths/devices/GET/responses/200/content/jsonPayload/boardsPayload/boardconfig`.
-                            internal var boardconfig: Swift.String
+                            public var boardconfig: Swift.String
                             /// - Remark: Generated from `#/paths/devices/GET/responses/200/content/jsonPayload/boardsPayload/platform`.
-                            internal var platform: Swift.String
+                            public var platform: Swift.String
                             /// - Remark: Generated from `#/paths/devices/GET/responses/200/content/jsonPayload/boardsPayload/cpid`.
-                            internal var cpid: Swift.Double
+                            public var cpid: Swift.Double
                             /// - Remark: Generated from `#/paths/devices/GET/responses/200/content/jsonPayload/boardsPayload/bdid`.
-                            internal var bdid: Swift.Double
+                            public var bdid: Swift.Double
                             /// Creates a new `boardsPayloadPayload`.
                             ///
                             /// - Parameters:
@@ -1542,7 +1542,7 @@ internal enum Operations {
                             ///   - platform:
                             ///   - cpid:
                             ///   - bdid:
-                            internal init(
+                            public init(
                                 boardconfig: Swift.String,
                                 platform: Swift.String,
                                 cpid: Swift.Double,
@@ -1553,7 +1553,7 @@ internal enum Operations {
                                 self.cpid = cpid
                                 self.bdid = bdid
                             }
-                            internal enum CodingKeys: String, CodingKey {
+                            public enum CodingKeys: String, CodingKey {
                                 case boardconfig
                                 case platform
                                 case cpid
@@ -1561,17 +1561,17 @@ internal enum Operations {
                             }
                         }
                         /// - Remark: Generated from `#/paths/devices/GET/responses/200/content/jsonPayload/boards`.
-                        internal typealias boardsPayload = [Operations.V_space_4_space__period__space_Get_space_Devices.Output.Ok.Body.jsonPayloadPayload.boardsPayloadPayload]
+                        public typealias boardsPayload = [Operations.V_space_4_space__period__space_Get_space_Devices.Output.Ok.Body.jsonPayloadPayload.boardsPayloadPayload]
                         /// - Remark: Generated from `#/paths/devices/GET/responses/200/content/jsonPayload/boards`.
-                        internal var boards: Operations.V_space_4_space__period__space_Get_space_Devices.Output.Ok.Body.jsonPayloadPayload.boardsPayload
+                        public var boards: Operations.V_space_4_space__period__space_Get_space_Devices.Output.Ok.Body.jsonPayloadPayload.boardsPayload
                         /// - Remark: Generated from `#/paths/devices/GET/responses/200/content/jsonPayload/boardconfig`.
-                        internal var boardconfig: Swift.String
+                        public var boardconfig: Swift.String
                         /// - Remark: Generated from `#/paths/devices/GET/responses/200/content/jsonPayload/platform`.
-                        internal var platform: Swift.String
+                        public var platform: Swift.String
                         /// - Remark: Generated from `#/paths/devices/GET/responses/200/content/jsonPayload/cpid`.
-                        internal var cpid: Swift.Double
+                        public var cpid: Swift.Double
                         /// - Remark: Generated from `#/paths/devices/GET/responses/200/content/jsonPayload/bdid`.
-                        internal var bdid: Swift.Double
+                        public var bdid: Swift.Double
                         /// Creates a new `jsonPayloadPayload`.
                         ///
                         /// - Parameters:
@@ -1582,7 +1582,7 @@ internal enum Operations {
                         ///   - platform:
                         ///   - cpid:
                         ///   - bdid:
-                        internal init(
+                        public init(
                             name: Swift.String,
                             identifier: Swift.String,
                             boards: Operations.V_space_4_space__period__space_Get_space_Devices.Output.Ok.Body.jsonPayloadPayload.boardsPayload,
@@ -1599,7 +1599,7 @@ internal enum Operations {
                             self.cpid = cpid
                             self.bdid = bdid
                         }
-                        internal enum CodingKeys: String, CodingKey {
+                        public enum CodingKeys: String, CodingKey {
                             case name
                             case identifier
                             case boards
@@ -1610,14 +1610,14 @@ internal enum Operations {
                         }
                     }
                     /// - Remark: Generated from `#/paths/devices/GET/responses/200/content/json`.
-                    internal typealias jsonPayload = [Operations.V_space_4_space__period__space_Get_space_Devices.Output.Ok.Body.jsonPayloadPayload]
+                    public typealias jsonPayload = [Operations.V_space_4_space__period__space_Get_space_Devices.Output.Ok.Body.jsonPayloadPayload]
                     /// - Remark: Generated from `#/paths/devices/GET/responses/200/content/application\/json`.
                     case json(Operations.V_space_4_space__period__space_Get_space_Devices.Output.Ok.Body.jsonPayload)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    internal var json: Operations.V_space_4_space__period__space_Get_space_Devices.Output.Ok.Body.jsonPayload {
+                    public var json: Operations.V_space_4_space__period__space_Get_space_Devices.Output.Ok.Body.jsonPayload {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -1636,7 +1636,7 @@ internal enum Operations {
                     ///
                     /// - Throws: An error if `self` is not `.application_x_hyphen_plist`.
                     /// - SeeAlso: `.application_x_hyphen_plist`.
-                    internal var application_x_hyphen_plist: OpenAPIRuntime.HTTPBody {
+                    public var application_x_hyphen_plist: OpenAPIRuntime.HTTPBody {
                         get throws {
                             switch self {
                             case let .application_x_hyphen_plist(body):
@@ -1655,7 +1655,7 @@ internal enum Operations {
                     ///
                     /// - Throws: An error if `self` is not `.xml`.
                     /// - SeeAlso: `.xml`.
-                    internal var xml: OpenAPIRuntime.HTTPBody {
+                    public var xml: OpenAPIRuntime.HTTPBody {
                         get throws {
                             switch self {
                             case let .xml(body):
@@ -1670,13 +1670,13 @@ internal enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                internal var body: Operations.V_space_4_space__period__space_Get_space_Devices.Output.Ok.Body
+                public var body: Operations.V_space_4_space__period__space_Get_space_Devices.Output.Ok.Body
                 /// Creates a new `Ok`.
                 ///
                 /// - Parameters:
                 ///   - headers: Received HTTP response headers
                 ///   - body: Received HTTP response body
-                internal init(
+                public init(
                     headers: Operations.V_space_4_space__period__space_Get_space_Devices.Output.Ok.Headers = .init(),
                     body: Operations.V_space_4_space__period__space_Get_space_Devices.Output.Ok.Body
                 ) {
@@ -1694,7 +1694,7 @@ internal enum Operations {
             ///
             /// - Throws: An error if `self` is not `.ok`.
             /// - SeeAlso: `.ok`.
-            internal var ok: Operations.V_space_4_space__period__space_Get_space_Devices.Output.Ok {
+            public var ok: Operations.V_space_4_space__period__space_Get_space_Devices.Output.Ok {
                 get throws {
                     switch self {
                     case let .ok(response):
@@ -1712,12 +1712,12 @@ internal enum Operations {
             /// A response with a code that is not documented in the OpenAPI document.
             case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
         }
-        @frozen internal enum AcceptableContentType: AcceptableProtocol {
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
             case json
             case application_x_hyphen_plist
             case xml
             case other(Swift.String)
-            internal init?(rawValue: Swift.String) {
+            public init?(rawValue: Swift.String) {
                 switch rawValue.lowercased() {
                 case "application/json":
                     self = .json
@@ -1729,7 +1729,7 @@ internal enum Operations {
                     self = .other(rawValue)
                 }
             }
-            internal var rawValue: Swift.String {
+            public var rawValue: Swift.String {
                 switch self {
                 case let .other(string):
                     return string
@@ -1741,7 +1741,7 @@ internal enum Operations {
                     return "application/xml"
                 }
             }
-            internal static var allCases: [Self] {
+            public static var allCases: [Self] {
                 [
                     .json,
                     .application_x_hyphen_plist,
@@ -1756,21 +1756,21 @@ internal enum Operations {
     ///
     /// - Remark: HTTP `GET /ipsw/download/{identifier}/{buildid}`.
     /// - Remark: Generated from `#/paths//ipsw/download/{identifier}/{buildid}/get(V 4 . Download IPSW)`.
-    internal enum V_space_4_space__period__space_Download_space_IPSW {
-        internal static let id: Swift.String = "V 4 . Download IPSW"
-        internal struct Input: Sendable, Hashable {
+    public enum V_space_4_space__period__space_Download_space_IPSW {
+        public static let id: Swift.String = "V 4 . Download IPSW"
+        public struct Input: Sendable, Hashable {
             /// - Remark: Generated from `#/paths/ipsw/download/{identifier}/{buildid}/GET/path`.
-            internal struct Path: Sendable, Hashable {
+            public struct Path: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/ipsw/download/{identifier}/{buildid}/GET/path/identifier`.
-                internal var identifier: Swift.String
+                public var identifier: Swift.String
                 /// - Remark: Generated from `#/paths/ipsw/download/{identifier}/{buildid}/GET/path/buildid`.
-                internal var buildid: Swift.String
+                public var buildid: Swift.String
                 /// Creates a new `Path`.
                 ///
                 /// - Parameters:
                 ///   - identifier:
                 ///   - buildid:
-                internal init(
+                public init(
                     identifier: Swift.String,
                     buildid: Swift.String
                 ) {
@@ -1778,25 +1778,25 @@ internal enum Operations {
                     self.buildid = buildid
                 }
             }
-            internal var path: Operations.V_space_4_space__period__space_Download_space_IPSW.Input.Path
+            public var path: Operations.V_space_4_space__period__space_Download_space_IPSW.Input.Path
             /// - Remark: Generated from `#/paths/ipsw/download/{identifier}/{buildid}/GET/header`.
-            internal struct Headers: Sendable, Hashable {
-                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Download_space_IPSW.AcceptableContentType>]
+            public struct Headers: Sendable, Hashable {
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Download_space_IPSW.AcceptableContentType>]
                 /// Creates a new `Headers`.
                 ///
                 /// - Parameters:
                 ///   - accept:
-                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Download_space_IPSW.AcceptableContentType>] = .defaultValues()) {
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Download_space_IPSW.AcceptableContentType>] = .defaultValues()) {
                     self.accept = accept
                 }
             }
-            internal var headers: Operations.V_space_4_space__period__space_Download_space_IPSW.Input.Headers
+            public var headers: Operations.V_space_4_space__period__space_Download_space_IPSW.Input.Headers
             /// Creates a new `Input`.
             ///
             /// - Parameters:
             ///   - path:
             ///   - headers:
-            internal init(
+            public init(
                 path: Operations.V_space_4_space__period__space_Download_space_IPSW.Input.Path,
                 headers: Operations.V_space_4_space__period__space_Download_space_IPSW.Input.Headers = .init()
             ) {
@@ -1804,23 +1804,23 @@ internal enum Operations {
                 self.headers = headers
             }
         }
-        @frozen internal enum Output: Sendable, Hashable {
-            internal struct Found: Sendable, Hashable {
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Found: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/ipsw/download/{identifier}/{buildid}/GET/responses/302/headers`.
-                internal struct Headers: Sendable, Hashable {
+                public struct Headers: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/ipsw/download/{identifier}/{buildid}/GET/responses/302/headers/Access-Control-Allow-Methods`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
                     /// - Remark: Generated from `#/paths/ipsw/download/{identifier}/{buildid}/GET/responses/302/headers/Access-Control-Allow-Origin`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
                     /// - Remark: Generated from `#/paths/ipsw/download/{identifier}/{buildid}/GET/responses/302/headers/Location`.
-                    internal var Location: Swift.String?
+                    public var Location: Swift.String?
                     /// Creates a new `Headers`.
                     ///
                     /// - Parameters:
                     ///   - Access_hyphen_Control_hyphen_Allow_hyphen_Methods:
                     ///   - Access_hyphen_Control_hyphen_Allow_hyphen_Origin:
                     ///   - Location:
-                    internal init(
+                    public init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String? = nil,
                         Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String? = nil,
                         Location: Swift.String? = nil
@@ -1831,16 +1831,16 @@ internal enum Operations {
                     }
                 }
                 /// Received HTTP response headers
-                internal var headers: Operations.V_space_4_space__period__space_Download_space_IPSW.Output.Found.Headers
+                public var headers: Operations.V_space_4_space__period__space_Download_space_IPSW.Output.Found.Headers
                 /// - Remark: Generated from `#/paths/ipsw/download/{identifier}/{buildid}/GET/responses/302/content`.
-                @frozen internal enum Body: Sendable, Hashable {
+                @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/ipsw/download/{identifier}/{buildid}/GET/responses/302/content/text\/html; charset=utf-8`.
                     case text_html_charset_utf_hyphen_8(OpenAPIRuntime.HTTPBody)
                     /// The associated value of the enum case if `self` is `.text_html_charset_utf_hyphen_8`.
                     ///
                     /// - Throws: An error if `self` is not `.text_html_charset_utf_hyphen_8`.
                     /// - SeeAlso: `.text_html_charset_utf_hyphen_8`.
-                    internal var text_html_charset_utf_hyphen_8: OpenAPIRuntime.HTTPBody {
+                    public var text_html_charset_utf_hyphen_8: OpenAPIRuntime.HTTPBody {
                         get throws {
                             switch self {
                             case let .text_html_charset_utf_hyphen_8(body):
@@ -1850,13 +1850,13 @@ internal enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                internal var body: Operations.V_space_4_space__period__space_Download_space_IPSW.Output.Found.Body
+                public var body: Operations.V_space_4_space__period__space_Download_space_IPSW.Output.Found.Body
                 /// Creates a new `Found`.
                 ///
                 /// - Parameters:
                 ///   - headers: Received HTTP response headers
                 ///   - body: Received HTTP response body
-                internal init(
+                public init(
                     headers: Operations.V_space_4_space__period__space_Download_space_IPSW.Output.Found.Headers = .init(),
                     body: Operations.V_space_4_space__period__space_Download_space_IPSW.Output.Found.Body
                 ) {
@@ -1874,7 +1874,7 @@ internal enum Operations {
             ///
             /// - Throws: An error if `self` is not `.found`.
             /// - SeeAlso: `.found`.
-            internal var found: Operations.V_space_4_space__period__space_Download_space_IPSW.Output.Found {
+            public var found: Operations.V_space_4_space__period__space_Download_space_IPSW.Output.Found {
                 get throws {
                     switch self {
                     case let .found(response):
@@ -1887,22 +1887,22 @@ internal enum Operations {
                     }
                 }
             }
-            internal struct NotFound: Sendable, Hashable {
+            public struct NotFound: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/ipsw/download/{identifier}/{buildid}/GET/responses/404/headers`.
-                internal struct Headers: Sendable, Hashable {
+                public struct Headers: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/ipsw/download/{identifier}/{buildid}/GET/responses/404/headers/Access-Control-Allow-Methods`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
                     /// - Remark: Generated from `#/paths/ipsw/download/{identifier}/{buildid}/GET/responses/404/headers/Access-Control-Allow-Origin`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
                     /// - Remark: Generated from `#/paths/ipsw/download/{identifier}/{buildid}/GET/responses/404/headers/X-Data-Location`.
-                    internal var X_hyphen_Data_hyphen_Location: Swift.String?
+                    public var X_hyphen_Data_hyphen_Location: Swift.String?
                     /// Creates a new `Headers`.
                     ///
                     /// - Parameters:
                     ///   - Access_hyphen_Control_hyphen_Allow_hyphen_Methods:
                     ///   - Access_hyphen_Control_hyphen_Allow_hyphen_Origin:
                     ///   - X_hyphen_Data_hyphen_Location:
-                    internal init(
+                    public init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String? = nil,
                         Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String? = nil,
                         X_hyphen_Data_hyphen_Location: Swift.String? = nil
@@ -1913,12 +1913,12 @@ internal enum Operations {
                     }
                 }
                 /// Received HTTP response headers
-                internal var headers: Operations.V_space_4_space__period__space_Download_space_IPSW.Output.NotFound.Headers
+                public var headers: Operations.V_space_4_space__period__space_Download_space_IPSW.Output.NotFound.Headers
                 /// Creates a new `NotFound`.
                 ///
                 /// - Parameters:
                 ///   - headers: Received HTTP response headers
-                internal init(headers: Operations.V_space_4_space__period__space_Download_space_IPSW.Output.NotFound.Headers = .init()) {
+                public init(headers: Operations.V_space_4_space__period__space_Download_space_IPSW.Output.NotFound.Headers = .init()) {
                     self.headers = headers
                 }
             }
@@ -1932,7 +1932,7 @@ internal enum Operations {
             ///
             /// - Throws: An error if `self` is not `.notFound`.
             /// - SeeAlso: `.notFound`.
-            internal var notFound: Operations.V_space_4_space__period__space_Download_space_IPSW.Output.NotFound {
+            public var notFound: Operations.V_space_4_space__period__space_Download_space_IPSW.Output.NotFound {
                 get throws {
                     switch self {
                     case let .notFound(response):
@@ -1950,10 +1950,10 @@ internal enum Operations {
             /// A response with a code that is not documented in the OpenAPI document.
             case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
         }
-        @frozen internal enum AcceptableContentType: AcceptableProtocol {
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
             case text_html_charset_utf_hyphen_8
             case other(Swift.String)
-            internal init?(rawValue: Swift.String) {
+            public init?(rawValue: Swift.String) {
                 switch rawValue.lowercased() {
                 case "text/html":
                     self = .text_html_charset_utf_hyphen_8
@@ -1961,7 +1961,7 @@ internal enum Operations {
                     self = .other(rawValue)
                 }
             }
-            internal var rawValue: Swift.String {
+            public var rawValue: Swift.String {
                 switch self {
                 case let .other(string):
                     return string
@@ -1969,7 +1969,7 @@ internal enum Operations {
                     return "text/html"
                 }
             }
-            internal static var allCases: [Self] {
+            public static var allCases: [Self] {
                 [
                     .text_html_charset_utf_hyphen_8
                 ]
@@ -1981,22 +1981,22 @@ internal enum Operations {
     /// GetIPSWInformation returns all known information for an IPSW as specified by identifier and buildid
     ///
     /// - Remark: HTTP `GET /ipsw/{identifier}/{buildid}`.
-    /// - Remark: Generated from `#/paths//ipsw/{identifier}/{buildid}/get(V 4 . Get IPSW Information)`.
-    internal enum V_space_4_space__period__space_Get_space_IPSW_space_Information {
-        internal static let id: Swift.String = "V 4 . Get IPSW Information"
-        internal struct Input: Sendable, Hashable {
+    /// - Remark: Generated from `#/paths//ipsw/{identifier}/{buildid}/get(ipswByIdentifierAndBuild)`.
+    public enum ipswByIdentifierAndBuild {
+        public static let id: Swift.String = "ipswByIdentifierAndBuild"
+        public struct Input: Sendable, Hashable {
             /// - Remark: Generated from `#/paths/ipsw/{identifier}/{buildid}/GET/path`.
-            internal struct Path: Sendable, Hashable {
+            public struct Path: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/ipsw/{identifier}/{buildid}/GET/path/identifier`.
-                internal var identifier: Swift.String
+                public var identifier: Swift.String
                 /// - Remark: Generated from `#/paths/ipsw/{identifier}/{buildid}/GET/path/buildid`.
-                internal var buildid: Swift.String
+                public var buildid: Swift.String
                 /// Creates a new `Path`.
                 ///
                 /// - Parameters:
                 ///   - identifier:
                 ///   - buildid:
-                internal init(
+                public init(
                     identifier: Swift.String,
                     buildid: Swift.String
                 ) {
@@ -2004,46 +2004,46 @@ internal enum Operations {
                     self.buildid = buildid
                 }
             }
-            internal var path: Operations.V_space_4_space__period__space_Get_space_IPSW_space_Information.Input.Path
+            public var path: Operations.ipswByIdentifierAndBuild.Input.Path
             /// - Remark: Generated from `#/paths/ipsw/{identifier}/{buildid}/GET/header`.
-            internal struct Headers: Sendable, Hashable {
-                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Get_space_IPSW_space_Information.AcceptableContentType>]
+            public struct Headers: Sendable, Hashable {
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.ipswByIdentifierAndBuild.AcceptableContentType>]
                 /// Creates a new `Headers`.
                 ///
                 /// - Parameters:
                 ///   - accept:
-                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Get_space_IPSW_space_Information.AcceptableContentType>] = .defaultValues()) {
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.ipswByIdentifierAndBuild.AcceptableContentType>] = .defaultValues()) {
                     self.accept = accept
                 }
             }
-            internal var headers: Operations.V_space_4_space__period__space_Get_space_IPSW_space_Information.Input.Headers
+            public var headers: Operations.ipswByIdentifierAndBuild.Input.Headers
             /// Creates a new `Input`.
             ///
             /// - Parameters:
             ///   - path:
             ///   - headers:
-            internal init(
-                path: Operations.V_space_4_space__period__space_Get_space_IPSW_space_Information.Input.Path,
-                headers: Operations.V_space_4_space__period__space_Get_space_IPSW_space_Information.Input.Headers = .init()
+            public init(
+                path: Operations.ipswByIdentifierAndBuild.Input.Path,
+                headers: Operations.ipswByIdentifierAndBuild.Input.Headers = .init()
             ) {
                 self.path = path
                 self.headers = headers
             }
         }
-        @frozen internal enum Output: Sendable, Hashable {
-            internal struct Ok: Sendable, Hashable {
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/ipsw/{identifier}/{buildid}/GET/responses/200/headers`.
-                internal struct Headers: Sendable, Hashable {
+                public struct Headers: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/ipsw/{identifier}/{buildid}/GET/responses/200/headers/Access-Control-Allow-Methods`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
                     /// - Remark: Generated from `#/paths/ipsw/{identifier}/{buildid}/GET/responses/200/headers/Access-Control-Allow-Origin`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
                     /// - Remark: Generated from `#/paths/ipsw/{identifier}/{buildid}/GET/responses/200/headers/Cache-Control`.
-                    internal var Cache_hyphen_Control: Swift.String?
+                    public var Cache_hyphen_Control: Swift.String?
                     /// - Remark: Generated from `#/paths/ipsw/{identifier}/{buildid}/GET/responses/200/headers/Expires`.
-                    internal var Expires: Swift.String?
+                    public var Expires: Swift.String?
                     /// - Remark: Generated from `#/paths/ipsw/{identifier}/{buildid}/GET/responses/200/headers/X-Data-Location`.
-                    internal var X_hyphen_Data_hyphen_Location: Swift.String?
+                    public var X_hyphen_Data_hyphen_Location: Swift.String?
                     /// Creates a new `Headers`.
                     ///
                     /// - Parameters:
@@ -2052,7 +2052,7 @@ internal enum Operations {
                     ///   - Cache_hyphen_Control:
                     ///   - Expires:
                     ///   - X_hyphen_Data_hyphen_Location:
-                    internal init(
+                    public init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String? = nil,
                         Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String? = nil,
                         Cache_hyphen_Control: Swift.String? = nil,
@@ -2067,33 +2067,33 @@ internal enum Operations {
                     }
                 }
                 /// Received HTTP response headers
-                internal var headers: Operations.V_space_4_space__period__space_Get_space_IPSW_space_Information.Output.Ok.Headers
+                public var headers: Operations.ipswByIdentifierAndBuild.Output.Ok.Headers
                 /// - Remark: Generated from `#/paths/ipsw/{identifier}/{buildid}/GET/responses/200/content`.
-                @frozen internal enum Body: Sendable, Hashable {
+                @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/ipsw/{identifier}/{buildid}/GET/responses/200/content/json`.
-                    @frozen internal enum jsonPayload: Codable, Hashable, Sendable {
+                    @frozen public enum jsonPayload: Codable, Hashable, Sendable {
                         /// - Remark: Generated from `#/paths/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case1`.
-                        internal struct Case1Payload: Codable, Hashable, Sendable {
+                        public struct Case1Payload: Codable, Hashable, Sendable {
                             /// - Remark: Generated from `#/paths/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case1/identifier`.
-                            internal var identifier: Swift.String?
+                            public var identifier: Swift.String?
                             /// - Remark: Generated from `#/paths/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case1/version`.
-                            internal var version: Swift.String?
+                            public var version: Swift.String?
                             /// - Remark: Generated from `#/paths/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case1/buildid`.
-                            internal var buildid: Swift.String?
+                            public var buildid: Swift.String?
                             /// - Remark: Generated from `#/paths/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case1/sha1sum`.
-                            internal var sha1sum: Swift.String?
+                            public var sha1sum: Swift.String?
                             /// - Remark: Generated from `#/paths/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case1/md5sum`.
-                            internal var md5sum: Swift.String?
+                            public var md5sum: Swift.String?
                             /// - Remark: Generated from `#/paths/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case1/filesize`.
-                            internal var filesize: Swift.Double?
+                            public var filesize: Swift.Double?
                             /// - Remark: Generated from `#/paths/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case1/url`.
-                            internal var url: Swift.String?
+                            public var url: Swift.String?
                             /// - Remark: Generated from `#/paths/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case1/releasedate`.
-                            internal var releasedate: Swift.String?
+                            public var releasedate: Swift.String?
                             /// - Remark: Generated from `#/paths/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case1/uploaddate`.
-                            internal var uploaddate: Swift.String?
+                            public var uploaddate: Swift.String?
                             /// - Remark: Generated from `#/paths/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case1/signed`.
-                            internal var signed: Swift.Bool?
+                            public var signed: Swift.Bool?
                             /// Creates a new `Case1Payload`.
                             ///
                             /// - Parameters:
@@ -2107,7 +2107,7 @@ internal enum Operations {
                             ///   - releasedate:
                             ///   - uploaddate:
                             ///   - signed:
-                            internal init(
+                            public init(
                                 identifier: Swift.String? = nil,
                                 version: Swift.String? = nil,
                                 buildid: Swift.String? = nil,
@@ -2130,7 +2130,7 @@ internal enum Operations {
                                 self.uploaddate = uploaddate
                                 self.signed = signed
                             }
-                            internal enum CodingKeys: String, CodingKey {
+                            public enum CodingKeys: String, CodingKey {
                                 case identifier
                                 case version
                                 case buildid
@@ -2144,29 +2144,29 @@ internal enum Operations {
                             }
                         }
                         /// - Remark: Generated from `#/paths/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case1`.
-                        case case1(Operations.V_space_4_space__period__space_Get_space_IPSW_space_Information.Output.Ok.Body.jsonPayload.Case1Payload)
+                        case case1(Operations.ipswByIdentifierAndBuild.Output.Ok.Body.jsonPayload.Case1Payload)
                         /// - Remark: Generated from `#/paths/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case2`.
-                        internal struct Case2Payload: Codable, Hashable, Sendable {
+                        public struct Case2Payload: Codable, Hashable, Sendable {
                             /// - Remark: Generated from `#/paths/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case2/identifier`.
-                            internal var identifier: Swift.String?
+                            public var identifier: Swift.String?
                             /// - Remark: Generated from `#/paths/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case2/version`.
-                            internal var version: Swift.String?
+                            public var version: Swift.String?
                             /// - Remark: Generated from `#/paths/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case2/buildid`.
-                            internal var buildid: Swift.String?
+                            public var buildid: Swift.String?
                             /// - Remark: Generated from `#/paths/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case2/sha1sum`.
-                            internal var sha1sum: Swift.String?
+                            public var sha1sum: Swift.String?
                             /// - Remark: Generated from `#/paths/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case2/md5sum`.
-                            internal var md5sum: Swift.String?
+                            public var md5sum: Swift.String?
                             /// - Remark: Generated from `#/paths/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case2/filesize`.
-                            internal var filesize: Swift.Double?
+                            public var filesize: Swift.Double?
                             /// - Remark: Generated from `#/paths/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case2/url`.
-                            internal var url: Swift.String?
+                            public var url: Swift.String?
                             /// - Remark: Generated from `#/paths/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case2/releasedate`.
-                            internal var releasedate: OpenAPIRuntime.OpenAPIValueContainer?
+                            public var releasedate: OpenAPIRuntime.OpenAPIValueContainer?
                             /// - Remark: Generated from `#/paths/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case2/uploaddate`.
-                            internal var uploaddate: Swift.String?
+                            public var uploaddate: Swift.String?
                             /// - Remark: Generated from `#/paths/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case2/signed`.
-                            internal var signed: Swift.Bool?
+                            public var signed: Swift.Bool?
                             /// Creates a new `Case2Payload`.
                             ///
                             /// - Parameters:
@@ -2180,7 +2180,7 @@ internal enum Operations {
                             ///   - releasedate:
                             ///   - uploaddate:
                             ///   - signed:
-                            internal init(
+                            public init(
                                 identifier: Swift.String? = nil,
                                 version: Swift.String? = nil,
                                 buildid: Swift.String? = nil,
@@ -2203,7 +2203,7 @@ internal enum Operations {
                                 self.uploaddate = uploaddate
                                 self.signed = signed
                             }
-                            internal enum CodingKeys: String, CodingKey {
+                            public enum CodingKeys: String, CodingKey {
                                 case identifier
                                 case version
                                 case buildid
@@ -2217,8 +2217,8 @@ internal enum Operations {
                             }
                         }
                         /// - Remark: Generated from `#/paths/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case2`.
-                        case case2(Operations.V_space_4_space__period__space_Get_space_IPSW_space_Information.Output.Ok.Body.jsonPayload.Case2Payload)
-                        internal init(from decoder: any Decoder) throws {
+                        case case2(Operations.ipswByIdentifierAndBuild.Output.Ok.Body.jsonPayload.Case2Payload)
+                        public init(from decoder: any Decoder) throws {
                             var errors: [any Error] = []
                             do {
                                 self = .case1(try .init(from: decoder))
@@ -2238,7 +2238,7 @@ internal enum Operations {
                                 errors: errors
                             )
                         }
-                        internal func encode(to encoder: any Encoder) throws {
+                        public func encode(to encoder: any Encoder) throws {
                             switch self {
                             case let .case1(value):
                                 try value.encode(to: encoder)
@@ -2248,12 +2248,12 @@ internal enum Operations {
                         }
                     }
                     /// - Remark: Generated from `#/paths/ipsw/{identifier}/{buildid}/GET/responses/200/content/application\/json`.
-                    case json(Operations.V_space_4_space__period__space_Get_space_IPSW_space_Information.Output.Ok.Body.jsonPayload)
+                    case json(Operations.ipswByIdentifierAndBuild.Output.Ok.Body.jsonPayload)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    internal var json: Operations.V_space_4_space__period__space_Get_space_IPSW_space_Information.Output.Ok.Body.jsonPayload {
+                    public var json: Operations.ipswByIdentifierAndBuild.Output.Ok.Body.jsonPayload {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -2272,7 +2272,7 @@ internal enum Operations {
                     ///
                     /// - Throws: An error if `self` is not `.application_x_hyphen_plist`.
                     /// - SeeAlso: `.application_x_hyphen_plist`.
-                    internal var application_x_hyphen_plist: OpenAPIRuntime.HTTPBody {
+                    public var application_x_hyphen_plist: OpenAPIRuntime.HTTPBody {
                         get throws {
                             switch self {
                             case let .application_x_hyphen_plist(body):
@@ -2291,7 +2291,7 @@ internal enum Operations {
                     ///
                     /// - Throws: An error if `self` is not `.xml`.
                     /// - SeeAlso: `.xml`.
-                    internal var xml: OpenAPIRuntime.HTTPBody {
+                    public var xml: OpenAPIRuntime.HTTPBody {
                         get throws {
                             switch self {
                             case let .xml(body):
@@ -2306,15 +2306,15 @@ internal enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                internal var body: Operations.V_space_4_space__period__space_Get_space_IPSW_space_Information.Output.Ok.Body
+                public var body: Operations.ipswByIdentifierAndBuild.Output.Ok.Body
                 /// Creates a new `Ok`.
                 ///
                 /// - Parameters:
                 ///   - headers: Received HTTP response headers
                 ///   - body: Received HTTP response body
-                internal init(
-                    headers: Operations.V_space_4_space__period__space_Get_space_IPSW_space_Information.Output.Ok.Headers = .init(),
-                    body: Operations.V_space_4_space__period__space_Get_space_IPSW_space_Information.Output.Ok.Body
+                public init(
+                    headers: Operations.ipswByIdentifierAndBuild.Output.Ok.Headers = .init(),
+                    body: Operations.ipswByIdentifierAndBuild.Output.Ok.Body
                 ) {
                     self.headers = headers
                     self.body = body
@@ -2322,15 +2322,15 @@ internal enum Operations {
             }
             /// OK
             ///
-            /// - Remark: Generated from `#/paths//ipsw/{identifier}/{buildid}/get(V 4 . Get IPSW Information)/responses/200`.
+            /// - Remark: Generated from `#/paths//ipsw/{identifier}/{buildid}/get(ipswByIdentifierAndBuild)/responses/200`.
             ///
             /// HTTP response code: `200 ok`.
-            case ok(Operations.V_space_4_space__period__space_Get_space_IPSW_space_Information.Output.Ok)
+            case ok(Operations.ipswByIdentifierAndBuild.Output.Ok)
             /// The associated value of the enum case if `self` is `.ok`.
             ///
             /// - Throws: An error if `self` is not `.ok`.
             /// - SeeAlso: `.ok`.
-            internal var ok: Operations.V_space_4_space__period__space_Get_space_IPSW_space_Information.Output.Ok {
+            public var ok: Operations.ipswByIdentifierAndBuild.Output.Ok {
                 get throws {
                     switch self {
                     case let .ok(response):
@@ -2343,22 +2343,22 @@ internal enum Operations {
                     }
                 }
             }
-            internal struct NotFound: Sendable, Hashable {
+            public struct NotFound: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/ipsw/{identifier}/{buildid}/GET/responses/404/headers`.
-                internal struct Headers: Sendable, Hashable {
+                public struct Headers: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/ipsw/{identifier}/{buildid}/GET/responses/404/headers/Access-Control-Allow-Methods`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
                     /// - Remark: Generated from `#/paths/ipsw/{identifier}/{buildid}/GET/responses/404/headers/Access-Control-Allow-Origin`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
                     /// - Remark: Generated from `#/paths/ipsw/{identifier}/{buildid}/GET/responses/404/headers/X-Data-Location`.
-                    internal var X_hyphen_Data_hyphen_Location: Swift.String?
+                    public var X_hyphen_Data_hyphen_Location: Swift.String?
                     /// Creates a new `Headers`.
                     ///
                     /// - Parameters:
                     ///   - Access_hyphen_Control_hyphen_Allow_hyphen_Methods:
                     ///   - Access_hyphen_Control_hyphen_Allow_hyphen_Origin:
                     ///   - X_hyphen_Data_hyphen_Location:
-                    internal init(
+                    public init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String? = nil,
                         Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String? = nil,
                         X_hyphen_Data_hyphen_Location: Swift.String? = nil
@@ -2369,26 +2369,26 @@ internal enum Operations {
                     }
                 }
                 /// Received HTTP response headers
-                internal var headers: Operations.V_space_4_space__period__space_Get_space_IPSW_space_Information.Output.NotFound.Headers
+                public var headers: Operations.ipswByIdentifierAndBuild.Output.NotFound.Headers
                 /// Creates a new `NotFound`.
                 ///
                 /// - Parameters:
                 ///   - headers: Received HTTP response headers
-                internal init(headers: Operations.V_space_4_space__period__space_Get_space_IPSW_space_Information.Output.NotFound.Headers = .init()) {
+                public init(headers: Operations.ipswByIdentifierAndBuild.Output.NotFound.Headers = .init()) {
                     self.headers = headers
                 }
             }
             /// Not Found
             ///
-            /// - Remark: Generated from `#/paths//ipsw/{identifier}/{buildid}/get(V 4 . Get IPSW Information)/responses/404`.
+            /// - Remark: Generated from `#/paths//ipsw/{identifier}/{buildid}/get(ipswByIdentifierAndBuild)/responses/404`.
             ///
             /// HTTP response code: `404 notFound`.
-            case notFound(Operations.V_space_4_space__period__space_Get_space_IPSW_space_Information.Output.NotFound)
+            case notFound(Operations.ipswByIdentifierAndBuild.Output.NotFound)
             /// The associated value of the enum case if `self` is `.notFound`.
             ///
             /// - Throws: An error if `self` is not `.notFound`.
             /// - SeeAlso: `.notFound`.
-            internal var notFound: Operations.V_space_4_space__period__space_Get_space_IPSW_space_Information.Output.NotFound {
+            public var notFound: Operations.ipswByIdentifierAndBuild.Output.NotFound {
                 get throws {
                     switch self {
                     case let .notFound(response):
@@ -2406,12 +2406,12 @@ internal enum Operations {
             /// A response with a code that is not documented in the OpenAPI document.
             case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
         }
-        @frozen internal enum AcceptableContentType: AcceptableProtocol {
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
             case json
             case application_x_hyphen_plist
             case xml
             case other(Swift.String)
-            internal init?(rawValue: Swift.String) {
+            public init?(rawValue: Swift.String) {
                 switch rawValue.lowercased() {
                 case "application/json":
                     self = .json
@@ -2423,7 +2423,7 @@ internal enum Operations {
                     self = .other(rawValue)
                 }
             }
-            internal var rawValue: Swift.String {
+            public var rawValue: Swift.String {
                 switch self {
                 case let .other(string):
                     return string
@@ -2435,7 +2435,7 @@ internal enum Operations {
                     return "application/xml"
                 }
             }
-            internal static var allCases: [Self] {
+            public static var allCases: [Self] {
                 [
                     .json,
                     .application_x_hyphen_plist,
@@ -2450,40 +2450,40 @@ internal enum Operations {
     ///
     /// - Remark: HTTP `GET /ipsw/{version}`.
     /// - Remark: Generated from `#/paths//ipsw/{version}/get(V 4 . Get IPSW List For Version)`.
-    internal enum V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version {
-        internal static let id: Swift.String = "V 4 . Get IPSW List For Version"
-        internal struct Input: Sendable, Hashable {
+    public enum V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version {
+        public static let id: Swift.String = "V 4 . Get IPSW List For Version"
+        public struct Input: Sendable, Hashable {
             /// - Remark: Generated from `#/paths/ipsw/{version}/GET/path`.
-            internal struct Path: Sendable, Hashable {
+            public struct Path: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/ipsw/{version}/GET/path/version`.
-                internal var version: Swift.Double
+                public var version: Swift.Double
                 /// Creates a new `Path`.
                 ///
                 /// - Parameters:
                 ///   - version:
-                internal init(version: Swift.Double) {
+                public init(version: Swift.Double) {
                     self.version = version
                 }
             }
-            internal var path: Operations.V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version.Input.Path
+            public var path: Operations.V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version.Input.Path
             /// - Remark: Generated from `#/paths/ipsw/{version}/GET/header`.
-            internal struct Headers: Sendable, Hashable {
-                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version.AcceptableContentType>]
+            public struct Headers: Sendable, Hashable {
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version.AcceptableContentType>]
                 /// Creates a new `Headers`.
                 ///
                 /// - Parameters:
                 ///   - accept:
-                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version.AcceptableContentType>] = .defaultValues()) {
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version.AcceptableContentType>] = .defaultValues()) {
                     self.accept = accept
                 }
             }
-            internal var headers: Operations.V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version.Input.Headers
+            public var headers: Operations.V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version.Input.Headers
             /// Creates a new `Input`.
             ///
             /// - Parameters:
             ///   - path:
             ///   - headers:
-            internal init(
+            public init(
                 path: Operations.V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version.Input.Path,
                 headers: Operations.V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version.Input.Headers = .init()
             ) {
@@ -2491,20 +2491,20 @@ internal enum Operations {
                 self.headers = headers
             }
         }
-        @frozen internal enum Output: Sendable, Hashable {
-            internal struct Ok: Sendable, Hashable {
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/headers`.
-                internal struct Headers: Sendable, Hashable {
+                public struct Headers: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/headers/Access-Control-Allow-Methods`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
                     /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/headers/Access-Control-Allow-Origin`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
                     /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/headers/Cache-Control`.
-                    internal var Cache_hyphen_Control: Swift.String?
+                    public var Cache_hyphen_Control: Swift.String?
                     /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/headers/Expires`.
-                    internal var Expires: Swift.String?
+                    public var Expires: Swift.String?
                     /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/headers/X-Data-Location`.
-                    internal var X_hyphen_Data_hyphen_Location: Swift.String?
+                    public var X_hyphen_Data_hyphen_Location: Swift.String?
                     /// Creates a new `Headers`.
                     ///
                     /// - Parameters:
@@ -2513,7 +2513,7 @@ internal enum Operations {
                     ///   - Cache_hyphen_Control:
                     ///   - Expires:
                     ///   - X_hyphen_Data_hyphen_Location:
-                    internal init(
+                    public init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String? = nil,
                         Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String? = nil,
                         Cache_hyphen_Control: Swift.String? = nil,
@@ -2528,33 +2528,33 @@ internal enum Operations {
                     }
                 }
                 /// Received HTTP response headers
-                internal var headers: Operations.V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version.Output.Ok.Headers
+                public var headers: Operations.V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version.Output.Ok.Headers
                 /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content`.
-                @frozen internal enum Body: Sendable, Hashable {
+                @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json`.
-                    @frozen internal enum jsonPayload: Codable, Hashable, Sendable {
+                    @frozen public enum jsonPayload: Codable, Hashable, Sendable {
                         /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/Case1Payload`.
-                        internal struct Case1PayloadPayload: Codable, Hashable, Sendable {
+                        public struct Case1PayloadPayload: Codable, Hashable, Sendable {
                             /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/Case1Payload/identifier`.
-                            internal var identifier: Swift.String
+                            public var identifier: Swift.String
                             /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/Case1Payload/version`.
-                            internal var version: Swift.String
+                            public var version: Swift.String
                             /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/Case1Payload/buildid`.
-                            internal var buildid: Swift.String
+                            public var buildid: Swift.String
                             /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/Case1Payload/sha1sum`.
-                            internal var sha1sum: Swift.String
+                            public var sha1sum: Swift.String
                             /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/Case1Payload/md5sum`.
-                            internal var md5sum: Swift.String
+                            public var md5sum: Swift.String
                             /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/Case1Payload/filesize`.
-                            internal var filesize: Swift.Double
+                            public var filesize: Swift.Double
                             /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/Case1Payload/url`.
-                            internal var url: Swift.String
+                            public var url: Swift.String
                             /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/Case1Payload/releasedate`.
-                            internal var releasedate: OpenAPIRuntime.OpenAPIValueContainer?
+                            public var releasedate: OpenAPIRuntime.OpenAPIValueContainer?
                             /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/Case1Payload/uploaddate`.
-                            internal var uploaddate: Swift.String
+                            public var uploaddate: Swift.String
                             /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/Case1Payload/signed`.
-                            internal var signed: Swift.Bool
+                            public var signed: Swift.Bool
                             /// Creates a new `Case1PayloadPayload`.
                             ///
                             /// - Parameters:
@@ -2568,7 +2568,7 @@ internal enum Operations {
                             ///   - releasedate:
                             ///   - uploaddate:
                             ///   - signed:
-                            internal init(
+                            public init(
                                 identifier: Swift.String,
                                 version: Swift.String,
                                 buildid: Swift.String,
@@ -2591,7 +2591,7 @@ internal enum Operations {
                                 self.uploaddate = uploaddate
                                 self.signed = signed
                             }
-                            internal enum CodingKeys: String, CodingKey {
+                            public enum CodingKeys: String, CodingKey {
                                 case identifier
                                 case version
                                 case buildid
@@ -2605,31 +2605,31 @@ internal enum Operations {
                             }
                         }
                         /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/case1`.
-                        internal typealias Case1Payload = [Operations.V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version.Output.Ok.Body.jsonPayload.Case1PayloadPayload]
+                        public typealias Case1Payload = [Operations.V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version.Output.Ok.Body.jsonPayload.Case1PayloadPayload]
                         /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/case1`.
                         case case1(Operations.V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version.Output.Ok.Body.jsonPayload.Case1Payload)
                         /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/Case2Payload`.
-                        internal struct Case2PayloadPayload: Codable, Hashable, Sendable {
+                        public struct Case2PayloadPayload: Codable, Hashable, Sendable {
                             /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/Case2Payload/identifier`.
-                            internal var identifier: Swift.String
+                            public var identifier: Swift.String
                             /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/Case2Payload/version`.
-                            internal var version: Swift.String
+                            public var version: Swift.String
                             /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/Case2Payload/buildid`.
-                            internal var buildid: Swift.String
+                            public var buildid: Swift.String
                             /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/Case2Payload/sha1sum`.
-                            internal var sha1sum: Swift.String
+                            public var sha1sum: Swift.String
                             /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/Case2Payload/md5sum`.
-                            internal var md5sum: Swift.String
+                            public var md5sum: Swift.String
                             /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/Case2Payload/filesize`.
-                            internal var filesize: Swift.Double
+                            public var filesize: Swift.Double
                             /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/Case2Payload/url`.
-                            internal var url: Swift.String
+                            public var url: Swift.String
                             /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/Case2Payload/releasedate`.
-                            internal var releasedate: Swift.String
+                            public var releasedate: Swift.String
                             /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/Case2Payload/uploaddate`.
-                            internal var uploaddate: Swift.String
+                            public var uploaddate: Swift.String
                             /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/Case2Payload/signed`.
-                            internal var signed: Swift.Bool
+                            public var signed: Swift.Bool
                             /// Creates a new `Case2PayloadPayload`.
                             ///
                             /// - Parameters:
@@ -2643,7 +2643,7 @@ internal enum Operations {
                             ///   - releasedate:
                             ///   - uploaddate:
                             ///   - signed:
-                            internal init(
+                            public init(
                                 identifier: Swift.String,
                                 version: Swift.String,
                                 buildid: Swift.String,
@@ -2666,7 +2666,7 @@ internal enum Operations {
                                 self.uploaddate = uploaddate
                                 self.signed = signed
                             }
-                            internal enum CodingKeys: String, CodingKey {
+                            public enum CodingKeys: String, CodingKey {
                                 case identifier
                                 case version
                                 case buildid
@@ -2680,10 +2680,10 @@ internal enum Operations {
                             }
                         }
                         /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/case2`.
-                        internal typealias Case2Payload = [Operations.V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version.Output.Ok.Body.jsonPayload.Case2PayloadPayload]
+                        public typealias Case2Payload = [Operations.V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version.Output.Ok.Body.jsonPayload.Case2PayloadPayload]
                         /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/case2`.
                         case case2(Operations.V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version.Output.Ok.Body.jsonPayload.Case2Payload)
-                        internal init(from decoder: any Decoder) throws {
+                        public init(from decoder: any Decoder) throws {
                             var errors: [any Error] = []
                             do {
                                 self = .case1(try decoder.decodeFromSingleValueContainer())
@@ -2703,7 +2703,7 @@ internal enum Operations {
                                 errors: errors
                             )
                         }
-                        internal func encode(to encoder: any Encoder) throws {
+                        public func encode(to encoder: any Encoder) throws {
                             switch self {
                             case let .case1(value):
                                 try encoder.encodeToSingleValueContainer(value)
@@ -2718,7 +2718,7 @@ internal enum Operations {
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    internal var json: Operations.V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version.Output.Ok.Body.jsonPayload {
+                    public var json: Operations.V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version.Output.Ok.Body.jsonPayload {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -2737,7 +2737,7 @@ internal enum Operations {
                     ///
                     /// - Throws: An error if `self` is not `.application_x_hyphen_plist`.
                     /// - SeeAlso: `.application_x_hyphen_plist`.
-                    internal var application_x_hyphen_plist: OpenAPIRuntime.HTTPBody {
+                    public var application_x_hyphen_plist: OpenAPIRuntime.HTTPBody {
                         get throws {
                             switch self {
                             case let .application_x_hyphen_plist(body):
@@ -2756,7 +2756,7 @@ internal enum Operations {
                     ///
                     /// - Throws: An error if `self` is not `.xml`.
                     /// - SeeAlso: `.xml`.
-                    internal var xml: OpenAPIRuntime.HTTPBody {
+                    public var xml: OpenAPIRuntime.HTTPBody {
                         get throws {
                             switch self {
                             case let .xml(body):
@@ -2771,13 +2771,13 @@ internal enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                internal var body: Operations.V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version.Output.Ok.Body
+                public var body: Operations.V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version.Output.Ok.Body
                 /// Creates a new `Ok`.
                 ///
                 /// - Parameters:
                 ///   - headers: Received HTTP response headers
                 ///   - body: Received HTTP response body
-                internal init(
+                public init(
                     headers: Operations.V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version.Output.Ok.Headers = .init(),
                     body: Operations.V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version.Output.Ok.Body
                 ) {
@@ -2795,7 +2795,7 @@ internal enum Operations {
             ///
             /// - Throws: An error if `self` is not `.ok`.
             /// - SeeAlso: `.ok`.
-            internal var ok: Operations.V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version.Output.Ok {
+            public var ok: Operations.V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version.Output.Ok {
                 get throws {
                     switch self {
                     case let .ok(response):
@@ -2808,22 +2808,22 @@ internal enum Operations {
                     }
                 }
             }
-            internal struct NotFound: Sendable, Hashable {
+            public struct NotFound: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/404/headers`.
-                internal struct Headers: Sendable, Hashable {
+                public struct Headers: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/404/headers/Access-Control-Allow-Methods`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
                     /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/404/headers/Access-Control-Allow-Origin`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
                     /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/404/headers/X-Data-Location`.
-                    internal var X_hyphen_Data_hyphen_Location: Swift.String?
+                    public var X_hyphen_Data_hyphen_Location: Swift.String?
                     /// Creates a new `Headers`.
                     ///
                     /// - Parameters:
                     ///   - Access_hyphen_Control_hyphen_Allow_hyphen_Methods:
                     ///   - Access_hyphen_Control_hyphen_Allow_hyphen_Origin:
                     ///   - X_hyphen_Data_hyphen_Location:
-                    internal init(
+                    public init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String? = nil,
                         Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String? = nil,
                         X_hyphen_Data_hyphen_Location: Swift.String? = nil
@@ -2834,12 +2834,12 @@ internal enum Operations {
                     }
                 }
                 /// Received HTTP response headers
-                internal var headers: Operations.V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version.Output.NotFound.Headers
+                public var headers: Operations.V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version.Output.NotFound.Headers
                 /// Creates a new `NotFound`.
                 ///
                 /// - Parameters:
                 ///   - headers: Received HTTP response headers
-                internal init(headers: Operations.V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version.Output.NotFound.Headers = .init()) {
+                public init(headers: Operations.V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version.Output.NotFound.Headers = .init()) {
                     self.headers = headers
                 }
             }
@@ -2853,7 +2853,7 @@ internal enum Operations {
             ///
             /// - Throws: An error if `self` is not `.notFound`.
             /// - SeeAlso: `.notFound`.
-            internal var notFound: Operations.V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version.Output.NotFound {
+            public var notFound: Operations.V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version.Output.NotFound {
                 get throws {
                     switch self {
                     case let .notFound(response):
@@ -2871,12 +2871,12 @@ internal enum Operations {
             /// A response with a code that is not documented in the OpenAPI document.
             case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
         }
-        @frozen internal enum AcceptableContentType: AcceptableProtocol {
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
             case json
             case application_x_hyphen_plist
             case xml
             case other(Swift.String)
-            internal init?(rawValue: Swift.String) {
+            public init?(rawValue: Swift.String) {
                 switch rawValue.lowercased() {
                 case "application/json":
                     self = .json
@@ -2888,7 +2888,7 @@ internal enum Operations {
                     self = .other(rawValue)
                 }
             }
-            internal var rawValue: Swift.String {
+            public var rawValue: Swift.String {
                 switch self {
                 case let .other(string):
                     return string
@@ -2900,7 +2900,7 @@ internal enum Operations {
                     return "application/xml"
                 }
             }
-            internal static var allCases: [Self] {
+            public static var allCases: [Self] {
                 [
                     .json,
                     .application_x_hyphen_plist,
@@ -2915,21 +2915,21 @@ internal enum Operations {
     ///
     /// - Remark: HTTP `GET /itunes/download/{platform}/{version}`.
     /// - Remark: Generated from `#/paths//itunes/download/{platform}/{version}/get(V 4 . Download Itunes)`.
-    internal enum V_space_4_space__period__space_Download_space_Itunes {
-        internal static let id: Swift.String = "V 4 . Download Itunes"
-        internal struct Input: Sendable, Hashable {
+    public enum V_space_4_space__period__space_Download_space_Itunes {
+        public static let id: Swift.String = "V 4 . Download Itunes"
+        public struct Input: Sendable, Hashable {
             /// - Remark: Generated from `#/paths/itunes/download/{platform}/{version}/GET/path`.
-            internal struct Path: Sendable, Hashable {
+            public struct Path: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/itunes/download/{platform}/{version}/GET/path/platform`.
-                internal var platform: Swift.String
+                public var platform: Swift.String
                 /// - Remark: Generated from `#/paths/itunes/download/{platform}/{version}/GET/path/version`.
-                internal var version: Swift.Double
+                public var version: Swift.Double
                 /// Creates a new `Path`.
                 ///
                 /// - Parameters:
                 ///   - platform:
                 ///   - version:
-                internal init(
+                public init(
                     platform: Swift.String,
                     version: Swift.Double
                 ) {
@@ -2937,39 +2937,39 @@ internal enum Operations {
                     self.version = version
                 }
             }
-            internal var path: Operations.V_space_4_space__period__space_Download_space_Itunes.Input.Path
+            public var path: Operations.V_space_4_space__period__space_Download_space_Itunes.Input.Path
             /// - Remark: Generated from `#/paths/itunes/download/{platform}/{version}/GET/query`.
-            internal struct Query: Sendable, Hashable {
+            public struct Query: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/itunes/download/{platform}/{version}/GET/query/arch`.
-                internal var arch: Swift.String
+                public var arch: Swift.String
                 /// Creates a new `Query`.
                 ///
                 /// - Parameters:
                 ///   - arch:
-                internal init(arch: Swift.String) {
+                public init(arch: Swift.String) {
                     self.arch = arch
                 }
             }
-            internal var query: Operations.V_space_4_space__period__space_Download_space_Itunes.Input.Query
+            public var query: Operations.V_space_4_space__period__space_Download_space_Itunes.Input.Query
             /// - Remark: Generated from `#/paths/itunes/download/{platform}/{version}/GET/header`.
-            internal struct Headers: Sendable, Hashable {
-                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Download_space_Itunes.AcceptableContentType>]
+            public struct Headers: Sendable, Hashable {
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Download_space_Itunes.AcceptableContentType>]
                 /// Creates a new `Headers`.
                 ///
                 /// - Parameters:
                 ///   - accept:
-                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Download_space_Itunes.AcceptableContentType>] = .defaultValues()) {
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Download_space_Itunes.AcceptableContentType>] = .defaultValues()) {
                     self.accept = accept
                 }
             }
-            internal var headers: Operations.V_space_4_space__period__space_Download_space_Itunes.Input.Headers
+            public var headers: Operations.V_space_4_space__period__space_Download_space_Itunes.Input.Headers
             /// Creates a new `Input`.
             ///
             /// - Parameters:
             ///   - path:
             ///   - query:
             ///   - headers:
-            internal init(
+            public init(
                 path: Operations.V_space_4_space__period__space_Download_space_Itunes.Input.Path,
                 query: Operations.V_space_4_space__period__space_Download_space_Itunes.Input.Query,
                 headers: Operations.V_space_4_space__period__space_Download_space_Itunes.Input.Headers = .init()
@@ -2979,23 +2979,23 @@ internal enum Operations {
                 self.headers = headers
             }
         }
-        @frozen internal enum Output: Sendable, Hashable {
-            internal struct Found: Sendable, Hashable {
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Found: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/itunes/download/{platform}/{version}/GET/responses/302/headers`.
-                internal struct Headers: Sendable, Hashable {
+                public struct Headers: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/itunes/download/{platform}/{version}/GET/responses/302/headers/Access-Control-Allow-Methods`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
                     /// - Remark: Generated from `#/paths/itunes/download/{platform}/{version}/GET/responses/302/headers/Access-Control-Allow-Origin`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
                     /// - Remark: Generated from `#/paths/itunes/download/{platform}/{version}/GET/responses/302/headers/Location`.
-                    internal var Location: Swift.String?
+                    public var Location: Swift.String?
                     /// Creates a new `Headers`.
                     ///
                     /// - Parameters:
                     ///   - Access_hyphen_Control_hyphen_Allow_hyphen_Methods:
                     ///   - Access_hyphen_Control_hyphen_Allow_hyphen_Origin:
                     ///   - Location:
-                    internal init(
+                    public init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String? = nil,
                         Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String? = nil,
                         Location: Swift.String? = nil
@@ -3006,16 +3006,16 @@ internal enum Operations {
                     }
                 }
                 /// Received HTTP response headers
-                internal var headers: Operations.V_space_4_space__period__space_Download_space_Itunes.Output.Found.Headers
+                public var headers: Operations.V_space_4_space__period__space_Download_space_Itunes.Output.Found.Headers
                 /// - Remark: Generated from `#/paths/itunes/download/{platform}/{version}/GET/responses/302/content`.
-                @frozen internal enum Body: Sendable, Hashable {
+                @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/itunes/download/{platform}/{version}/GET/responses/302/content/text\/html; charset=utf-8`.
                     case text_html_charset_utf_hyphen_8(OpenAPIRuntime.HTTPBody)
                     /// The associated value of the enum case if `self` is `.text_html_charset_utf_hyphen_8`.
                     ///
                     /// - Throws: An error if `self` is not `.text_html_charset_utf_hyphen_8`.
                     /// - SeeAlso: `.text_html_charset_utf_hyphen_8`.
-                    internal var text_html_charset_utf_hyphen_8: OpenAPIRuntime.HTTPBody {
+                    public var text_html_charset_utf_hyphen_8: OpenAPIRuntime.HTTPBody {
                         get throws {
                             switch self {
                             case let .text_html_charset_utf_hyphen_8(body):
@@ -3025,13 +3025,13 @@ internal enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                internal var body: Operations.V_space_4_space__period__space_Download_space_Itunes.Output.Found.Body
+                public var body: Operations.V_space_4_space__period__space_Download_space_Itunes.Output.Found.Body
                 /// Creates a new `Found`.
                 ///
                 /// - Parameters:
                 ///   - headers: Received HTTP response headers
                 ///   - body: Received HTTP response body
-                internal init(
+                public init(
                     headers: Operations.V_space_4_space__period__space_Download_space_Itunes.Output.Found.Headers = .init(),
                     body: Operations.V_space_4_space__period__space_Download_space_Itunes.Output.Found.Body
                 ) {
@@ -3049,7 +3049,7 @@ internal enum Operations {
             ///
             /// - Throws: An error if `self` is not `.found`.
             /// - SeeAlso: `.found`.
-            internal var found: Operations.V_space_4_space__period__space_Download_space_Itunes.Output.Found {
+            public var found: Operations.V_space_4_space__period__space_Download_space_Itunes.Output.Found {
                 get throws {
                     switch self {
                     case let .found(response):
@@ -3067,10 +3067,10 @@ internal enum Operations {
             /// A response with a code that is not documented in the OpenAPI document.
             case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
         }
-        @frozen internal enum AcceptableContentType: AcceptableProtocol {
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
             case text_html_charset_utf_hyphen_8
             case other(Swift.String)
-            internal init?(rawValue: Swift.String) {
+            public init?(rawValue: Swift.String) {
                 switch rawValue.lowercased() {
                 case "text/html":
                     self = .text_html_charset_utf_hyphen_8
@@ -3078,7 +3078,7 @@ internal enum Operations {
                     self = .other(rawValue)
                 }
             }
-            internal var rawValue: Swift.String {
+            public var rawValue: Swift.String {
                 switch self {
                 case let .other(string):
                     return string
@@ -3086,7 +3086,7 @@ internal enum Operations {
                     return "text/html"
                 }
             }
-            internal static var allCases: [Self] {
+            public static var allCases: [Self] {
                 [
                     .text_html_charset_utf_hyphen_8
                 ]
@@ -3099,40 +3099,40 @@ internal enum Operations {
     ///
     /// - Remark: HTTP `GET /itunes/{platform}`.
     /// - Remark: Generated from `#/paths//itunes/{platform}/get(V 4 . Find Itunes)`.
-    internal enum V_space_4_space__period__space_Find_space_Itunes {
-        internal static let id: Swift.String = "V 4 . Find Itunes"
-        internal struct Input: Sendable, Hashable {
+    public enum V_space_4_space__period__space_Find_space_Itunes {
+        public static let id: Swift.String = "V 4 . Find Itunes"
+        public struct Input: Sendable, Hashable {
             /// - Remark: Generated from `#/paths/itunes/{platform}/GET/path`.
-            internal struct Path: Sendable, Hashable {
+            public struct Path: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/itunes/{platform}/GET/path/platform`.
-                internal var platform: Swift.String
+                public var platform: Swift.String
                 /// Creates a new `Path`.
                 ///
                 /// - Parameters:
                 ///   - platform:
-                internal init(platform: Swift.String) {
+                public init(platform: Swift.String) {
                     self.platform = platform
                 }
             }
-            internal var path: Operations.V_space_4_space__period__space_Find_space_Itunes.Input.Path
+            public var path: Operations.V_space_4_space__period__space_Find_space_Itunes.Input.Path
             /// - Remark: Generated from `#/paths/itunes/{platform}/GET/header`.
-            internal struct Headers: Sendable, Hashable {
-                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Find_space_Itunes.AcceptableContentType>]
+            public struct Headers: Sendable, Hashable {
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Find_space_Itunes.AcceptableContentType>]
                 /// Creates a new `Headers`.
                 ///
                 /// - Parameters:
                 ///   - accept:
-                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Find_space_Itunes.AcceptableContentType>] = .defaultValues()) {
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Find_space_Itunes.AcceptableContentType>] = .defaultValues()) {
                     self.accept = accept
                 }
             }
-            internal var headers: Operations.V_space_4_space__period__space_Find_space_Itunes.Input.Headers
+            public var headers: Operations.V_space_4_space__period__space_Find_space_Itunes.Input.Headers
             /// Creates a new `Input`.
             ///
             /// - Parameters:
             ///   - path:
             ///   - headers:
-            internal init(
+            public init(
                 path: Operations.V_space_4_space__period__space_Find_space_Itunes.Input.Path,
                 headers: Operations.V_space_4_space__period__space_Find_space_Itunes.Input.Headers = .init()
             ) {
@@ -3140,20 +3140,20 @@ internal enum Operations {
                 self.headers = headers
             }
         }
-        @frozen internal enum Output: Sendable, Hashable {
-            internal struct Ok: Sendable, Hashable {
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/itunes/{platform}/GET/responses/200/headers`.
-                internal struct Headers: Sendable, Hashable {
+                public struct Headers: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/itunes/{platform}/GET/responses/200/headers/Access-Control-Allow-Methods`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
                     /// - Remark: Generated from `#/paths/itunes/{platform}/GET/responses/200/headers/Access-Control-Allow-Origin`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
                     /// - Remark: Generated from `#/paths/itunes/{platform}/GET/responses/200/headers/Cache-Control`.
-                    internal var Cache_hyphen_Control: Swift.String?
+                    public var Cache_hyphen_Control: Swift.String?
                     /// - Remark: Generated from `#/paths/itunes/{platform}/GET/responses/200/headers/Expires`.
-                    internal var Expires: Swift.String?
+                    public var Expires: Swift.String?
                     /// - Remark: Generated from `#/paths/itunes/{platform}/GET/responses/200/headers/X-Data-Location`.
-                    internal var X_hyphen_Data_hyphen_Location: Swift.String?
+                    public var X_hyphen_Data_hyphen_Location: Swift.String?
                     /// Creates a new `Headers`.
                     ///
                     /// - Parameters:
@@ -3162,7 +3162,7 @@ internal enum Operations {
                     ///   - Cache_hyphen_Control:
                     ///   - Expires:
                     ///   - X_hyphen_Data_hyphen_Location:
-                    internal init(
+                    public init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String? = nil,
                         Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String? = nil,
                         Cache_hyphen_Control: Swift.String? = nil,
@@ -3177,27 +3177,27 @@ internal enum Operations {
                     }
                 }
                 /// Received HTTP response headers
-                internal var headers: Operations.V_space_4_space__period__space_Find_space_Itunes.Output.Ok.Headers
+                public var headers: Operations.V_space_4_space__period__space_Find_space_Itunes.Output.Ok.Headers
                 /// - Remark: Generated from `#/paths/itunes/{platform}/GET/responses/200/content`.
-                @frozen internal enum Body: Sendable, Hashable {
+                @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/itunes/{platform}/GET/responses/200/content/json`.
-                    @frozen internal enum jsonPayload: Codable, Hashable, Sendable {
+                    @frozen public enum jsonPayload: Codable, Hashable, Sendable {
                         /// - Remark: Generated from `#/paths/itunes/{platform}/GET/responses/200/content/json/Case1Payload`.
-                        internal struct Case1PayloadPayload: Codable, Hashable, Sendable {
+                        public struct Case1PayloadPayload: Codable, Hashable, Sendable {
                             /// - Remark: Generated from `#/paths/itunes/{platform}/GET/responses/200/content/json/Case1Payload/platform`.
-                            internal var platform: Swift.String
+                            public var platform: Swift.String
                             /// - Remark: Generated from `#/paths/itunes/{platform}/GET/responses/200/content/json/Case1Payload/version`.
-                            internal var version: Swift.String
+                            public var version: Swift.String
                             /// - Remark: Generated from `#/paths/itunes/{platform}/GET/responses/200/content/json/Case1Payload/datefound`.
-                            internal var datefound: Swift.String
+                            public var datefound: Swift.String
                             /// - Remark: Generated from `#/paths/itunes/{platform}/GET/responses/200/content/json/Case1Payload/url`.
-                            internal var url: Swift.String
+                            public var url: Swift.String
                             /// - Remark: Generated from `#/paths/itunes/{platform}/GET/responses/200/content/json/Case1Payload/64biturl`.
-                            internal var _64biturl: Swift.String
+                            public var _64biturl: Swift.String
                             /// - Remark: Generated from `#/paths/itunes/{platform}/GET/responses/200/content/json/Case1Payload/releasedate`.
-                            internal var releasedate: Swift.String
+                            public var releasedate: Swift.String
                             /// - Remark: Generated from `#/paths/itunes/{platform}/GET/responses/200/content/json/Case1Payload/uploaddate`.
-                            internal var uploaddate: Swift.String
+                            public var uploaddate: Swift.String
                             /// Creates a new `Case1PayloadPayload`.
                             ///
                             /// - Parameters:
@@ -3208,7 +3208,7 @@ internal enum Operations {
                             ///   - _64biturl:
                             ///   - releasedate:
                             ///   - uploaddate:
-                            internal init(
+                            public init(
                                 platform: Swift.String,
                                 version: Swift.String,
                                 datefound: Swift.String,
@@ -3225,7 +3225,7 @@ internal enum Operations {
                                 self.releasedate = releasedate
                                 self.uploaddate = uploaddate
                             }
-                            internal enum CodingKeys: String, CodingKey {
+                            public enum CodingKeys: String, CodingKey {
                                 case platform
                                 case version
                                 case datefound
@@ -3236,23 +3236,23 @@ internal enum Operations {
                             }
                         }
                         /// - Remark: Generated from `#/paths/itunes/{platform}/GET/responses/200/content/json/case1`.
-                        internal typealias Case1Payload = [Operations.V_space_4_space__period__space_Find_space_Itunes.Output.Ok.Body.jsonPayload.Case1PayloadPayload]
+                        public typealias Case1Payload = [Operations.V_space_4_space__period__space_Find_space_Itunes.Output.Ok.Body.jsonPayload.Case1PayloadPayload]
                         /// - Remark: Generated from `#/paths/itunes/{platform}/GET/responses/200/content/json/case1`.
                         case case1(Operations.V_space_4_space__period__space_Find_space_Itunes.Output.Ok.Body.jsonPayload.Case1Payload)
                         /// - Remark: Generated from `#/paths/itunes/{platform}/GET/responses/200/content/json/Case2Payload`.
-                        internal struct Case2PayloadPayload: Codable, Hashable, Sendable {
+                        public struct Case2PayloadPayload: Codable, Hashable, Sendable {
                             /// - Remark: Generated from `#/paths/itunes/{platform}/GET/responses/200/content/json/Case2Payload/platform`.
-                            internal var platform: Swift.String
+                            public var platform: Swift.String
                             /// - Remark: Generated from `#/paths/itunes/{platform}/GET/responses/200/content/json/Case2Payload/version`.
-                            internal var version: Swift.String
+                            public var version: Swift.String
                             /// - Remark: Generated from `#/paths/itunes/{platform}/GET/responses/200/content/json/Case2Payload/datefound`.
-                            internal var datefound: Swift.String
+                            public var datefound: Swift.String
                             /// - Remark: Generated from `#/paths/itunes/{platform}/GET/responses/200/content/json/Case2Payload/url`.
-                            internal var url: Swift.String
+                            public var url: Swift.String
                             /// - Remark: Generated from `#/paths/itunes/{platform}/GET/responses/200/content/json/Case2Payload/releasedate`.
-                            internal var releasedate: Swift.String
+                            public var releasedate: Swift.String
                             /// - Remark: Generated from `#/paths/itunes/{platform}/GET/responses/200/content/json/Case2Payload/uploaddate`.
-                            internal var uploaddate: Swift.String
+                            public var uploaddate: Swift.String
                             /// Creates a new `Case2PayloadPayload`.
                             ///
                             /// - Parameters:
@@ -3262,7 +3262,7 @@ internal enum Operations {
                             ///   - url:
                             ///   - releasedate:
                             ///   - uploaddate:
-                            internal init(
+                            public init(
                                 platform: Swift.String,
                                 version: Swift.String,
                                 datefound: Swift.String,
@@ -3277,7 +3277,7 @@ internal enum Operations {
                                 self.releasedate = releasedate
                                 self.uploaddate = uploaddate
                             }
-                            internal enum CodingKeys: String, CodingKey {
+                            public enum CodingKeys: String, CodingKey {
                                 case platform
                                 case version
                                 case datefound
@@ -3287,10 +3287,10 @@ internal enum Operations {
                             }
                         }
                         /// - Remark: Generated from `#/paths/itunes/{platform}/GET/responses/200/content/json/case2`.
-                        internal typealias Case2Payload = [Operations.V_space_4_space__period__space_Find_space_Itunes.Output.Ok.Body.jsonPayload.Case2PayloadPayload]
+                        public typealias Case2Payload = [Operations.V_space_4_space__period__space_Find_space_Itunes.Output.Ok.Body.jsonPayload.Case2PayloadPayload]
                         /// - Remark: Generated from `#/paths/itunes/{platform}/GET/responses/200/content/json/case2`.
                         case case2(Operations.V_space_4_space__period__space_Find_space_Itunes.Output.Ok.Body.jsonPayload.Case2Payload)
-                        internal init(from decoder: any Decoder) throws {
+                        public init(from decoder: any Decoder) throws {
                             var errors: [any Error] = []
                             do {
                                 self = .case1(try decoder.decodeFromSingleValueContainer())
@@ -3310,7 +3310,7 @@ internal enum Operations {
                                 errors: errors
                             )
                         }
-                        internal func encode(to encoder: any Encoder) throws {
+                        public func encode(to encoder: any Encoder) throws {
                             switch self {
                             case let .case1(value):
                                 try encoder.encodeToSingleValueContainer(value)
@@ -3325,7 +3325,7 @@ internal enum Operations {
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    internal var json: Operations.V_space_4_space__period__space_Find_space_Itunes.Output.Ok.Body.jsonPayload {
+                    public var json: Operations.V_space_4_space__period__space_Find_space_Itunes.Output.Ok.Body.jsonPayload {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -3344,7 +3344,7 @@ internal enum Operations {
                     ///
                     /// - Throws: An error if `self` is not `.application_x_hyphen_plist`.
                     /// - SeeAlso: `.application_x_hyphen_plist`.
-                    internal var application_x_hyphen_plist: OpenAPIRuntime.HTTPBody {
+                    public var application_x_hyphen_plist: OpenAPIRuntime.HTTPBody {
                         get throws {
                             switch self {
                             case let .application_x_hyphen_plist(body):
@@ -3363,7 +3363,7 @@ internal enum Operations {
                     ///
                     /// - Throws: An error if `self` is not `.xml`.
                     /// - SeeAlso: `.xml`.
-                    internal var xml: OpenAPIRuntime.HTTPBody {
+                    public var xml: OpenAPIRuntime.HTTPBody {
                         get throws {
                             switch self {
                             case let .xml(body):
@@ -3378,13 +3378,13 @@ internal enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                internal var body: Operations.V_space_4_space__period__space_Find_space_Itunes.Output.Ok.Body
+                public var body: Operations.V_space_4_space__period__space_Find_space_Itunes.Output.Ok.Body
                 /// Creates a new `Ok`.
                 ///
                 /// - Parameters:
                 ///   - headers: Received HTTP response headers
                 ///   - body: Received HTTP response body
-                internal init(
+                public init(
                     headers: Operations.V_space_4_space__period__space_Find_space_Itunes.Output.Ok.Headers = .init(),
                     body: Operations.V_space_4_space__period__space_Find_space_Itunes.Output.Ok.Body
                 ) {
@@ -3402,7 +3402,7 @@ internal enum Operations {
             ///
             /// - Throws: An error if `self` is not `.ok`.
             /// - SeeAlso: `.ok`.
-            internal var ok: Operations.V_space_4_space__period__space_Find_space_Itunes.Output.Ok {
+            public var ok: Operations.V_space_4_space__period__space_Find_space_Itunes.Output.Ok {
                 get throws {
                     switch self {
                     case let .ok(response):
@@ -3415,22 +3415,22 @@ internal enum Operations {
                     }
                 }
             }
-            internal struct NotFound: Sendable, Hashable {
+            public struct NotFound: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/itunes/{platform}/GET/responses/404/headers`.
-                internal struct Headers: Sendable, Hashable {
+                public struct Headers: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/itunes/{platform}/GET/responses/404/headers/Access-Control-Allow-Methods`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
                     /// - Remark: Generated from `#/paths/itunes/{platform}/GET/responses/404/headers/Access-Control-Allow-Origin`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
                     /// - Remark: Generated from `#/paths/itunes/{platform}/GET/responses/404/headers/X-Data-Location`.
-                    internal var X_hyphen_Data_hyphen_Location: Swift.String?
+                    public var X_hyphen_Data_hyphen_Location: Swift.String?
                     /// Creates a new `Headers`.
                     ///
                     /// - Parameters:
                     ///   - Access_hyphen_Control_hyphen_Allow_hyphen_Methods:
                     ///   - Access_hyphen_Control_hyphen_Allow_hyphen_Origin:
                     ///   - X_hyphen_Data_hyphen_Location:
-                    internal init(
+                    public init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String? = nil,
                         Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String? = nil,
                         X_hyphen_Data_hyphen_Location: Swift.String? = nil
@@ -3441,12 +3441,12 @@ internal enum Operations {
                     }
                 }
                 /// Received HTTP response headers
-                internal var headers: Operations.V_space_4_space__period__space_Find_space_Itunes.Output.NotFound.Headers
+                public var headers: Operations.V_space_4_space__period__space_Find_space_Itunes.Output.NotFound.Headers
                 /// Creates a new `NotFound`.
                 ///
                 /// - Parameters:
                 ///   - headers: Received HTTP response headers
-                internal init(headers: Operations.V_space_4_space__period__space_Find_space_Itunes.Output.NotFound.Headers = .init()) {
+                public init(headers: Operations.V_space_4_space__period__space_Find_space_Itunes.Output.NotFound.Headers = .init()) {
                     self.headers = headers
                 }
             }
@@ -3460,7 +3460,7 @@ internal enum Operations {
             ///
             /// - Throws: An error if `self` is not `.notFound`.
             /// - SeeAlso: `.notFound`.
-            internal var notFound: Operations.V_space_4_space__period__space_Find_space_Itunes.Output.NotFound {
+            public var notFound: Operations.V_space_4_space__period__space_Find_space_Itunes.Output.NotFound {
                 get throws {
                     switch self {
                     case let .notFound(response):
@@ -3478,12 +3478,12 @@ internal enum Operations {
             /// A response with a code that is not documented in the OpenAPI document.
             case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
         }
-        @frozen internal enum AcceptableContentType: AcceptableProtocol {
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
             case json
             case application_x_hyphen_plist
             case xml
             case other(Swift.String)
-            internal init?(rawValue: Swift.String) {
+            public init?(rawValue: Swift.String) {
                 switch rawValue.lowercased() {
                 case "application/json":
                     self = .json
@@ -3495,7 +3495,7 @@ internal enum Operations {
                     self = .other(rawValue)
                 }
             }
-            internal var rawValue: Swift.String {
+            public var rawValue: Swift.String {
                 switch self {
                 case let .other(string):
                     return string
@@ -3507,7 +3507,7 @@ internal enum Operations {
                     return "application/xml"
                 }
             }
-            internal static var allCases: [Self] {
+            public static var allCases: [Self] {
                 [
                     .json,
                     .application_x_hyphen_plist,
@@ -3522,40 +3522,40 @@ internal enum Operations {
     ///
     /// - Remark: HTTP `GET /keys/device/{identifier}`.
     /// - Remark: Generated from `#/paths//keys/device/{identifier}/get(V 4 . Keys Device List)`.
-    internal enum V_space_4_space__period__space_Keys_space_Device_space_List {
-        internal static let id: Swift.String = "V 4 . Keys Device List"
-        internal struct Input: Sendable, Hashable {
+    public enum V_space_4_space__period__space_Keys_space_Device_space_List {
+        public static let id: Swift.String = "V 4 . Keys Device List"
+        public struct Input: Sendable, Hashable {
             /// - Remark: Generated from `#/paths/keys/device/{identifier}/GET/path`.
-            internal struct Path: Sendable, Hashable {
+            public struct Path: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/keys/device/{identifier}/GET/path/identifier`.
-                internal var identifier: Swift.String
+                public var identifier: Swift.String
                 /// Creates a new `Path`.
                 ///
                 /// - Parameters:
                 ///   - identifier:
-                internal init(identifier: Swift.String) {
+                public init(identifier: Swift.String) {
                     self.identifier = identifier
                 }
             }
-            internal var path: Operations.V_space_4_space__period__space_Keys_space_Device_space_List.Input.Path
+            public var path: Operations.V_space_4_space__period__space_Keys_space_Device_space_List.Input.Path
             /// - Remark: Generated from `#/paths/keys/device/{identifier}/GET/header`.
-            internal struct Headers: Sendable, Hashable {
-                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Keys_space_Device_space_List.AcceptableContentType>]
+            public struct Headers: Sendable, Hashable {
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Keys_space_Device_space_List.AcceptableContentType>]
                 /// Creates a new `Headers`.
                 ///
                 /// - Parameters:
                 ///   - accept:
-                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Keys_space_Device_space_List.AcceptableContentType>] = .defaultValues()) {
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Keys_space_Device_space_List.AcceptableContentType>] = .defaultValues()) {
                     self.accept = accept
                 }
             }
-            internal var headers: Operations.V_space_4_space__period__space_Keys_space_Device_space_List.Input.Headers
+            public var headers: Operations.V_space_4_space__period__space_Keys_space_Device_space_List.Input.Headers
             /// Creates a new `Input`.
             ///
             /// - Parameters:
             ///   - path:
             ///   - headers:
-            internal init(
+            public init(
                 path: Operations.V_space_4_space__period__space_Keys_space_Device_space_List.Input.Path,
                 headers: Operations.V_space_4_space__period__space_Keys_space_Device_space_List.Input.Headers = .init()
             ) {
@@ -3563,20 +3563,20 @@ internal enum Operations {
                 self.headers = headers
             }
         }
-        @frozen internal enum Output: Sendable, Hashable {
-            internal struct Ok: Sendable, Hashable {
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/keys/device/{identifier}/GET/responses/200/headers`.
-                internal struct Headers: Sendable, Hashable {
+                public struct Headers: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/keys/device/{identifier}/GET/responses/200/headers/Access-Control-Allow-Methods`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
                     /// - Remark: Generated from `#/paths/keys/device/{identifier}/GET/responses/200/headers/Access-Control-Allow-Origin`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
                     /// - Remark: Generated from `#/paths/keys/device/{identifier}/GET/responses/200/headers/Cache-Control`.
-                    internal var Cache_hyphen_Control: Swift.String?
+                    public var Cache_hyphen_Control: Swift.String?
                     /// - Remark: Generated from `#/paths/keys/device/{identifier}/GET/responses/200/headers/Expires`.
-                    internal var Expires: Swift.String?
+                    public var Expires: Swift.String?
                     /// - Remark: Generated from `#/paths/keys/device/{identifier}/GET/responses/200/headers/X-Data-Location`.
-                    internal var X_hyphen_Data_hyphen_Location: Swift.String?
+                    public var X_hyphen_Data_hyphen_Location: Swift.String?
                     /// Creates a new `Headers`.
                     ///
                     /// - Parameters:
@@ -3585,7 +3585,7 @@ internal enum Operations {
                     ///   - Cache_hyphen_Control:
                     ///   - Expires:
                     ///   - X_hyphen_Data_hyphen_Location:
-                    internal init(
+                    public init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String? = nil,
                         Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String? = nil,
                         Cache_hyphen_Control: Swift.String? = nil,
@@ -3600,25 +3600,25 @@ internal enum Operations {
                     }
                 }
                 /// Received HTTP response headers
-                internal var headers: Operations.V_space_4_space__period__space_Keys_space_Device_space_List.Output.Ok.Headers
+                public var headers: Operations.V_space_4_space__period__space_Keys_space_Device_space_List.Output.Ok.Headers
                 /// - Remark: Generated from `#/paths/keys/device/{identifier}/GET/responses/200/content`.
-                @frozen internal enum Body: Sendable, Hashable {
+                @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/keys/device/{identifier}/GET/responses/200/content/json`.
-                    @frozen internal enum jsonPayload: Codable, Hashable, Sendable {
+                    @frozen public enum jsonPayload: Codable, Hashable, Sendable {
                         /// - Remark: Generated from `#/paths/keys/device/{identifier}/GET/responses/200/content/json/Case1Payload`.
-                        internal struct Case1PayloadPayload: Codable, Hashable, Sendable {
+                        public struct Case1PayloadPayload: Codable, Hashable, Sendable {
                             /// - Remark: Generated from `#/paths/keys/device/{identifier}/GET/responses/200/content/json/Case1Payload/identifier`.
-                            internal var identifier: Swift.String
+                            public var identifier: Swift.String
                             /// - Remark: Generated from `#/paths/keys/device/{identifier}/GET/responses/200/content/json/Case1Payload/buildid`.
-                            internal var buildid: Swift.String
+                            public var buildid: Swift.String
                             /// - Remark: Generated from `#/paths/keys/device/{identifier}/GET/responses/200/content/json/Case1Payload/codename`.
-                            internal var codename: Swift.String
+                            public var codename: Swift.String
                             /// - Remark: Generated from `#/paths/keys/device/{identifier}/GET/responses/200/content/json/Case1Payload/baseband`.
-                            internal var baseband: Swift.String
+                            public var baseband: Swift.String
                             /// - Remark: Generated from `#/paths/keys/device/{identifier}/GET/responses/200/content/json/Case1Payload/updateramdiskexists`.
-                            internal var updateramdiskexists: Swift.Bool
+                            public var updateramdiskexists: Swift.Bool
                             /// - Remark: Generated from `#/paths/keys/device/{identifier}/GET/responses/200/content/json/Case1Payload/restoreramdiskexists`.
-                            internal var restoreramdiskexists: Swift.Bool
+                            public var restoreramdiskexists: Swift.Bool
                             /// Creates a new `Case1PayloadPayload`.
                             ///
                             /// - Parameters:
@@ -3628,7 +3628,7 @@ internal enum Operations {
                             ///   - baseband:
                             ///   - updateramdiskexists:
                             ///   - restoreramdiskexists:
-                            internal init(
+                            public init(
                                 identifier: Swift.String,
                                 buildid: Swift.String,
                                 codename: Swift.String,
@@ -3643,7 +3643,7 @@ internal enum Operations {
                                 self.updateramdiskexists = updateramdiskexists
                                 self.restoreramdiskexists = restoreramdiskexists
                             }
-                            internal enum CodingKeys: String, CodingKey {
+                            public enum CodingKeys: String, CodingKey {
                                 case identifier
                                 case buildid
                                 case codename
@@ -3653,21 +3653,21 @@ internal enum Operations {
                             }
                         }
                         /// - Remark: Generated from `#/paths/keys/device/{identifier}/GET/responses/200/content/json/case1`.
-                        internal typealias Case1Payload = [Operations.V_space_4_space__period__space_Keys_space_Device_space_List.Output.Ok.Body.jsonPayload.Case1PayloadPayload]
+                        public typealias Case1Payload = [Operations.V_space_4_space__period__space_Keys_space_Device_space_List.Output.Ok.Body.jsonPayload.Case1PayloadPayload]
                         /// - Remark: Generated from `#/paths/keys/device/{identifier}/GET/responses/200/content/json/case1`.
                         case case1(Operations.V_space_4_space__period__space_Keys_space_Device_space_List.Output.Ok.Body.jsonPayload.Case1Payload)
                         /// - Remark: Generated from `#/paths/keys/device/{identifier}/GET/responses/200/content/json/Case2Payload`.
-                        internal struct Case2PayloadPayload: Codable, Hashable, Sendable {
+                        public struct Case2PayloadPayload: Codable, Hashable, Sendable {
                             /// - Remark: Generated from `#/paths/keys/device/{identifier}/GET/responses/200/content/json/Case2Payload/identifier`.
-                            internal var identifier: Swift.String
+                            public var identifier: Swift.String
                             /// - Remark: Generated from `#/paths/keys/device/{identifier}/GET/responses/200/content/json/Case2Payload/buildid`.
-                            internal var buildid: Swift.String
+                            public var buildid: Swift.String
                             /// - Remark: Generated from `#/paths/keys/device/{identifier}/GET/responses/200/content/json/Case2Payload/codename`.
-                            internal var codename: Swift.String
+                            public var codename: Swift.String
                             /// - Remark: Generated from `#/paths/keys/device/{identifier}/GET/responses/200/content/json/Case2Payload/updateramdiskexists`.
-                            internal var updateramdiskexists: Swift.Bool
+                            public var updateramdiskexists: Swift.Bool
                             /// - Remark: Generated from `#/paths/keys/device/{identifier}/GET/responses/200/content/json/Case2Payload/restoreramdiskexists`.
-                            internal var restoreramdiskexists: Swift.Bool
+                            public var restoreramdiskexists: Swift.Bool
                             /// Creates a new `Case2PayloadPayload`.
                             ///
                             /// - Parameters:
@@ -3676,7 +3676,7 @@ internal enum Operations {
                             ///   - codename:
                             ///   - updateramdiskexists:
                             ///   - restoreramdiskexists:
-                            internal init(
+                            public init(
                                 identifier: Swift.String,
                                 buildid: Swift.String,
                                 codename: Swift.String,
@@ -3689,7 +3689,7 @@ internal enum Operations {
                                 self.updateramdiskexists = updateramdiskexists
                                 self.restoreramdiskexists = restoreramdiskexists
                             }
-                            internal enum CodingKeys: String, CodingKey {
+                            public enum CodingKeys: String, CodingKey {
                                 case identifier
                                 case buildid
                                 case codename
@@ -3698,10 +3698,10 @@ internal enum Operations {
                             }
                         }
                         /// - Remark: Generated from `#/paths/keys/device/{identifier}/GET/responses/200/content/json/case2`.
-                        internal typealias Case2Payload = [Operations.V_space_4_space__period__space_Keys_space_Device_space_List.Output.Ok.Body.jsonPayload.Case2PayloadPayload]
+                        public typealias Case2Payload = [Operations.V_space_4_space__period__space_Keys_space_Device_space_List.Output.Ok.Body.jsonPayload.Case2PayloadPayload]
                         /// - Remark: Generated from `#/paths/keys/device/{identifier}/GET/responses/200/content/json/case2`.
                         case case2(Operations.V_space_4_space__period__space_Keys_space_Device_space_List.Output.Ok.Body.jsonPayload.Case2Payload)
-                        internal init(from decoder: any Decoder) throws {
+                        public init(from decoder: any Decoder) throws {
                             var errors: [any Error] = []
                             do {
                                 self = .case1(try decoder.decodeFromSingleValueContainer())
@@ -3721,7 +3721,7 @@ internal enum Operations {
                                 errors: errors
                             )
                         }
-                        internal func encode(to encoder: any Encoder) throws {
+                        public func encode(to encoder: any Encoder) throws {
                             switch self {
                             case let .case1(value):
                                 try encoder.encodeToSingleValueContainer(value)
@@ -3736,7 +3736,7 @@ internal enum Operations {
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    internal var json: Operations.V_space_4_space__period__space_Keys_space_Device_space_List.Output.Ok.Body.jsonPayload {
+                    public var json: Operations.V_space_4_space__period__space_Keys_space_Device_space_List.Output.Ok.Body.jsonPayload {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -3755,7 +3755,7 @@ internal enum Operations {
                     ///
                     /// - Throws: An error if `self` is not `.application_x_hyphen_plist`.
                     /// - SeeAlso: `.application_x_hyphen_plist`.
-                    internal var application_x_hyphen_plist: OpenAPIRuntime.HTTPBody {
+                    public var application_x_hyphen_plist: OpenAPIRuntime.HTTPBody {
                         get throws {
                             switch self {
                             case let .application_x_hyphen_plist(body):
@@ -3774,7 +3774,7 @@ internal enum Operations {
                     ///
                     /// - Throws: An error if `self` is not `.xml`.
                     /// - SeeAlso: `.xml`.
-                    internal var xml: OpenAPIRuntime.HTTPBody {
+                    public var xml: OpenAPIRuntime.HTTPBody {
                         get throws {
                             switch self {
                             case let .xml(body):
@@ -3789,13 +3789,13 @@ internal enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                internal var body: Operations.V_space_4_space__period__space_Keys_space_Device_space_List.Output.Ok.Body
+                public var body: Operations.V_space_4_space__period__space_Keys_space_Device_space_List.Output.Ok.Body
                 /// Creates a new `Ok`.
                 ///
                 /// - Parameters:
                 ///   - headers: Received HTTP response headers
                 ///   - body: Received HTTP response body
-                internal init(
+                public init(
                     headers: Operations.V_space_4_space__period__space_Keys_space_Device_space_List.Output.Ok.Headers = .init(),
                     body: Operations.V_space_4_space__period__space_Keys_space_Device_space_List.Output.Ok.Body
                 ) {
@@ -3813,7 +3813,7 @@ internal enum Operations {
             ///
             /// - Throws: An error if `self` is not `.ok`.
             /// - SeeAlso: `.ok`.
-            internal var ok: Operations.V_space_4_space__period__space_Keys_space_Device_space_List.Output.Ok {
+            public var ok: Operations.V_space_4_space__period__space_Keys_space_Device_space_List.Output.Ok {
                 get throws {
                     switch self {
                     case let .ok(response):
@@ -3826,22 +3826,22 @@ internal enum Operations {
                     }
                 }
             }
-            internal struct NotFound: Sendable, Hashable {
+            public struct NotFound: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/keys/device/{identifier}/GET/responses/404/headers`.
-                internal struct Headers: Sendable, Hashable {
+                public struct Headers: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/keys/device/{identifier}/GET/responses/404/headers/Access-Control-Allow-Methods`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
                     /// - Remark: Generated from `#/paths/keys/device/{identifier}/GET/responses/404/headers/Access-Control-Allow-Origin`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
                     /// - Remark: Generated from `#/paths/keys/device/{identifier}/GET/responses/404/headers/X-Data-Location`.
-                    internal var X_hyphen_Data_hyphen_Location: Swift.String?
+                    public var X_hyphen_Data_hyphen_Location: Swift.String?
                     /// Creates a new `Headers`.
                     ///
                     /// - Parameters:
                     ///   - Access_hyphen_Control_hyphen_Allow_hyphen_Methods:
                     ///   - Access_hyphen_Control_hyphen_Allow_hyphen_Origin:
                     ///   - X_hyphen_Data_hyphen_Location:
-                    internal init(
+                    public init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String? = nil,
                         Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String? = nil,
                         X_hyphen_Data_hyphen_Location: Swift.String? = nil
@@ -3852,12 +3852,12 @@ internal enum Operations {
                     }
                 }
                 /// Received HTTP response headers
-                internal var headers: Operations.V_space_4_space__period__space_Keys_space_Device_space_List.Output.NotFound.Headers
+                public var headers: Operations.V_space_4_space__period__space_Keys_space_Device_space_List.Output.NotFound.Headers
                 /// Creates a new `NotFound`.
                 ///
                 /// - Parameters:
                 ///   - headers: Received HTTP response headers
-                internal init(headers: Operations.V_space_4_space__period__space_Keys_space_Device_space_List.Output.NotFound.Headers = .init()) {
+                public init(headers: Operations.V_space_4_space__period__space_Keys_space_Device_space_List.Output.NotFound.Headers = .init()) {
                     self.headers = headers
                 }
             }
@@ -3871,7 +3871,7 @@ internal enum Operations {
             ///
             /// - Throws: An error if `self` is not `.notFound`.
             /// - SeeAlso: `.notFound`.
-            internal var notFound: Operations.V_space_4_space__period__space_Keys_space_Device_space_List.Output.NotFound {
+            public var notFound: Operations.V_space_4_space__period__space_Keys_space_Device_space_List.Output.NotFound {
                 get throws {
                     switch self {
                     case let .notFound(response):
@@ -3889,12 +3889,12 @@ internal enum Operations {
             /// A response with a code that is not documented in the OpenAPI document.
             case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
         }
-        @frozen internal enum AcceptableContentType: AcceptableProtocol {
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
             case json
             case application_x_hyphen_plist
             case xml
             case other(Swift.String)
-            internal init?(rawValue: Swift.String) {
+            public init?(rawValue: Swift.String) {
                 switch rawValue.lowercased() {
                 case "application/json":
                     self = .json
@@ -3906,7 +3906,7 @@ internal enum Operations {
                     self = .other(rawValue)
                 }
             }
-            internal var rawValue: Swift.String {
+            public var rawValue: Swift.String {
                 switch self {
                 case let .other(string):
                     return string
@@ -3918,7 +3918,7 @@ internal enum Operations {
                     return "application/xml"
                 }
             }
-            internal static var allCases: [Self] {
+            public static var allCases: [Self] {
                 [
                     .json,
                     .application_x_hyphen_plist,
@@ -3933,21 +3933,21 @@ internal enum Operations {
     ///
     /// - Remark: HTTP `GET /keys/ipsw/{identifier}/{buildid}`.
     /// - Remark: Generated from `#/paths//keys/ipsw/{identifier}/{buildid}/get(V 4 . Keys For IPSW)`.
-    internal enum V_space_4_space__period__space_Keys_space_For_space_IPSW {
-        internal static let id: Swift.String = "V 4 . Keys For IPSW"
-        internal struct Input: Sendable, Hashable {
+    public enum V_space_4_space__period__space_Keys_space_For_space_IPSW {
+        public static let id: Swift.String = "V 4 . Keys For IPSW"
+        public struct Input: Sendable, Hashable {
             /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/path`.
-            internal struct Path: Sendable, Hashable {
+            public struct Path: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/path/identifier`.
-                internal var identifier: Swift.String
+                public var identifier: Swift.String
                 /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/path/buildid`.
-                internal var buildid: Swift.String
+                public var buildid: Swift.String
                 /// Creates a new `Path`.
                 ///
                 /// - Parameters:
                 ///   - identifier:
                 ///   - buildid:
-                internal init(
+                public init(
                     identifier: Swift.String,
                     buildid: Swift.String
                 ) {
@@ -3955,25 +3955,25 @@ internal enum Operations {
                     self.buildid = buildid
                 }
             }
-            internal var path: Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.Input.Path
+            public var path: Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.Input.Path
             /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/header`.
-            internal struct Headers: Sendable, Hashable {
-                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.AcceptableContentType>]
+            public struct Headers: Sendable, Hashable {
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.AcceptableContentType>]
                 /// Creates a new `Headers`.
                 ///
                 /// - Parameters:
                 ///   - accept:
-                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.AcceptableContentType>] = .defaultValues()) {
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.AcceptableContentType>] = .defaultValues()) {
                     self.accept = accept
                 }
             }
-            internal var headers: Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.Input.Headers
+            public var headers: Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.Input.Headers
             /// Creates a new `Input`.
             ///
             /// - Parameters:
             ///   - path:
             ///   - headers:
-            internal init(
+            public init(
                 path: Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.Input.Path,
                 headers: Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.Input.Headers = .init()
             ) {
@@ -3981,20 +3981,20 @@ internal enum Operations {
                 self.headers = headers
             }
         }
-        @frozen internal enum Output: Sendable, Hashable {
-            internal struct Ok: Sendable, Hashable {
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/responses/200/headers`.
-                internal struct Headers: Sendable, Hashable {
+                public struct Headers: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/responses/200/headers/Access-Control-Allow-Methods`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
                     /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/responses/200/headers/Access-Control-Allow-Origin`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
                     /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/responses/200/headers/Cache-Control`.
-                    internal var Cache_hyphen_Control: Swift.String?
+                    public var Cache_hyphen_Control: Swift.String?
                     /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/responses/200/headers/Expires`.
-                    internal var Expires: Swift.String?
+                    public var Expires: Swift.String?
                     /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/responses/200/headers/X-Data-Location`.
-                    internal var X_hyphen_Data_hyphen_Location: Swift.String?
+                    public var X_hyphen_Data_hyphen_Location: Swift.String?
                     /// Creates a new `Headers`.
                     ///
                     /// - Parameters:
@@ -4003,7 +4003,7 @@ internal enum Operations {
                     ///   - Cache_hyphen_Control:
                     ///   - Expires:
                     ///   - X_hyphen_Data_hyphen_Location:
-                    internal init(
+                    public init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String? = nil,
                         Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String? = nil,
                         Cache_hyphen_Control: Swift.String? = nil,
@@ -4018,37 +4018,37 @@ internal enum Operations {
                     }
                 }
                 /// Received HTTP response headers
-                internal var headers: Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.Output.Ok.Headers
+                public var headers: Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.Output.Ok.Headers
                 /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/responses/200/content`.
-                @frozen internal enum Body: Sendable, Hashable {
+                @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/responses/200/content/json`.
-                    @frozen internal enum jsonPayload: Codable, Hashable, Sendable {
+                    @frozen public enum jsonPayload: Codable, Hashable, Sendable {
                         /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case1`.
-                        internal struct Case1Payload: Codable, Hashable, Sendable {
+                        public struct Case1Payload: Codable, Hashable, Sendable {
                             /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case1/identifier`.
-                            internal var identifier: Swift.String?
+                            public var identifier: Swift.String?
                             /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case1/buildid`.
-                            internal var buildid: Swift.String?
+                            public var buildid: Swift.String?
                             /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case1/codename`.
-                            internal var codename: Swift.String?
+                            public var codename: Swift.String?
                             /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case1/updateramdiskexists`.
-                            internal var updateramdiskexists: Swift.Bool?
+                            public var updateramdiskexists: Swift.Bool?
                             /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case1/restoreramdiskexists`.
-                            internal var restoreramdiskexists: Swift.Bool?
+                            public var restoreramdiskexists: Swift.Bool?
                             /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case1/keysPayload`.
-                            internal struct keysPayloadPayload: Codable, Hashable, Sendable {
+                            public struct keysPayloadPayload: Codable, Hashable, Sendable {
                                 /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case1/keysPayload/image`.
-                                internal var image: Swift.String
+                                public var image: Swift.String
                                 /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case1/keysPayload/filename`.
-                                internal var filename: Swift.String
+                                public var filename: Swift.String
                                 /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case1/keysPayload/kbag`.
-                                internal var kbag: Swift.String
+                                public var kbag: Swift.String
                                 /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case1/keysPayload/key`.
-                                internal var key: Swift.String
+                                public var key: Swift.String
                                 /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case1/keysPayload/iv`.
-                                internal var iv: Swift.String
+                                public var iv: Swift.String
                                 /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case1/keysPayload/date`.
-                                internal var date: Swift.String
+                                public var date: Swift.String
                                 /// Creates a new `keysPayloadPayload`.
                                 ///
                                 /// - Parameters:
@@ -4058,7 +4058,7 @@ internal enum Operations {
                                 ///   - key:
                                 ///   - iv:
                                 ///   - date:
-                                internal init(
+                                public init(
                                     image: Swift.String,
                                     filename: Swift.String,
                                     kbag: Swift.String,
@@ -4073,7 +4073,7 @@ internal enum Operations {
                                     self.iv = iv
                                     self.date = date
                                 }
-                                internal enum CodingKeys: String, CodingKey {
+                                public enum CodingKeys: String, CodingKey {
                                     case image
                                     case filename
                                     case kbag
@@ -4083,9 +4083,9 @@ internal enum Operations {
                                 }
                             }
                             /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case1/keys`.
-                            internal typealias keysPayload = [Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.Output.Ok.Body.jsonPayload.Case1Payload.keysPayloadPayload]
+                            public typealias keysPayload = [Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.Output.Ok.Body.jsonPayload.Case1Payload.keysPayloadPayload]
                             /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case1/keys`.
-                            internal var keys: Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.Output.Ok.Body.jsonPayload.Case1Payload.keysPayload?
+                            public var keys: Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.Output.Ok.Body.jsonPayload.Case1Payload.keysPayload?
                             /// Creates a new `Case1Payload`.
                             ///
                             /// - Parameters:
@@ -4095,7 +4095,7 @@ internal enum Operations {
                             ///   - updateramdiskexists:
                             ///   - restoreramdiskexists:
                             ///   - keys:
-                            internal init(
+                            public init(
                                 identifier: Swift.String? = nil,
                                 buildid: Swift.String? = nil,
                                 codename: Swift.String? = nil,
@@ -4110,7 +4110,7 @@ internal enum Operations {
                                 self.restoreramdiskexists = restoreramdiskexists
                                 self.keys = keys
                             }
-                            internal enum CodingKeys: String, CodingKey {
+                            public enum CodingKeys: String, CodingKey {
                                 case identifier
                                 case buildid
                                 case codename
@@ -4122,33 +4122,33 @@ internal enum Operations {
                         /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case1`.
                         case case1(Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.Output.Ok.Body.jsonPayload.Case1Payload)
                         /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case2`.
-                        internal struct Case2Payload: Codable, Hashable, Sendable {
+                        public struct Case2Payload: Codable, Hashable, Sendable {
                             /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case2/identifier`.
-                            internal var identifier: Swift.String?
+                            public var identifier: Swift.String?
                             /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case2/buildid`.
-                            internal var buildid: Swift.String?
+                            public var buildid: Swift.String?
                             /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case2/codename`.
-                            internal var codename: Swift.String?
+                            public var codename: Swift.String?
                             /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case2/baseband`.
-                            internal var baseband: Swift.String?
+                            public var baseband: Swift.String?
                             /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case2/updateramdiskexists`.
-                            internal var updateramdiskexists: Swift.Bool?
+                            public var updateramdiskexists: Swift.Bool?
                             /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case2/restoreramdiskexists`.
-                            internal var restoreramdiskexists: Swift.Bool?
+                            public var restoreramdiskexists: Swift.Bool?
                             /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case2/keysPayload`.
-                            internal struct keysPayloadPayload: Codable, Hashable, Sendable {
+                            public struct keysPayloadPayload: Codable, Hashable, Sendable {
                                 /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case2/keysPayload/image`.
-                                internal var image: Swift.String
+                                public var image: Swift.String
                                 /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case2/keysPayload/filename`.
-                                internal var filename: Swift.String
+                                public var filename: Swift.String
                                 /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case2/keysPayload/kbag`.
-                                internal var kbag: Swift.String
+                                public var kbag: Swift.String
                                 /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case2/keysPayload/key`.
-                                internal var key: Swift.String
+                                public var key: Swift.String
                                 /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case2/keysPayload/iv`.
-                                internal var iv: Swift.String
+                                public var iv: Swift.String
                                 /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case2/keysPayload/date`.
-                                internal var date: Swift.String
+                                public var date: Swift.String
                                 /// Creates a new `keysPayloadPayload`.
                                 ///
                                 /// - Parameters:
@@ -4158,7 +4158,7 @@ internal enum Operations {
                                 ///   - key:
                                 ///   - iv:
                                 ///   - date:
-                                internal init(
+                                public init(
                                     image: Swift.String,
                                     filename: Swift.String,
                                     kbag: Swift.String,
@@ -4173,7 +4173,7 @@ internal enum Operations {
                                     self.iv = iv
                                     self.date = date
                                 }
-                                internal enum CodingKeys: String, CodingKey {
+                                public enum CodingKeys: String, CodingKey {
                                     case image
                                     case filename
                                     case kbag
@@ -4183,9 +4183,9 @@ internal enum Operations {
                                 }
                             }
                             /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case2/keys`.
-                            internal typealias keysPayload = [Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.Output.Ok.Body.jsonPayload.Case2Payload.keysPayloadPayload]
+                            public typealias keysPayload = [Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.Output.Ok.Body.jsonPayload.Case2Payload.keysPayloadPayload]
                             /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case2/keys`.
-                            internal var keys: Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.Output.Ok.Body.jsonPayload.Case2Payload.keysPayload?
+                            public var keys: Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.Output.Ok.Body.jsonPayload.Case2Payload.keysPayload?
                             /// Creates a new `Case2Payload`.
                             ///
                             /// - Parameters:
@@ -4196,7 +4196,7 @@ internal enum Operations {
                             ///   - updateramdiskexists:
                             ///   - restoreramdiskexists:
                             ///   - keys:
-                            internal init(
+                            public init(
                                 identifier: Swift.String? = nil,
                                 buildid: Swift.String? = nil,
                                 codename: Swift.String? = nil,
@@ -4213,7 +4213,7 @@ internal enum Operations {
                                 self.restoreramdiskexists = restoreramdiskexists
                                 self.keys = keys
                             }
-                            internal enum CodingKeys: String, CodingKey {
+                            public enum CodingKeys: String, CodingKey {
                                 case identifier
                                 case buildid
                                 case codename
@@ -4225,7 +4225,7 @@ internal enum Operations {
                         }
                         /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/responses/200/content/json/case2`.
                         case case2(Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.Output.Ok.Body.jsonPayload.Case2Payload)
-                        internal init(from decoder: any Decoder) throws {
+                        public init(from decoder: any Decoder) throws {
                             var errors: [any Error] = []
                             do {
                                 self = .case1(try .init(from: decoder))
@@ -4245,7 +4245,7 @@ internal enum Operations {
                                 errors: errors
                             )
                         }
-                        internal func encode(to encoder: any Encoder) throws {
+                        public func encode(to encoder: any Encoder) throws {
                             switch self {
                             case let .case1(value):
                                 try value.encode(to: encoder)
@@ -4260,7 +4260,7 @@ internal enum Operations {
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    internal var json: Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.Output.Ok.Body.jsonPayload {
+                    public var json: Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.Output.Ok.Body.jsonPayload {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -4279,7 +4279,7 @@ internal enum Operations {
                     ///
                     /// - Throws: An error if `self` is not `.application_x_hyphen_plist`.
                     /// - SeeAlso: `.application_x_hyphen_plist`.
-                    internal var application_x_hyphen_plist: OpenAPIRuntime.HTTPBody {
+                    public var application_x_hyphen_plist: OpenAPIRuntime.HTTPBody {
                         get throws {
                             switch self {
                             case let .application_x_hyphen_plist(body):
@@ -4298,7 +4298,7 @@ internal enum Operations {
                     ///
                     /// - Throws: An error if `self` is not `.xml`.
                     /// - SeeAlso: `.xml`.
-                    internal var xml: OpenAPIRuntime.HTTPBody {
+                    public var xml: OpenAPIRuntime.HTTPBody {
                         get throws {
                             switch self {
                             case let .xml(body):
@@ -4313,13 +4313,13 @@ internal enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                internal var body: Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.Output.Ok.Body
+                public var body: Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.Output.Ok.Body
                 /// Creates a new `Ok`.
                 ///
                 /// - Parameters:
                 ///   - headers: Received HTTP response headers
                 ///   - body: Received HTTP response body
-                internal init(
+                public init(
                     headers: Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.Output.Ok.Headers = .init(),
                     body: Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.Output.Ok.Body
                 ) {
@@ -4337,7 +4337,7 @@ internal enum Operations {
             ///
             /// - Throws: An error if `self` is not `.ok`.
             /// - SeeAlso: `.ok`.
-            internal var ok: Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.Output.Ok {
+            public var ok: Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.Output.Ok {
                 get throws {
                     switch self {
                     case let .ok(response):
@@ -4350,22 +4350,22 @@ internal enum Operations {
                     }
                 }
             }
-            internal struct NotFound: Sendable, Hashable {
+            public struct NotFound: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/responses/404/headers`.
-                internal struct Headers: Sendable, Hashable {
+                public struct Headers: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/responses/404/headers/Access-Control-Allow-Methods`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
                     /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/responses/404/headers/Access-Control-Allow-Origin`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
                     /// - Remark: Generated from `#/paths/keys/ipsw/{identifier}/{buildid}/GET/responses/404/headers/X-Data-Location`.
-                    internal var X_hyphen_Data_hyphen_Location: Swift.String?
+                    public var X_hyphen_Data_hyphen_Location: Swift.String?
                     /// Creates a new `Headers`.
                     ///
                     /// - Parameters:
                     ///   - Access_hyphen_Control_hyphen_Allow_hyphen_Methods:
                     ///   - Access_hyphen_Control_hyphen_Allow_hyphen_Origin:
                     ///   - X_hyphen_Data_hyphen_Location:
-                    internal init(
+                    public init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String? = nil,
                         Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String? = nil,
                         X_hyphen_Data_hyphen_Location: Swift.String? = nil
@@ -4376,12 +4376,12 @@ internal enum Operations {
                     }
                 }
                 /// Received HTTP response headers
-                internal var headers: Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.Output.NotFound.Headers
+                public var headers: Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.Output.NotFound.Headers
                 /// Creates a new `NotFound`.
                 ///
                 /// - Parameters:
                 ///   - headers: Received HTTP response headers
-                internal init(headers: Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.Output.NotFound.Headers = .init()) {
+                public init(headers: Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.Output.NotFound.Headers = .init()) {
                     self.headers = headers
                 }
             }
@@ -4395,7 +4395,7 @@ internal enum Operations {
             ///
             /// - Throws: An error if `self` is not `.notFound`.
             /// - SeeAlso: `.notFound`.
-            internal var notFound: Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.Output.NotFound {
+            public var notFound: Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.Output.NotFound {
                 get throws {
                     switch self {
                     case let .notFound(response):
@@ -4413,12 +4413,12 @@ internal enum Operations {
             /// A response with a code that is not documented in the OpenAPI document.
             case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
         }
-        @frozen internal enum AcceptableContentType: AcceptableProtocol {
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
             case json
             case application_x_hyphen_plist
             case xml
             case other(Swift.String)
-            internal init?(rawValue: Swift.String) {
+            public init?(rawValue: Swift.String) {
                 switch rawValue.lowercased() {
                 case "application/json":
                     self = .json
@@ -4430,7 +4430,7 @@ internal enum Operations {
                     self = .other(rawValue)
                 }
             }
-            internal var rawValue: Swift.String {
+            public var rawValue: Swift.String {
                 switch self {
                 case let .other(string):
                     return string
@@ -4442,7 +4442,7 @@ internal enum Operations {
                     return "application/xml"
                 }
             }
-            internal static var allCases: [Self] {
+            public static var allCases: [Self] {
                 [
                     .json,
                     .application_x_hyphen_plist,
@@ -4457,40 +4457,40 @@ internal enum Operations {
     ///
     /// - Remark: HTTP `GET /model/{model}`.
     /// - Remark: Generated from `#/paths//model/{model}/get(V 4 . Identify Model)`.
-    internal enum V_space_4_space__period__space_Identify_space_Model {
-        internal static let id: Swift.String = "V 4 . Identify Model"
-        internal struct Input: Sendable, Hashable {
+    public enum V_space_4_space__period__space_Identify_space_Model {
+        public static let id: Swift.String = "V 4 . Identify Model"
+        public struct Input: Sendable, Hashable {
             /// - Remark: Generated from `#/paths/model/{model}/GET/path`.
-            internal struct Path: Sendable, Hashable {
+            public struct Path: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/model/{model}/GET/path/model`.
-                internal var model: Swift.String
+                public var model: Swift.String
                 /// Creates a new `Path`.
                 ///
                 /// - Parameters:
                 ///   - model:
-                internal init(model: Swift.String) {
+                public init(model: Swift.String) {
                     self.model = model
                 }
             }
-            internal var path: Operations.V_space_4_space__period__space_Identify_space_Model.Input.Path
+            public var path: Operations.V_space_4_space__period__space_Identify_space_Model.Input.Path
             /// - Remark: Generated from `#/paths/model/{model}/GET/header`.
-            internal struct Headers: Sendable, Hashable {
-                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Identify_space_Model.AcceptableContentType>]
+            public struct Headers: Sendable, Hashable {
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Identify_space_Model.AcceptableContentType>]
                 /// Creates a new `Headers`.
                 ///
                 /// - Parameters:
                 ///   - accept:
-                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Identify_space_Model.AcceptableContentType>] = .defaultValues()) {
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Identify_space_Model.AcceptableContentType>] = .defaultValues()) {
                     self.accept = accept
                 }
             }
-            internal var headers: Operations.V_space_4_space__period__space_Identify_space_Model.Input.Headers
+            public var headers: Operations.V_space_4_space__period__space_Identify_space_Model.Input.Headers
             /// Creates a new `Input`.
             ///
             /// - Parameters:
             ///   - path:
             ///   - headers:
-            internal init(
+            public init(
                 path: Operations.V_space_4_space__period__space_Identify_space_Model.Input.Path,
                 headers: Operations.V_space_4_space__period__space_Identify_space_Model.Input.Headers = .init()
             ) {
@@ -4498,20 +4498,20 @@ internal enum Operations {
                 self.headers = headers
             }
         }
-        @frozen internal enum Output: Sendable, Hashable {
-            internal struct Ok: Sendable, Hashable {
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/model/{model}/GET/responses/200/headers`.
-                internal struct Headers: Sendable, Hashable {
+                public struct Headers: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/model/{model}/GET/responses/200/headers/Access-Control-Allow-Methods`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
                     /// - Remark: Generated from `#/paths/model/{model}/GET/responses/200/headers/Access-Control-Allow-Origin`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
                     /// - Remark: Generated from `#/paths/model/{model}/GET/responses/200/headers/Cache-Control`.
-                    internal var Cache_hyphen_Control: Swift.String?
+                    public var Cache_hyphen_Control: Swift.String?
                     /// - Remark: Generated from `#/paths/model/{model}/GET/responses/200/headers/Expires`.
-                    internal var Expires: Swift.String?
+                    public var Expires: Swift.String?
                     /// - Remark: Generated from `#/paths/model/{model}/GET/responses/200/headers/X-Data-Location`.
-                    internal var X_hyphen_Data_hyphen_Location: Swift.String?
+                    public var X_hyphen_Data_hyphen_Location: Swift.String?
                     /// Creates a new `Headers`.
                     ///
                     /// - Parameters:
@@ -4520,7 +4520,7 @@ internal enum Operations {
                     ///   - Cache_hyphen_Control:
                     ///   - Expires:
                     ///   - X_hyphen_Data_hyphen_Location:
-                    internal init(
+                    public init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String? = nil,
                         Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String? = nil,
                         Cache_hyphen_Control: Swift.String? = nil,
@@ -4535,21 +4535,21 @@ internal enum Operations {
                     }
                 }
                 /// Received HTTP response headers
-                internal var headers: Operations.V_space_4_space__period__space_Identify_space_Model.Output.Ok.Headers
+                public var headers: Operations.V_space_4_space__period__space_Identify_space_Model.Output.Ok.Headers
                 /// - Remark: Generated from `#/paths/model/{model}/GET/responses/200/content`.
-                @frozen internal enum Body: Sendable, Hashable {
+                @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/model/{model}/GET/responses/200/content/json`.
-                    internal struct jsonPayload: Codable, Hashable, Sendable {
+                    public struct jsonPayload: Codable, Hashable, Sendable {
                         /// - Remark: Generated from `#/paths/model/{model}/GET/responses/200/content/json/identifier`.
-                        internal var identifier: Swift.String?
+                        public var identifier: Swift.String?
                         /// Creates a new `jsonPayload`.
                         ///
                         /// - Parameters:
                         ///   - identifier:
-                        internal init(identifier: Swift.String? = nil) {
+                        public init(identifier: Swift.String? = nil) {
                             self.identifier = identifier
                         }
-                        internal enum CodingKeys: String, CodingKey {
+                        public enum CodingKeys: String, CodingKey {
                             case identifier
                         }
                     }
@@ -4559,7 +4559,7 @@ internal enum Operations {
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    internal var json: Operations.V_space_4_space__period__space_Identify_space_Model.Output.Ok.Body.jsonPayload {
+                    public var json: Operations.V_space_4_space__period__space_Identify_space_Model.Output.Ok.Body.jsonPayload {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -4578,7 +4578,7 @@ internal enum Operations {
                     ///
                     /// - Throws: An error if `self` is not `.application_x_hyphen_plist`.
                     /// - SeeAlso: `.application_x_hyphen_plist`.
-                    internal var application_x_hyphen_plist: OpenAPIRuntime.HTTPBody {
+                    public var application_x_hyphen_plist: OpenAPIRuntime.HTTPBody {
                         get throws {
                             switch self {
                             case let .application_x_hyphen_plist(body):
@@ -4597,7 +4597,7 @@ internal enum Operations {
                     ///
                     /// - Throws: An error if `self` is not `.xml`.
                     /// - SeeAlso: `.xml`.
-                    internal var xml: OpenAPIRuntime.HTTPBody {
+                    public var xml: OpenAPIRuntime.HTTPBody {
                         get throws {
                             switch self {
                             case let .xml(body):
@@ -4612,13 +4612,13 @@ internal enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                internal var body: Operations.V_space_4_space__period__space_Identify_space_Model.Output.Ok.Body
+                public var body: Operations.V_space_4_space__period__space_Identify_space_Model.Output.Ok.Body
                 /// Creates a new `Ok`.
                 ///
                 /// - Parameters:
                 ///   - headers: Received HTTP response headers
                 ///   - body: Received HTTP response body
-                internal init(
+                public init(
                     headers: Operations.V_space_4_space__period__space_Identify_space_Model.Output.Ok.Headers = .init(),
                     body: Operations.V_space_4_space__period__space_Identify_space_Model.Output.Ok.Body
                 ) {
@@ -4636,7 +4636,7 @@ internal enum Operations {
             ///
             /// - Throws: An error if `self` is not `.ok`.
             /// - SeeAlso: `.ok`.
-            internal var ok: Operations.V_space_4_space__period__space_Identify_space_Model.Output.Ok {
+            public var ok: Operations.V_space_4_space__period__space_Identify_space_Model.Output.Ok {
                 get throws {
                     switch self {
                     case let .ok(response):
@@ -4649,22 +4649,22 @@ internal enum Operations {
                     }
                 }
             }
-            internal struct NotFound: Sendable, Hashable {
+            public struct NotFound: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/model/{model}/GET/responses/404/headers`.
-                internal struct Headers: Sendable, Hashable {
+                public struct Headers: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/model/{model}/GET/responses/404/headers/Access-Control-Allow-Methods`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
                     /// - Remark: Generated from `#/paths/model/{model}/GET/responses/404/headers/Access-Control-Allow-Origin`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
                     /// - Remark: Generated from `#/paths/model/{model}/GET/responses/404/headers/X-Data-Location`.
-                    internal var X_hyphen_Data_hyphen_Location: Swift.String?
+                    public var X_hyphen_Data_hyphen_Location: Swift.String?
                     /// Creates a new `Headers`.
                     ///
                     /// - Parameters:
                     ///   - Access_hyphen_Control_hyphen_Allow_hyphen_Methods:
                     ///   - Access_hyphen_Control_hyphen_Allow_hyphen_Origin:
                     ///   - X_hyphen_Data_hyphen_Location:
-                    internal init(
+                    public init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String? = nil,
                         Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String? = nil,
                         X_hyphen_Data_hyphen_Location: Swift.String? = nil
@@ -4675,12 +4675,12 @@ internal enum Operations {
                     }
                 }
                 /// Received HTTP response headers
-                internal var headers: Operations.V_space_4_space__period__space_Identify_space_Model.Output.NotFound.Headers
+                public var headers: Operations.V_space_4_space__period__space_Identify_space_Model.Output.NotFound.Headers
                 /// Creates a new `NotFound`.
                 ///
                 /// - Parameters:
                 ///   - headers: Received HTTP response headers
-                internal init(headers: Operations.V_space_4_space__period__space_Identify_space_Model.Output.NotFound.Headers = .init()) {
+                public init(headers: Operations.V_space_4_space__period__space_Identify_space_Model.Output.NotFound.Headers = .init()) {
                     self.headers = headers
                 }
             }
@@ -4694,7 +4694,7 @@ internal enum Operations {
             ///
             /// - Throws: An error if `self` is not `.notFound`.
             /// - SeeAlso: `.notFound`.
-            internal var notFound: Operations.V_space_4_space__period__space_Identify_space_Model.Output.NotFound {
+            public var notFound: Operations.V_space_4_space__period__space_Identify_space_Model.Output.NotFound {
                 get throws {
                     switch self {
                     case let .notFound(response):
@@ -4712,12 +4712,12 @@ internal enum Operations {
             /// A response with a code that is not documented in the OpenAPI document.
             case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
         }
-        @frozen internal enum AcceptableContentType: AcceptableProtocol {
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
             case json
             case application_x_hyphen_plist
             case xml
             case other(Swift.String)
-            internal init?(rawValue: Swift.String) {
+            public init?(rawValue: Swift.String) {
                 switch rawValue.lowercased() {
                 case "application/json":
                     self = .json
@@ -4729,7 +4729,7 @@ internal enum Operations {
                     self = .other(rawValue)
                 }
             }
-            internal var rawValue: Swift.String {
+            public var rawValue: Swift.String {
                 switch self {
                 case let .other(string):
                     return string
@@ -4741,7 +4741,7 @@ internal enum Operations {
                     return "application/xml"
                 }
             }
-            internal static var allCases: [Self] {
+            public static var allCases: [Self] {
                 [
                     .json,
                     .application_x_hyphen_plist,
@@ -4756,21 +4756,21 @@ internal enum Operations {
     ///
     /// - Remark: HTTP `GET /ota/documentation/{device}/{version}`.
     /// - Remark: Generated from `#/paths//ota/documentation/{device}/{version}/get(V 4 . OTA Documentation)`.
-    internal enum V_space_4_space__period__space_OTA_space_Documentation {
-        internal static let id: Swift.String = "V 4 . OTA Documentation"
-        internal struct Input: Sendable, Hashable {
+    public enum V_space_4_space__period__space_OTA_space_Documentation {
+        public static let id: Swift.String = "V 4 . OTA Documentation"
+        public struct Input: Sendable, Hashable {
             /// - Remark: Generated from `#/paths/ota/documentation/{device}/{version}/GET/path`.
-            internal struct Path: Sendable, Hashable {
+            public struct Path: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/ota/documentation/{device}/{version}/GET/path/device`.
-                internal var device: Swift.String
+                public var device: Swift.String
                 /// - Remark: Generated from `#/paths/ota/documentation/{device}/{version}/GET/path/version`.
-                internal var version: Swift.Double
+                public var version: Swift.Double
                 /// Creates a new `Path`.
                 ///
                 /// - Parameters:
                 ///   - device:
                 ///   - version:
-                internal init(
+                public init(
                     device: Swift.String,
                     version: Swift.Double
                 ) {
@@ -4778,25 +4778,25 @@ internal enum Operations {
                     self.version = version
                 }
             }
-            internal var path: Operations.V_space_4_space__period__space_OTA_space_Documentation.Input.Path
+            public var path: Operations.V_space_4_space__period__space_OTA_space_Documentation.Input.Path
             /// - Remark: Generated from `#/paths/ota/documentation/{device}/{version}/GET/header`.
-            internal struct Headers: Sendable, Hashable {
-                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_OTA_space_Documentation.AcceptableContentType>]
+            public struct Headers: Sendable, Hashable {
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_OTA_space_Documentation.AcceptableContentType>]
                 /// Creates a new `Headers`.
                 ///
                 /// - Parameters:
                 ///   - accept:
-                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_OTA_space_Documentation.AcceptableContentType>] = .defaultValues()) {
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_OTA_space_Documentation.AcceptableContentType>] = .defaultValues()) {
                     self.accept = accept
                 }
             }
-            internal var headers: Operations.V_space_4_space__period__space_OTA_space_Documentation.Input.Headers
+            public var headers: Operations.V_space_4_space__period__space_OTA_space_Documentation.Input.Headers
             /// Creates a new `Input`.
             ///
             /// - Parameters:
             ///   - path:
             ///   - headers:
-            internal init(
+            public init(
                 path: Operations.V_space_4_space__period__space_OTA_space_Documentation.Input.Path,
                 headers: Operations.V_space_4_space__period__space_OTA_space_Documentation.Input.Headers = .init()
             ) {
@@ -4804,22 +4804,22 @@ internal enum Operations {
                 self.headers = headers
             }
         }
-        @frozen internal enum Output: Sendable, Hashable {
-            internal struct Ok: Sendable, Hashable {
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/ota/documentation/{device}/{version}/GET/responses/200/headers`.
-                internal struct Headers: Sendable, Hashable {
+                public struct Headers: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/ota/documentation/{device}/{version}/GET/responses/200/headers/Access-Control-Allow-Methods`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
                     /// - Remark: Generated from `#/paths/ota/documentation/{device}/{version}/GET/responses/200/headers/Access-Control-Allow-Origin`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
                     /// - Remark: Generated from `#/paths/ota/documentation/{device}/{version}/GET/responses/200/headers/Cache-Control`.
-                    internal var Cache_hyphen_Control: Swift.String?
+                    public var Cache_hyphen_Control: Swift.String?
                     /// - Remark: Generated from `#/paths/ota/documentation/{device}/{version}/GET/responses/200/headers/Expires`.
-                    internal var Expires: Swift.String?
+                    public var Expires: Swift.String?
                     /// - Remark: Generated from `#/paths/ota/documentation/{device}/{version}/GET/responses/200/headers/X-Data-Location`.
-                    internal var X_hyphen_Data_hyphen_Location: Swift.String?
+                    public var X_hyphen_Data_hyphen_Location: Swift.String?
                     /// - Remark: Generated from `#/paths/ota/documentation/{device}/{version}/GET/responses/200/headers/X-Frame-Options`.
-                    internal var X_hyphen_Frame_hyphen_Options: Swift.String?
+                    public var X_hyphen_Frame_hyphen_Options: Swift.String?
                     /// Creates a new `Headers`.
                     ///
                     /// - Parameters:
@@ -4829,7 +4829,7 @@ internal enum Operations {
                     ///   - Expires:
                     ///   - X_hyphen_Data_hyphen_Location:
                     ///   - X_hyphen_Frame_hyphen_Options:
-                    internal init(
+                    public init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String? = nil,
                         Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String? = nil,
                         Cache_hyphen_Control: Swift.String? = nil,
@@ -4846,16 +4846,16 @@ internal enum Operations {
                     }
                 }
                 /// Received HTTP response headers
-                internal var headers: Operations.V_space_4_space__period__space_OTA_space_Documentation.Output.Ok.Headers
+                public var headers: Operations.V_space_4_space__period__space_OTA_space_Documentation.Output.Ok.Headers
                 /// - Remark: Generated from `#/paths/ota/documentation/{device}/{version}/GET/responses/200/content`.
-                @frozen internal enum Body: Sendable, Hashable {
+                @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/ota/documentation/{device}/{version}/GET/responses/200/content/text\/html`.
                     case html(OpenAPIRuntime.HTTPBody)
                     /// The associated value of the enum case if `self` is `.html`.
                     ///
                     /// - Throws: An error if `self` is not `.html`.
                     /// - SeeAlso: `.html`.
-                    internal var html: OpenAPIRuntime.HTTPBody {
+                    public var html: OpenAPIRuntime.HTTPBody {
                         get throws {
                             switch self {
                             case let .html(body):
@@ -4865,13 +4865,13 @@ internal enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                internal var body: Operations.V_space_4_space__period__space_OTA_space_Documentation.Output.Ok.Body
+                public var body: Operations.V_space_4_space__period__space_OTA_space_Documentation.Output.Ok.Body
                 /// Creates a new `Ok`.
                 ///
                 /// - Parameters:
                 ///   - headers: Received HTTP response headers
                 ///   - body: Received HTTP response body
-                internal init(
+                public init(
                     headers: Operations.V_space_4_space__period__space_OTA_space_Documentation.Output.Ok.Headers = .init(),
                     body: Operations.V_space_4_space__period__space_OTA_space_Documentation.Output.Ok.Body
                 ) {
@@ -4889,7 +4889,7 @@ internal enum Operations {
             ///
             /// - Throws: An error if `self` is not `.ok`.
             /// - SeeAlso: `.ok`.
-            internal var ok: Operations.V_space_4_space__period__space_OTA_space_Documentation.Output.Ok {
+            public var ok: Operations.V_space_4_space__period__space_OTA_space_Documentation.Output.Ok {
                 get throws {
                     switch self {
                     case let .ok(response):
@@ -4902,19 +4902,19 @@ internal enum Operations {
                     }
                 }
             }
-            internal struct NotFound: Sendable, Hashable {
+            public struct NotFound: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/ota/documentation/{device}/{version}/GET/responses/404/headers`.
-                internal struct Headers: Sendable, Hashable {
+                public struct Headers: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/ota/documentation/{device}/{version}/GET/responses/404/headers/Access-Control-Allow-Methods`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
                     /// - Remark: Generated from `#/paths/ota/documentation/{device}/{version}/GET/responses/404/headers/Access-Control-Allow-Origin`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
                     /// - Remark: Generated from `#/paths/ota/documentation/{device}/{version}/GET/responses/404/headers/Cache-Control`.
-                    internal var Cache_hyphen_Control: Swift.String?
+                    public var Cache_hyphen_Control: Swift.String?
                     /// - Remark: Generated from `#/paths/ota/documentation/{device}/{version}/GET/responses/404/headers/Expires`.
-                    internal var Expires: Swift.String?
+                    public var Expires: Swift.String?
                     /// - Remark: Generated from `#/paths/ota/documentation/{device}/{version}/GET/responses/404/headers/X-Data-Location`.
-                    internal var X_hyphen_Data_hyphen_Location: Swift.String?
+                    public var X_hyphen_Data_hyphen_Location: Swift.String?
                     /// Creates a new `Headers`.
                     ///
                     /// - Parameters:
@@ -4923,7 +4923,7 @@ internal enum Operations {
                     ///   - Cache_hyphen_Control:
                     ///   - Expires:
                     ///   - X_hyphen_Data_hyphen_Location:
-                    internal init(
+                    public init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String? = nil,
                         Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String? = nil,
                         Cache_hyphen_Control: Swift.String? = nil,
@@ -4938,28 +4938,28 @@ internal enum Operations {
                     }
                 }
                 /// Received HTTP response headers
-                internal var headers: Operations.V_space_4_space__period__space_OTA_space_Documentation.Output.NotFound.Headers
+                public var headers: Operations.V_space_4_space__period__space_OTA_space_Documentation.Output.NotFound.Headers
                 /// - Remark: Generated from `#/paths/ota/documentation/{device}/{version}/GET/responses/404/content`.
-                @frozen internal enum Body: Sendable, Hashable {
+                @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/ota/documentation/{device}/{version}/GET/responses/404/content/json`.
-                    internal struct jsonPayload: Codable, Hashable, Sendable {
+                    public struct jsonPayload: Codable, Hashable, Sendable {
                         /// - Remark: Generated from `#/paths/ota/documentation/{device}/{version}/GET/responses/404/content/json/status`.
-                        internal var status: Swift.Double?
+                        public var status: Swift.Double?
                         /// - Remark: Generated from `#/paths/ota/documentation/{device}/{version}/GET/responses/404/content/json/message`.
-                        internal var message: Swift.String?
+                        public var message: Swift.String?
                         /// Creates a new `jsonPayload`.
                         ///
                         /// - Parameters:
                         ///   - status:
                         ///   - message:
-                        internal init(
+                        public init(
                             status: Swift.Double? = nil,
                             message: Swift.String? = nil
                         ) {
                             self.status = status
                             self.message = message
                         }
-                        internal enum CodingKeys: String, CodingKey {
+                        public enum CodingKeys: String, CodingKey {
                             case status
                             case message
                         }
@@ -4970,7 +4970,7 @@ internal enum Operations {
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    internal var json: Operations.V_space_4_space__period__space_OTA_space_Documentation.Output.NotFound.Body.jsonPayload {
+                    public var json: Operations.V_space_4_space__period__space_OTA_space_Documentation.Output.NotFound.Body.jsonPayload {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -4980,13 +4980,13 @@ internal enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                internal var body: Operations.V_space_4_space__period__space_OTA_space_Documentation.Output.NotFound.Body
+                public var body: Operations.V_space_4_space__period__space_OTA_space_Documentation.Output.NotFound.Body
                 /// Creates a new `NotFound`.
                 ///
                 /// - Parameters:
                 ///   - headers: Received HTTP response headers
                 ///   - body: Received HTTP response body
-                internal init(
+                public init(
                     headers: Operations.V_space_4_space__period__space_OTA_space_Documentation.Output.NotFound.Headers = .init(),
                     body: Operations.V_space_4_space__period__space_OTA_space_Documentation.Output.NotFound.Body
                 ) {
@@ -5004,7 +5004,7 @@ internal enum Operations {
             ///
             /// - Throws: An error if `self` is not `.notFound`.
             /// - SeeAlso: `.notFound`.
-            internal var notFound: Operations.V_space_4_space__period__space_OTA_space_Documentation.Output.NotFound {
+            public var notFound: Operations.V_space_4_space__period__space_OTA_space_Documentation.Output.NotFound {
                 get throws {
                     switch self {
                     case let .notFound(response):
@@ -5022,11 +5022,11 @@ internal enum Operations {
             /// A response with a code that is not documented in the OpenAPI document.
             case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
         }
-        @frozen internal enum AcceptableContentType: AcceptableProtocol {
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
             case html
             case json
             case other(Swift.String)
-            internal init?(rawValue: Swift.String) {
+            public init?(rawValue: Swift.String) {
                 switch rawValue.lowercased() {
                 case "text/html":
                     self = .html
@@ -5036,7 +5036,7 @@ internal enum Operations {
                     self = .other(rawValue)
                 }
             }
-            internal var rawValue: Swift.String {
+            public var rawValue: Swift.String {
                 switch self {
                 case let .other(string):
                     return string
@@ -5046,7 +5046,7 @@ internal enum Operations {
                     return "application/json"
                 }
             }
-            internal static var allCases: [Self] {
+            public static var allCases: [Self] {
                 [
                     .html,
                     .json
@@ -5060,21 +5060,21 @@ internal enum Operations {
     ///
     /// - Remark: HTTP `GET /ota/download/{identifier}/{buildid}`.
     /// - Remark: Generated from `#/paths//ota/download/{identifier}/{buildid}/get(V 4 . Download OTA)`.
-    internal enum V_space_4_space__period__space_Download_space_OTA {
-        internal static let id: Swift.String = "V 4 . Download OTA"
-        internal struct Input: Sendable, Hashable {
+    public enum V_space_4_space__period__space_Download_space_OTA {
+        public static let id: Swift.String = "V 4 . Download OTA"
+        public struct Input: Sendable, Hashable {
             /// - Remark: Generated from `#/paths/ota/download/{identifier}/{buildid}/GET/path`.
-            internal struct Path: Sendable, Hashable {
+            public struct Path: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/ota/download/{identifier}/{buildid}/GET/path/identifier`.
-                internal var identifier: Swift.String
+                public var identifier: Swift.String
                 /// - Remark: Generated from `#/paths/ota/download/{identifier}/{buildid}/GET/path/buildid`.
-                internal var buildid: Swift.String
+                public var buildid: Swift.String
                 /// Creates a new `Path`.
                 ///
                 /// - Parameters:
                 ///   - identifier:
                 ///   - buildid:
-                internal init(
+                public init(
                     identifier: Swift.String,
                     buildid: Swift.String
                 ) {
@@ -5082,39 +5082,39 @@ internal enum Operations {
                     self.buildid = buildid
                 }
             }
-            internal var path: Operations.V_space_4_space__period__space_Download_space_OTA.Input.Path
+            public var path: Operations.V_space_4_space__period__space_Download_space_OTA.Input.Path
             /// - Remark: Generated from `#/paths/ota/download/{identifier}/{buildid}/GET/query`.
-            internal struct Query: Sendable, Hashable {
+            public struct Query: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/ota/download/{identifier}/{buildid}/GET/query/prerequisite`.
-                internal var prerequisite: Swift.String
+                public var prerequisite: Swift.String
                 /// Creates a new `Query`.
                 ///
                 /// - Parameters:
                 ///   - prerequisite:
-                internal init(prerequisite: Swift.String) {
+                public init(prerequisite: Swift.String) {
                     self.prerequisite = prerequisite
                 }
             }
-            internal var query: Operations.V_space_4_space__period__space_Download_space_OTA.Input.Query
+            public var query: Operations.V_space_4_space__period__space_Download_space_OTA.Input.Query
             /// - Remark: Generated from `#/paths/ota/download/{identifier}/{buildid}/GET/header`.
-            internal struct Headers: Sendable, Hashable {
-                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Download_space_OTA.AcceptableContentType>]
+            public struct Headers: Sendable, Hashable {
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Download_space_OTA.AcceptableContentType>]
                 /// Creates a new `Headers`.
                 ///
                 /// - Parameters:
                 ///   - accept:
-                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Download_space_OTA.AcceptableContentType>] = .defaultValues()) {
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Download_space_OTA.AcceptableContentType>] = .defaultValues()) {
                     self.accept = accept
                 }
             }
-            internal var headers: Operations.V_space_4_space__period__space_Download_space_OTA.Input.Headers
+            public var headers: Operations.V_space_4_space__period__space_Download_space_OTA.Input.Headers
             /// Creates a new `Input`.
             ///
             /// - Parameters:
             ///   - path:
             ///   - query:
             ///   - headers:
-            internal init(
+            public init(
                 path: Operations.V_space_4_space__period__space_Download_space_OTA.Input.Path,
                 query: Operations.V_space_4_space__period__space_Download_space_OTA.Input.Query,
                 headers: Operations.V_space_4_space__period__space_Download_space_OTA.Input.Headers = .init()
@@ -5124,23 +5124,23 @@ internal enum Operations {
                 self.headers = headers
             }
         }
-        @frozen internal enum Output: Sendable, Hashable {
-            internal struct Found: Sendable, Hashable {
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Found: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/ota/download/{identifier}/{buildid}/GET/responses/302/headers`.
-                internal struct Headers: Sendable, Hashable {
+                public struct Headers: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/ota/download/{identifier}/{buildid}/GET/responses/302/headers/Access-Control-Allow-Methods`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
                     /// - Remark: Generated from `#/paths/ota/download/{identifier}/{buildid}/GET/responses/302/headers/Access-Control-Allow-Origin`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
                     /// - Remark: Generated from `#/paths/ota/download/{identifier}/{buildid}/GET/responses/302/headers/Location`.
-                    internal var Location: Swift.String?
+                    public var Location: Swift.String?
                     /// Creates a new `Headers`.
                     ///
                     /// - Parameters:
                     ///   - Access_hyphen_Control_hyphen_Allow_hyphen_Methods:
                     ///   - Access_hyphen_Control_hyphen_Allow_hyphen_Origin:
                     ///   - Location:
-                    internal init(
+                    public init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String? = nil,
                         Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String? = nil,
                         Location: Swift.String? = nil
@@ -5151,16 +5151,16 @@ internal enum Operations {
                     }
                 }
                 /// Received HTTP response headers
-                internal var headers: Operations.V_space_4_space__period__space_Download_space_OTA.Output.Found.Headers
+                public var headers: Operations.V_space_4_space__period__space_Download_space_OTA.Output.Found.Headers
                 /// - Remark: Generated from `#/paths/ota/download/{identifier}/{buildid}/GET/responses/302/content`.
-                @frozen internal enum Body: Sendable, Hashable {
+                @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/ota/download/{identifier}/{buildid}/GET/responses/302/content/text\/html; charset=utf-8`.
                     case text_html_charset_utf_hyphen_8(OpenAPIRuntime.HTTPBody)
                     /// The associated value of the enum case if `self` is `.text_html_charset_utf_hyphen_8`.
                     ///
                     /// - Throws: An error if `self` is not `.text_html_charset_utf_hyphen_8`.
                     /// - SeeAlso: `.text_html_charset_utf_hyphen_8`.
-                    internal var text_html_charset_utf_hyphen_8: OpenAPIRuntime.HTTPBody {
+                    public var text_html_charset_utf_hyphen_8: OpenAPIRuntime.HTTPBody {
                         get throws {
                             switch self {
                             case let .text_html_charset_utf_hyphen_8(body):
@@ -5170,13 +5170,13 @@ internal enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                internal var body: Operations.V_space_4_space__period__space_Download_space_OTA.Output.Found.Body
+                public var body: Operations.V_space_4_space__period__space_Download_space_OTA.Output.Found.Body
                 /// Creates a new `Found`.
                 ///
                 /// - Parameters:
                 ///   - headers: Received HTTP response headers
                 ///   - body: Received HTTP response body
-                internal init(
+                public init(
                     headers: Operations.V_space_4_space__period__space_Download_space_OTA.Output.Found.Headers = .init(),
                     body: Operations.V_space_4_space__period__space_Download_space_OTA.Output.Found.Body
                 ) {
@@ -5194,7 +5194,7 @@ internal enum Operations {
             ///
             /// - Throws: An error if `self` is not `.found`.
             /// - SeeAlso: `.found`.
-            internal var found: Operations.V_space_4_space__period__space_Download_space_OTA.Output.Found {
+            public var found: Operations.V_space_4_space__period__space_Download_space_OTA.Output.Found {
                 get throws {
                     switch self {
                     case let .found(response):
@@ -5212,10 +5212,10 @@ internal enum Operations {
             /// A response with a code that is not documented in the OpenAPI document.
             case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
         }
-        @frozen internal enum AcceptableContentType: AcceptableProtocol {
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
             case text_html_charset_utf_hyphen_8
             case other(Swift.String)
-            internal init?(rawValue: Swift.String) {
+            public init?(rawValue: Swift.String) {
                 switch rawValue.lowercased() {
                 case "text/html":
                     self = .text_html_charset_utf_hyphen_8
@@ -5223,7 +5223,7 @@ internal enum Operations {
                     self = .other(rawValue)
                 }
             }
-            internal var rawValue: Swift.String {
+            public var rawValue: Swift.String {
                 switch self {
                 case let .other(string):
                     return string
@@ -5231,7 +5231,7 @@ internal enum Operations {
                     return "text/html"
                 }
             }
-            internal static var allCases: [Self] {
+            public static var allCases: [Self] {
                 [
                     .text_html_charset_utf_hyphen_8
                 ]
@@ -5245,21 +5245,21 @@ internal enum Operations {
     ///
     /// - Remark: HTTP `GET /ota/{identifier}/{buildid}`.
     /// - Remark: Generated from `#/paths//ota/{identifier}/{buildid}/get(V 4 . Get OTA Information)`.
-    internal enum V_space_4_space__period__space_Get_space_OTA_space_Information {
-        internal static let id: Swift.String = "V 4 . Get OTA Information"
-        internal struct Input: Sendable, Hashable {
+    public enum V_space_4_space__period__space_Get_space_OTA_space_Information {
+        public static let id: Swift.String = "V 4 . Get OTA Information"
+        public struct Input: Sendable, Hashable {
             /// - Remark: Generated from `#/paths/ota/{identifier}/{buildid}/GET/path`.
-            internal struct Path: Sendable, Hashable {
+            public struct Path: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/ota/{identifier}/{buildid}/GET/path/identifier`.
-                internal var identifier: Swift.String
+                public var identifier: Swift.String
                 /// - Remark: Generated from `#/paths/ota/{identifier}/{buildid}/GET/path/buildid`.
-                internal var buildid: Swift.String
+                public var buildid: Swift.String
                 /// Creates a new `Path`.
                 ///
                 /// - Parameters:
                 ///   - identifier:
                 ///   - buildid:
-                internal init(
+                public init(
                     identifier: Swift.String,
                     buildid: Swift.String
                 ) {
@@ -5267,39 +5267,39 @@ internal enum Operations {
                     self.buildid = buildid
                 }
             }
-            internal var path: Operations.V_space_4_space__period__space_Get_space_OTA_space_Information.Input.Path
+            public var path: Operations.V_space_4_space__period__space_Get_space_OTA_space_Information.Input.Path
             /// - Remark: Generated from `#/paths/ota/{identifier}/{buildid}/GET/query`.
-            internal struct Query: Sendable, Hashable {
+            public struct Query: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/ota/{identifier}/{buildid}/GET/query/prerequisite`.
-                internal var prerequisite: Swift.String
+                public var prerequisite: Swift.String
                 /// Creates a new `Query`.
                 ///
                 /// - Parameters:
                 ///   - prerequisite:
-                internal init(prerequisite: Swift.String) {
+                public init(prerequisite: Swift.String) {
                     self.prerequisite = prerequisite
                 }
             }
-            internal var query: Operations.V_space_4_space__period__space_Get_space_OTA_space_Information.Input.Query
+            public var query: Operations.V_space_4_space__period__space_Get_space_OTA_space_Information.Input.Query
             /// - Remark: Generated from `#/paths/ota/{identifier}/{buildid}/GET/header`.
-            internal struct Headers: Sendable, Hashable {
-                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Get_space_OTA_space_Information.AcceptableContentType>]
+            public struct Headers: Sendable, Hashable {
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Get_space_OTA_space_Information.AcceptableContentType>]
                 /// Creates a new `Headers`.
                 ///
                 /// - Parameters:
                 ///   - accept:
-                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Get_space_OTA_space_Information.AcceptableContentType>] = .defaultValues()) {
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Get_space_OTA_space_Information.AcceptableContentType>] = .defaultValues()) {
                     self.accept = accept
                 }
             }
-            internal var headers: Operations.V_space_4_space__period__space_Get_space_OTA_space_Information.Input.Headers
+            public var headers: Operations.V_space_4_space__period__space_Get_space_OTA_space_Information.Input.Headers
             /// Creates a new `Input`.
             ///
             /// - Parameters:
             ///   - path:
             ///   - query:
             ///   - headers:
-            internal init(
+            public init(
                 path: Operations.V_space_4_space__period__space_Get_space_OTA_space_Information.Input.Path,
                 query: Operations.V_space_4_space__period__space_Get_space_OTA_space_Information.Input.Query,
                 headers: Operations.V_space_4_space__period__space_Get_space_OTA_space_Information.Input.Headers = .init()
@@ -5309,20 +5309,20 @@ internal enum Operations {
                 self.headers = headers
             }
         }
-        @frozen internal enum Output: Sendable, Hashable {
-            internal struct Ok: Sendable, Hashable {
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/ota/{identifier}/{buildid}/GET/responses/200/headers`.
-                internal struct Headers: Sendable, Hashable {
+                public struct Headers: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/ota/{identifier}/{buildid}/GET/responses/200/headers/Access-Control-Allow-Methods`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
                     /// - Remark: Generated from `#/paths/ota/{identifier}/{buildid}/GET/responses/200/headers/Access-Control-Allow-Origin`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
                     /// - Remark: Generated from `#/paths/ota/{identifier}/{buildid}/GET/responses/200/headers/Cache-Control`.
-                    internal var Cache_hyphen_Control: Swift.String?
+                    public var Cache_hyphen_Control: Swift.String?
                     /// - Remark: Generated from `#/paths/ota/{identifier}/{buildid}/GET/responses/200/headers/Expires`.
-                    internal var Expires: Swift.String?
+                    public var Expires: Swift.String?
                     /// - Remark: Generated from `#/paths/ota/{identifier}/{buildid}/GET/responses/200/headers/X-Data-Location`.
-                    internal var X_hyphen_Data_hyphen_Location: Swift.String?
+                    public var X_hyphen_Data_hyphen_Location: Swift.String?
                     /// Creates a new `Headers`.
                     ///
                     /// - Parameters:
@@ -5331,7 +5331,7 @@ internal enum Operations {
                     ///   - Cache_hyphen_Control:
                     ///   - Expires:
                     ///   - X_hyphen_Data_hyphen_Location:
-                    internal init(
+                    public init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String? = nil,
                         Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String? = nil,
                         Cache_hyphen_Control: Swift.String? = nil,
@@ -5346,35 +5346,35 @@ internal enum Operations {
                     }
                 }
                 /// Received HTTP response headers
-                internal var headers: Operations.V_space_4_space__period__space_Get_space_OTA_space_Information.Output.Ok.Headers
+                public var headers: Operations.V_space_4_space__period__space_Get_space_OTA_space_Information.Output.Ok.Headers
                 /// - Remark: Generated from `#/paths/ota/{identifier}/{buildid}/GET/responses/200/content`.
-                @frozen internal enum Body: Sendable, Hashable {
+                @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/ota/{identifier}/{buildid}/GET/responses/200/content/json`.
-                    internal struct jsonPayload: Codable, Hashable, Sendable {
+                    public struct jsonPayload: Codable, Hashable, Sendable {
                         /// - Remark: Generated from `#/paths/ota/{identifier}/{buildid}/GET/responses/200/content/json/identifier`.
-                        internal var identifier: Swift.String?
+                        public var identifier: Swift.String?
                         /// - Remark: Generated from `#/paths/ota/{identifier}/{buildid}/GET/responses/200/content/json/buildid`.
-                        internal var buildid: Swift.String?
+                        public var buildid: Swift.String?
                         /// - Remark: Generated from `#/paths/ota/{identifier}/{buildid}/GET/responses/200/content/json/version`.
-                        internal var version: Swift.String?
+                        public var version: Swift.String?
                         /// - Remark: Generated from `#/paths/ota/{identifier}/{buildid}/GET/responses/200/content/json/url`.
-                        internal var url: Swift.String?
+                        public var url: Swift.String?
                         /// - Remark: Generated from `#/paths/ota/{identifier}/{buildid}/GET/responses/200/content/json/filesize`.
-                        internal var filesize: Swift.Double?
+                        public var filesize: Swift.Double?
                         /// - Remark: Generated from `#/paths/ota/{identifier}/{buildid}/GET/responses/200/content/json/prerequisitebuildid`.
-                        internal var prerequisitebuildid: Swift.String?
+                        public var prerequisitebuildid: Swift.String?
                         /// - Remark: Generated from `#/paths/ota/{identifier}/{buildid}/GET/responses/200/content/json/prerequisiteversion`.
-                        internal var prerequisiteversion: Swift.String?
+                        public var prerequisiteversion: Swift.String?
                         /// - Remark: Generated from `#/paths/ota/{identifier}/{buildid}/GET/responses/200/content/json/releasetype`.
-                        internal var releasetype: Swift.String?
+                        public var releasetype: Swift.String?
                         /// - Remark: Generated from `#/paths/ota/{identifier}/{buildid}/GET/responses/200/content/json/uploaddate`.
-                        internal var uploaddate: Swift.String?
+                        public var uploaddate: Swift.String?
                         /// - Remark: Generated from `#/paths/ota/{identifier}/{buildid}/GET/responses/200/content/json/releasedate`.
-                        internal var releasedate: Swift.String?
+                        public var releasedate: Swift.String?
                         /// - Remark: Generated from `#/paths/ota/{identifier}/{buildid}/GET/responses/200/content/json/marketingversion`.
-                        internal var marketingversion: OpenAPIRuntime.OpenAPIValueContainer?
+                        public var marketingversion: OpenAPIRuntime.OpenAPIValueContainer?
                         /// - Remark: Generated from `#/paths/ota/{identifier}/{buildid}/GET/responses/200/content/json/signed`.
-                        internal var signed: Swift.Bool?
+                        public var signed: Swift.Bool?
                         /// Creates a new `jsonPayload`.
                         ///
                         /// - Parameters:
@@ -5390,7 +5390,7 @@ internal enum Operations {
                         ///   - releasedate:
                         ///   - marketingversion:
                         ///   - signed:
-                        internal init(
+                        public init(
                             identifier: Swift.String? = nil,
                             buildid: Swift.String? = nil,
                             version: Swift.String? = nil,
@@ -5417,7 +5417,7 @@ internal enum Operations {
                             self.marketingversion = marketingversion
                             self.signed = signed
                         }
-                        internal enum CodingKeys: String, CodingKey {
+                        public enum CodingKeys: String, CodingKey {
                             case identifier
                             case buildid
                             case version
@@ -5438,7 +5438,7 @@ internal enum Operations {
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    internal var json: Operations.V_space_4_space__period__space_Get_space_OTA_space_Information.Output.Ok.Body.jsonPayload {
+                    public var json: Operations.V_space_4_space__period__space_Get_space_OTA_space_Information.Output.Ok.Body.jsonPayload {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -5457,7 +5457,7 @@ internal enum Operations {
                     ///
                     /// - Throws: An error if `self` is not `.application_x_hyphen_plist`.
                     /// - SeeAlso: `.application_x_hyphen_plist`.
-                    internal var application_x_hyphen_plist: OpenAPIRuntime.HTTPBody {
+                    public var application_x_hyphen_plist: OpenAPIRuntime.HTTPBody {
                         get throws {
                             switch self {
                             case let .application_x_hyphen_plist(body):
@@ -5476,7 +5476,7 @@ internal enum Operations {
                     ///
                     /// - Throws: An error if `self` is not `.xml`.
                     /// - SeeAlso: `.xml`.
-                    internal var xml: OpenAPIRuntime.HTTPBody {
+                    public var xml: OpenAPIRuntime.HTTPBody {
                         get throws {
                             switch self {
                             case let .xml(body):
@@ -5491,13 +5491,13 @@ internal enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                internal var body: Operations.V_space_4_space__period__space_Get_space_OTA_space_Information.Output.Ok.Body
+                public var body: Operations.V_space_4_space__period__space_Get_space_OTA_space_Information.Output.Ok.Body
                 /// Creates a new `Ok`.
                 ///
                 /// - Parameters:
                 ///   - headers: Received HTTP response headers
                 ///   - body: Received HTTP response body
-                internal init(
+                public init(
                     headers: Operations.V_space_4_space__period__space_Get_space_OTA_space_Information.Output.Ok.Headers = .init(),
                     body: Operations.V_space_4_space__period__space_Get_space_OTA_space_Information.Output.Ok.Body
                 ) {
@@ -5515,7 +5515,7 @@ internal enum Operations {
             ///
             /// - Throws: An error if `self` is not `.ok`.
             /// - SeeAlso: `.ok`.
-            internal var ok: Operations.V_space_4_space__period__space_Get_space_OTA_space_Information.Output.Ok {
+            public var ok: Operations.V_space_4_space__period__space_Get_space_OTA_space_Information.Output.Ok {
                 get throws {
                     switch self {
                     case let .ok(response):
@@ -5533,12 +5533,12 @@ internal enum Operations {
             /// A response with a code that is not documented in the OpenAPI document.
             case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
         }
-        @frozen internal enum AcceptableContentType: AcceptableProtocol {
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
             case json
             case application_x_hyphen_plist
             case xml
             case other(Swift.String)
-            internal init?(rawValue: Swift.String) {
+            public init?(rawValue: Swift.String) {
                 switch rawValue.lowercased() {
                 case "application/json":
                     self = .json
@@ -5550,7 +5550,7 @@ internal enum Operations {
                     self = .other(rawValue)
                 }
             }
-            internal var rawValue: Swift.String {
+            public var rawValue: Swift.String {
                 switch self {
                 case let .other(string):
                     return string
@@ -5562,7 +5562,7 @@ internal enum Operations {
                     return "application/xml"
                 }
             }
-            internal static var allCases: [Self] {
+            public static var allCases: [Self] {
                 [
                     .json,
                     .application_x_hyphen_plist,
@@ -5577,40 +5577,40 @@ internal enum Operations {
     ///
     /// - Remark: HTTP `GET /ota/{version}`.
     /// - Remark: Generated from `#/paths//ota/{version}/get(V 4 . Get OTA List For Version)`.
-    internal enum V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version {
-        internal static let id: Swift.String = "V 4 . Get OTA List For Version"
-        internal struct Input: Sendable, Hashable {
+    public enum V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version {
+        public static let id: Swift.String = "V 4 . Get OTA List For Version"
+        public struct Input: Sendable, Hashable {
             /// - Remark: Generated from `#/paths/ota/{version}/GET/path`.
-            internal struct Path: Sendable, Hashable {
+            public struct Path: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/ota/{version}/GET/path/version`.
-                internal var version: Swift.Double
+                public var version: Swift.Double
                 /// Creates a new `Path`.
                 ///
                 /// - Parameters:
                 ///   - version:
-                internal init(version: Swift.Double) {
+                public init(version: Swift.Double) {
                     self.version = version
                 }
             }
-            internal var path: Operations.V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version.Input.Path
+            public var path: Operations.V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version.Input.Path
             /// - Remark: Generated from `#/paths/ota/{version}/GET/header`.
-            internal struct Headers: Sendable, Hashable {
-                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version.AcceptableContentType>]
+            public struct Headers: Sendable, Hashable {
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version.AcceptableContentType>]
                 /// Creates a new `Headers`.
                 ///
                 /// - Parameters:
                 ///   - accept:
-                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version.AcceptableContentType>] = .defaultValues()) {
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version.AcceptableContentType>] = .defaultValues()) {
                     self.accept = accept
                 }
             }
-            internal var headers: Operations.V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version.Input.Headers
+            public var headers: Operations.V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version.Input.Headers
             /// Creates a new `Input`.
             ///
             /// - Parameters:
             ///   - path:
             ///   - headers:
-            internal init(
+            public init(
                 path: Operations.V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version.Input.Path,
                 headers: Operations.V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version.Input.Headers = .init()
             ) {
@@ -5618,20 +5618,20 @@ internal enum Operations {
                 self.headers = headers
             }
         }
-        @frozen internal enum Output: Sendable, Hashable {
-            internal struct Ok: Sendable, Hashable {
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/ota/{version}/GET/responses/200/headers`.
-                internal struct Headers: Sendable, Hashable {
+                public struct Headers: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/ota/{version}/GET/responses/200/headers/Access-Control-Allow-Methods`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
                     /// - Remark: Generated from `#/paths/ota/{version}/GET/responses/200/headers/Access-Control-Allow-Origin`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
                     /// - Remark: Generated from `#/paths/ota/{version}/GET/responses/200/headers/Cache-Control`.
-                    internal var Cache_hyphen_Control: Swift.String?
+                    public var Cache_hyphen_Control: Swift.String?
                     /// - Remark: Generated from `#/paths/ota/{version}/GET/responses/200/headers/Expires`.
-                    internal var Expires: Swift.String?
+                    public var Expires: Swift.String?
                     /// - Remark: Generated from `#/paths/ota/{version}/GET/responses/200/headers/X-Data-Location`.
-                    internal var X_hyphen_Data_hyphen_Location: Swift.String?
+                    public var X_hyphen_Data_hyphen_Location: Swift.String?
                     /// Creates a new `Headers`.
                     ///
                     /// - Parameters:
@@ -5640,7 +5640,7 @@ internal enum Operations {
                     ///   - Cache_hyphen_Control:
                     ///   - Expires:
                     ///   - X_hyphen_Data_hyphen_Location:
-                    internal init(
+                    public init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String? = nil,
                         Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String? = nil,
                         Cache_hyphen_Control: Swift.String? = nil,
@@ -5655,35 +5655,35 @@ internal enum Operations {
                     }
                 }
                 /// Received HTTP response headers
-                internal var headers: Operations.V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version.Output.Ok.Headers
+                public var headers: Operations.V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version.Output.Ok.Headers
                 /// - Remark: Generated from `#/paths/ota/{version}/GET/responses/200/content`.
-                @frozen internal enum Body: Sendable, Hashable {
+                @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/ota/{version}/GET/responses/200/content/jsonPayload`.
-                    internal struct jsonPayloadPayload: Codable, Hashable, Sendable {
+                    public struct jsonPayloadPayload: Codable, Hashable, Sendable {
                         /// - Remark: Generated from `#/paths/ota/{version}/GET/responses/200/content/jsonPayload/identifier`.
-                        internal var identifier: Swift.String
+                        public var identifier: Swift.String
                         /// - Remark: Generated from `#/paths/ota/{version}/GET/responses/200/content/jsonPayload/buildid`.
-                        internal var buildid: Swift.String
+                        public var buildid: Swift.String
                         /// - Remark: Generated from `#/paths/ota/{version}/GET/responses/200/content/jsonPayload/version`.
-                        internal var version: Swift.String
+                        public var version: Swift.String
                         /// - Remark: Generated from `#/paths/ota/{version}/GET/responses/200/content/jsonPayload/url`.
-                        internal var url: Swift.String
+                        public var url: Swift.String
                         /// - Remark: Generated from `#/paths/ota/{version}/GET/responses/200/content/jsonPayload/filesize`.
-                        internal var filesize: Swift.Double
+                        public var filesize: Swift.Double
                         /// - Remark: Generated from `#/paths/ota/{version}/GET/responses/200/content/jsonPayload/prerequisitebuildid`.
-                        internal var prerequisitebuildid: Swift.String
+                        public var prerequisitebuildid: Swift.String
                         /// - Remark: Generated from `#/paths/ota/{version}/GET/responses/200/content/jsonPayload/prerequisiteversion`.
-                        internal var prerequisiteversion: Swift.String
+                        public var prerequisiteversion: Swift.String
                         /// - Remark: Generated from `#/paths/ota/{version}/GET/responses/200/content/jsonPayload/releasetype`.
-                        internal var releasetype: Swift.String
+                        public var releasetype: Swift.String
                         /// - Remark: Generated from `#/paths/ota/{version}/GET/responses/200/content/jsonPayload/uploaddate`.
-                        internal var uploaddate: Swift.String
+                        public var uploaddate: Swift.String
                         /// - Remark: Generated from `#/paths/ota/{version}/GET/responses/200/content/jsonPayload/releasedate`.
-                        internal var releasedate: Swift.String
+                        public var releasedate: Swift.String
                         /// - Remark: Generated from `#/paths/ota/{version}/GET/responses/200/content/jsonPayload/marketingversion`.
-                        internal var marketingversion: OpenAPIRuntime.OpenAPIValueContainer?
+                        public var marketingversion: OpenAPIRuntime.OpenAPIValueContainer?
                         /// - Remark: Generated from `#/paths/ota/{version}/GET/responses/200/content/jsonPayload/signed`.
-                        internal var signed: Swift.Bool
+                        public var signed: Swift.Bool
                         /// Creates a new `jsonPayloadPayload`.
                         ///
                         /// - Parameters:
@@ -5699,7 +5699,7 @@ internal enum Operations {
                         ///   - releasedate:
                         ///   - marketingversion:
                         ///   - signed:
-                        internal init(
+                        public init(
                             identifier: Swift.String,
                             buildid: Swift.String,
                             version: Swift.String,
@@ -5726,7 +5726,7 @@ internal enum Operations {
                             self.marketingversion = marketingversion
                             self.signed = signed
                         }
-                        internal enum CodingKeys: String, CodingKey {
+                        public enum CodingKeys: String, CodingKey {
                             case identifier
                             case buildid
                             case version
@@ -5742,14 +5742,14 @@ internal enum Operations {
                         }
                     }
                     /// - Remark: Generated from `#/paths/ota/{version}/GET/responses/200/content/json`.
-                    internal typealias jsonPayload = [Operations.V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version.Output.Ok.Body.jsonPayloadPayload]
+                    public typealias jsonPayload = [Operations.V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version.Output.Ok.Body.jsonPayloadPayload]
                     /// - Remark: Generated from `#/paths/ota/{version}/GET/responses/200/content/application\/json`.
                     case json(Operations.V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version.Output.Ok.Body.jsonPayload)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    internal var json: Operations.V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version.Output.Ok.Body.jsonPayload {
+                    public var json: Operations.V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version.Output.Ok.Body.jsonPayload {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -5768,7 +5768,7 @@ internal enum Operations {
                     ///
                     /// - Throws: An error if `self` is not `.application_x_hyphen_plist`.
                     /// - SeeAlso: `.application_x_hyphen_plist`.
-                    internal var application_x_hyphen_plist: OpenAPIRuntime.HTTPBody {
+                    public var application_x_hyphen_plist: OpenAPIRuntime.HTTPBody {
                         get throws {
                             switch self {
                             case let .application_x_hyphen_plist(body):
@@ -5787,7 +5787,7 @@ internal enum Operations {
                     ///
                     /// - Throws: An error if `self` is not `.xml`.
                     /// - SeeAlso: `.xml`.
-                    internal var xml: OpenAPIRuntime.HTTPBody {
+                    public var xml: OpenAPIRuntime.HTTPBody {
                         get throws {
                             switch self {
                             case let .xml(body):
@@ -5802,13 +5802,13 @@ internal enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                internal var body: Operations.V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version.Output.Ok.Body
+                public var body: Operations.V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version.Output.Ok.Body
                 /// Creates a new `Ok`.
                 ///
                 /// - Parameters:
                 ///   - headers: Received HTTP response headers
                 ///   - body: Received HTTP response body
-                internal init(
+                public init(
                     headers: Operations.V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version.Output.Ok.Headers = .init(),
                     body: Operations.V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version.Output.Ok.Body
                 ) {
@@ -5826,7 +5826,7 @@ internal enum Operations {
             ///
             /// - Throws: An error if `self` is not `.ok`.
             /// - SeeAlso: `.ok`.
-            internal var ok: Operations.V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version.Output.Ok {
+            public var ok: Operations.V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version.Output.Ok {
                 get throws {
                     switch self {
                     case let .ok(response):
@@ -5839,22 +5839,22 @@ internal enum Operations {
                     }
                 }
             }
-            internal struct NotFound: Sendable, Hashable {
+            public struct NotFound: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/ota/{version}/GET/responses/404/headers`.
-                internal struct Headers: Sendable, Hashable {
+                public struct Headers: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/ota/{version}/GET/responses/404/headers/Access-Control-Allow-Methods`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
                     /// - Remark: Generated from `#/paths/ota/{version}/GET/responses/404/headers/Access-Control-Allow-Origin`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
                     /// - Remark: Generated from `#/paths/ota/{version}/GET/responses/404/headers/X-Data-Location`.
-                    internal var X_hyphen_Data_hyphen_Location: Swift.String?
+                    public var X_hyphen_Data_hyphen_Location: Swift.String?
                     /// Creates a new `Headers`.
                     ///
                     /// - Parameters:
                     ///   - Access_hyphen_Control_hyphen_Allow_hyphen_Methods:
                     ///   - Access_hyphen_Control_hyphen_Allow_hyphen_Origin:
                     ///   - X_hyphen_Data_hyphen_Location:
-                    internal init(
+                    public init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String? = nil,
                         Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String? = nil,
                         X_hyphen_Data_hyphen_Location: Swift.String? = nil
@@ -5865,12 +5865,12 @@ internal enum Operations {
                     }
                 }
                 /// Received HTTP response headers
-                internal var headers: Operations.V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version.Output.NotFound.Headers
+                public var headers: Operations.V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version.Output.NotFound.Headers
                 /// Creates a new `NotFound`.
                 ///
                 /// - Parameters:
                 ///   - headers: Received HTTP response headers
-                internal init(headers: Operations.V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version.Output.NotFound.Headers = .init()) {
+                public init(headers: Operations.V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version.Output.NotFound.Headers = .init()) {
                     self.headers = headers
                 }
             }
@@ -5884,7 +5884,7 @@ internal enum Operations {
             ///
             /// - Throws: An error if `self` is not `.notFound`.
             /// - SeeAlso: `.notFound`.
-            internal var notFound: Operations.V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version.Output.NotFound {
+            public var notFound: Operations.V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version.Output.NotFound {
                 get throws {
                     switch self {
                     case let .notFound(response):
@@ -5902,12 +5902,12 @@ internal enum Operations {
             /// A response with a code that is not documented in the OpenAPI document.
             case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
         }
-        @frozen internal enum AcceptableContentType: AcceptableProtocol {
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
             case json
             case application_x_hyphen_plist
             case xml
             case other(Swift.String)
-            internal init?(rawValue: Swift.String) {
+            public init?(rawValue: Swift.String) {
                 switch rawValue.lowercased() {
                 case "application/json":
                     self = .json
@@ -5919,7 +5919,7 @@ internal enum Operations {
                     self = .other(rawValue)
                 }
             }
-            internal var rawValue: Swift.String {
+            public var rawValue: Swift.String {
                 switch self {
                 case let .other(string):
                     return string
@@ -5931,7 +5931,7 @@ internal enum Operations {
                     return "application/xml"
                 }
             }
-            internal static var allCases: [Self] {
+            public static var allCases: [Self] {
                 [
                     .json,
                     .application_x_hyphen_plist,
@@ -5946,43 +5946,43 @@ internal enum Operations {
     ///
     /// - Remark: HTTP `GET /releases`.
     /// - Remark: Generated from `#/paths//releases/get(V 4 . Releases)`.
-    internal enum V_space_4_space__period__space_Releases {
-        internal static let id: Swift.String = "V 4 . Releases"
-        internal struct Input: Sendable, Hashable {
+    public enum V_space_4_space__period__space_Releases {
+        public static let id: Swift.String = "V 4 . Releases"
+        public struct Input: Sendable, Hashable {
             /// - Remark: Generated from `#/paths/releases/GET/header`.
-            internal struct Headers: Sendable, Hashable {
-                internal var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Releases.AcceptableContentType>]
+            public struct Headers: Sendable, Hashable {
+                public var accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Releases.AcceptableContentType>]
                 /// Creates a new `Headers`.
                 ///
                 /// - Parameters:
                 ///   - accept:
-                internal init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Releases.AcceptableContentType>] = .defaultValues()) {
+                public init(accept: [OpenAPIRuntime.AcceptHeaderContentType<Operations.V_space_4_space__period__space_Releases.AcceptableContentType>] = .defaultValues()) {
                     self.accept = accept
                 }
             }
-            internal var headers: Operations.V_space_4_space__period__space_Releases.Input.Headers
+            public var headers: Operations.V_space_4_space__period__space_Releases.Input.Headers
             /// Creates a new `Input`.
             ///
             /// - Parameters:
             ///   - headers:
-            internal init(headers: Operations.V_space_4_space__period__space_Releases.Input.Headers = .init()) {
+            public init(headers: Operations.V_space_4_space__period__space_Releases.Input.Headers = .init()) {
                 self.headers = headers
             }
         }
-        @frozen internal enum Output: Sendable, Hashable {
-            internal struct Ok: Sendable, Hashable {
+        @frozen public enum Output: Sendable, Hashable {
+            public struct Ok: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/releases/GET/responses/200/headers`.
-                internal struct Headers: Sendable, Hashable {
+                public struct Headers: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/releases/GET/responses/200/headers/Access-Control-Allow-Methods`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String?
                     /// - Remark: Generated from `#/paths/releases/GET/responses/200/headers/Access-Control-Allow-Origin`.
-                    internal var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
+                    public var Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String?
                     /// - Remark: Generated from `#/paths/releases/GET/responses/200/headers/Cache-Control`.
-                    internal var Cache_hyphen_Control: Swift.String?
+                    public var Cache_hyphen_Control: Swift.String?
                     /// - Remark: Generated from `#/paths/releases/GET/responses/200/headers/Expires`.
-                    internal var Expires: Swift.String?
+                    public var Expires: Swift.String?
                     /// - Remark: Generated from `#/paths/releases/GET/responses/200/headers/X-Data-Location`.
-                    internal var X_hyphen_Data_hyphen_Location: Swift.String?
+                    public var X_hyphen_Data_hyphen_Location: Swift.String?
                     /// Creates a new `Headers`.
                     ///
                     /// - Parameters:
@@ -5991,7 +5991,7 @@ internal enum Operations {
                     ///   - Cache_hyphen_Control:
                     ///   - Expires:
                     ///   - X_hyphen_Data_hyphen_Location:
-                    internal init(
+                    public init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: Swift.String? = nil,
                         Access_hyphen_Control_hyphen_Allow_hyphen_Origin: Swift.String? = nil,
                         Cache_hyphen_Control: Swift.String? = nil,
@@ -6006,23 +6006,23 @@ internal enum Operations {
                     }
                 }
                 /// Received HTTP response headers
-                internal var headers: Operations.V_space_4_space__period__space_Releases.Output.Ok.Headers
+                public var headers: Operations.V_space_4_space__period__space_Releases.Output.Ok.Headers
                 /// - Remark: Generated from `#/paths/releases/GET/responses/200/content`.
-                @frozen internal enum Body: Sendable, Hashable {
+                @frozen public enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/releases/GET/responses/200/content/jsonPayload`.
-                    internal struct jsonPayloadPayload: Codable, Hashable, Sendable {
+                    public struct jsonPayloadPayload: Codable, Hashable, Sendable {
                         /// - Remark: Generated from `#/paths/releases/GET/responses/200/content/jsonPayload/date`.
-                        internal var date: Swift.String
+                        public var date: Swift.String
                         /// - Remark: Generated from `#/paths/releases/GET/responses/200/content/jsonPayload/releasesPayload`.
-                        internal struct releasesPayloadPayload: Codable, Hashable, Sendable {
+                        public struct releasesPayloadPayload: Codable, Hashable, Sendable {
                             /// - Remark: Generated from `#/paths/releases/GET/responses/200/content/jsonPayload/releasesPayload/name`.
-                            internal var name: Swift.String
+                            public var name: Swift.String
                             /// - Remark: Generated from `#/paths/releases/GET/responses/200/content/jsonPayload/releasesPayload/date`.
-                            internal var date: Swift.String
+                            public var date: Swift.String
                             /// - Remark: Generated from `#/paths/releases/GET/responses/200/content/jsonPayload/releasesPayload/count`.
-                            internal var count: Swift.Double
+                            public var count: Swift.Double
                             /// - Remark: Generated from `#/paths/releases/GET/responses/200/content/jsonPayload/releasesPayload/type`.
-                            internal var _type: Swift.String
+                            public var _type: Swift.String
                             /// Creates a new `releasesPayloadPayload`.
                             ///
                             /// - Parameters:
@@ -6030,7 +6030,7 @@ internal enum Operations {
                             ///   - date:
                             ///   - count:
                             ///   - _type:
-                            internal init(
+                            public init(
                                 name: Swift.String,
                                 date: Swift.String,
                                 count: Swift.Double,
@@ -6041,7 +6041,7 @@ internal enum Operations {
                                 self.count = count
                                 self._type = _type
                             }
-                            internal enum CodingKeys: String, CodingKey {
+                            public enum CodingKeys: String, CodingKey {
                                 case name
                                 case date
                                 case count
@@ -6049,35 +6049,35 @@ internal enum Operations {
                             }
                         }
                         /// - Remark: Generated from `#/paths/releases/GET/responses/200/content/jsonPayload/releases`.
-                        internal typealias releasesPayload = [Operations.V_space_4_space__period__space_Releases.Output.Ok.Body.jsonPayloadPayload.releasesPayloadPayload]
+                        public typealias releasesPayload = [Operations.V_space_4_space__period__space_Releases.Output.Ok.Body.jsonPayloadPayload.releasesPayloadPayload]
                         /// - Remark: Generated from `#/paths/releases/GET/responses/200/content/jsonPayload/releases`.
-                        internal var releases: Operations.V_space_4_space__period__space_Releases.Output.Ok.Body.jsonPayloadPayload.releasesPayload
+                        public var releases: Operations.V_space_4_space__period__space_Releases.Output.Ok.Body.jsonPayloadPayload.releasesPayload
                         /// Creates a new `jsonPayloadPayload`.
                         ///
                         /// - Parameters:
                         ///   - date:
                         ///   - releases:
-                        internal init(
+                        public init(
                             date: Swift.String,
                             releases: Operations.V_space_4_space__period__space_Releases.Output.Ok.Body.jsonPayloadPayload.releasesPayload
                         ) {
                             self.date = date
                             self.releases = releases
                         }
-                        internal enum CodingKeys: String, CodingKey {
+                        public enum CodingKeys: String, CodingKey {
                             case date
                             case releases
                         }
                     }
                     /// - Remark: Generated from `#/paths/releases/GET/responses/200/content/json`.
-                    internal typealias jsonPayload = [Operations.V_space_4_space__period__space_Releases.Output.Ok.Body.jsonPayloadPayload]
+                    public typealias jsonPayload = [Operations.V_space_4_space__period__space_Releases.Output.Ok.Body.jsonPayloadPayload]
                     /// - Remark: Generated from `#/paths/releases/GET/responses/200/content/application\/json`.
                     case json(Operations.V_space_4_space__period__space_Releases.Output.Ok.Body.jsonPayload)
                     /// The associated value of the enum case if `self` is `.json`.
                     ///
                     /// - Throws: An error if `self` is not `.json`.
                     /// - SeeAlso: `.json`.
-                    internal var json: Operations.V_space_4_space__period__space_Releases.Output.Ok.Body.jsonPayload {
+                    public var json: Operations.V_space_4_space__period__space_Releases.Output.Ok.Body.jsonPayload {
                         get throws {
                             switch self {
                             case let .json(body):
@@ -6096,7 +6096,7 @@ internal enum Operations {
                     ///
                     /// - Throws: An error if `self` is not `.application_x_hyphen_plist`.
                     /// - SeeAlso: `.application_x_hyphen_plist`.
-                    internal var application_x_hyphen_plist: OpenAPIRuntime.HTTPBody {
+                    public var application_x_hyphen_plist: OpenAPIRuntime.HTTPBody {
                         get throws {
                             switch self {
                             case let .application_x_hyphen_plist(body):
@@ -6115,7 +6115,7 @@ internal enum Operations {
                     ///
                     /// - Throws: An error if `self` is not `.xml`.
                     /// - SeeAlso: `.xml`.
-                    internal var xml: OpenAPIRuntime.HTTPBody {
+                    public var xml: OpenAPIRuntime.HTTPBody {
                         get throws {
                             switch self {
                             case let .xml(body):
@@ -6130,13 +6130,13 @@ internal enum Operations {
                     }
                 }
                 /// Received HTTP response body
-                internal var body: Operations.V_space_4_space__period__space_Releases.Output.Ok.Body
+                public var body: Operations.V_space_4_space__period__space_Releases.Output.Ok.Body
                 /// Creates a new `Ok`.
                 ///
                 /// - Parameters:
                 ///   - headers: Received HTTP response headers
                 ///   - body: Received HTTP response body
-                internal init(
+                public init(
                     headers: Operations.V_space_4_space__period__space_Releases.Output.Ok.Headers = .init(),
                     body: Operations.V_space_4_space__period__space_Releases.Output.Ok.Body
                 ) {
@@ -6154,7 +6154,7 @@ internal enum Operations {
             ///
             /// - Throws: An error if `self` is not `.ok`.
             /// - SeeAlso: `.ok`.
-            internal var ok: Operations.V_space_4_space__period__space_Releases.Output.Ok {
+            public var ok: Operations.V_space_4_space__period__space_Releases.Output.Ok {
                 get throws {
                     switch self {
                     case let .ok(response):
@@ -6172,12 +6172,12 @@ internal enum Operations {
             /// A response with a code that is not documented in the OpenAPI document.
             case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
         }
-        @frozen internal enum AcceptableContentType: AcceptableProtocol {
+        @frozen public enum AcceptableContentType: AcceptableProtocol {
             case json
             case application_x_hyphen_plist
             case xml
             case other(Swift.String)
-            internal init?(rawValue: Swift.String) {
+            public init?(rawValue: Swift.String) {
                 switch rawValue.lowercased() {
                 case "application/json":
                     self = .json
@@ -6189,7 +6189,7 @@ internal enum Operations {
                     self = .other(rawValue)
                 }
             }
-            internal var rawValue: Swift.String {
+            public var rawValue: Swift.String {
                 switch self {
                 case let .other(string):
                     return string
@@ -6201,7 +6201,7 @@ internal enum Operations {
                     return "application/xml"
                 }
             }
-            internal static var allCases: [Self] {
+            public static var allCases: [Self] {
                 [
                     .json,
                     .application_x_hyphen_plist,
