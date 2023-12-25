@@ -32,270 +32,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - type: object
-                    properties:
-                      name:
-                        type: string
-                      identifier:
-                        type: string
-                      firmwares:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            identifier:
-                              type: string
-                            version:
-                              type: string
-                            buildid:
-                              type: string
-                            sha1sum:
-                              type: string
-                            md5sum:
-                              type: string
-                            filesize:
-                              type: number
-                            url:
-                              type: string
-                            releasedate:
-                              type: string
-                            uploaddate:
-                              type: string
-                            signed:
-                              type: boolean
-                          required:
-                            - identifier
-                            - version
-                            - buildid
-                            - sha1sum
-                            - md5sum
-                            - filesize
-                            - url
-                            - releasedate
-                            - uploaddate
-                            - signed
-                      boards:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            boardconfig:
-                              type: string
-                            platform:
-                              type: string
-                            cpid:
-                              type: number
-                            bdid:
-                              type: number
-                          required:
-                            - boardconfig
-                            - platform
-                            - cpid
-                            - bdid
-                      boardconfig:
-                        type: string
-                      platform:
-                        type: string
-                      cpid:
-                        type: number
-                      bdid:
-                        type: number
-                  - type: object
-                    properties:
-                      name:
-                        type: string
-                      identifier:
-                        type: string
-                      firmwares:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            identifier:
-                              type: string
-                            version:
-                              type: string
-                            buildid:
-                              type: string
-                            sha1sum:
-                              type: string
-                            md5sum:
-                              type: string
-                            filesize:
-                              type: number
-                            url:
-                              type: string
-                            releasedate:
-                              type: string
-                            uploaddate:
-                              type: string
-                            signed:
-                              type: boolean
-                          required:
-                            - identifier
-                            - version
-                            - buildid
-                            - sha1sum
-                            - md5sum
-                            - filesize
-                            - url
-                            - releasedate
-                            - uploaddate
-                            - signed
-                      boards:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            boardconfig:
-                              type: string
-                            platform:
-                              type: string
-                            cpid:
-                              type: number
-                            bdid:
-                              type: number
-                      boardconfig:
-                        type: string
-                      platform:
-                        type: string
-                      cpid:
-                        type: number
-                      bdid:
-                        type: number
-                  - type: object
-                    properties:
-                      name:
-                        type: string
-                      identifier:
-                        type: string
-                      firmwares:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            identifier:
-                              type: string
-                            version:
-                              type: string
-                            buildid:
-                              type: string
-                            sha1sum:
-                              type: string
-                            md5sum:
-                              type: string
-                            filesize:
-                              type: number
-                            url:
-                              type: string
-                            releasedate:
-                              nullable: true
-                            uploaddate:
-                              type: string
-                            signed:
-                              type: boolean
-                          required:
-                            - identifier
-                            - version
-                            - buildid
-                            - sha1sum
-                            - md5sum
-                            - filesize
-                            - url
-                            - releasedate
-                            - uploaddate
-                            - signed
-                      boards:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            boardconfig:
-                              type: string
-                            platform:
-                              type: string
-                            cpid:
-                              type: number
-                            bdid:
-                              type: number
-                      boardconfig:
-                        type: string
-                      platform:
-                        type: string
-                      cpid:
-                        type: number
-                      bdid:
-                        type: number
-                  - type: object
-                    properties:
-                      name:
-                        type: string
-                      identifier:
-                        type: string
-                      firmwares:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            identifier:
-                              type: string
-                            buildid:
-                              type: string
-                            version:
-                              type: string
-                            url:
-                              type: string
-                            filesize:
-                              type: number
-                            prerequisitebuildid:
-                              type: string
-                            prerequisiteversion:
-                              type: string
-                            releasetype:
-                              type: string
-                            uploaddate:
-                              type: string
-                            releasedate:
-                              type: string
-                            marketingversion:
-                              type: string
-                            signed:
-                              type: boolean
-                          required:
-                            - identifier
-                            - buildid
-                            - version
-                            - url
-                            - filesize
-                            - prerequisitebuildid
-                            - prerequisiteversion
-                            - releasetype
-                            - uploaddate
-                            - releasedate
-                            - marketingversion
-                            - signed
-                      boards:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            boardconfig:
-                              type: string
-                            platform:
-                              type: string
-                            cpid:
-                              type: number
-                            bdid:
-                              type: number
-                      boardconfig:
-                        type: string
-                      platform:
-                        type: string
-                      cpid:
-                        type: number
-                      bdid:
-                        type: number
+                $ref: '#/components/schemas/Device'
               examples:
                 example1:
                   value:
@@ -2221,8 +1958,8 @@ paths:
                     <BDID>0</BDID>
                   </Data>
                 </Response>
-      summary: V 4 . Get Devices
-      operationId: V 4 . Get Devices
+      summary: Get Devices
+      operationId: devices
       description: >-
         GetDevices returns a list of all devices known to IPSW Downloads
 
@@ -2281,8 +2018,8 @@ paths:
               schema:
                 type: string
           content: {}
-      summary: V 4 . Download IPSW
-      operationId: V 4 . Download IPSW
+      summary: Download IPSW
+      operationId: ipswDownload
       description: >-
         DownloadIPSW redirects to download an IPSW as specified by its
         identifier and buildid
@@ -2327,51 +2064,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - type: object
-                    properties:
-                      identifier:
-                        type: string
-                      version:
-                        type: string
-                      buildid:
-                        type: string
-                      sha1sum:
-                        type: string
-                      md5sum:
-                        type: string
-                      filesize:
-                        type: number
-                      url:
-                        type: string
-                      releasedate:
-                        type: string
-                      uploaddate:
-                        type: string
-                      signed:
-                        type: boolean
-                  - type: object
-                    properties:
-                      identifier:
-                        type: string
-                      version:
-                        type: string
-                      buildid:
-                        type: string
-                      sha1sum:
-                        type: string
-                      md5sum:
-                        type: string
-                      filesize:
-                        type: number
-                      url:
-                        type: string
-                      releasedate:
-                        nullable: true
-                      uploaddate:
-                        type: string
-                      signed:
-                        type: boolean
+                $ref: '#/components/schemas/Firmware'
               examples:
                 example1:
                   value:
@@ -2576,7 +2269,7 @@ paths:
               schema:
                 type: string
           content: {}
-      summary: V 4 . Get IPSW Information
+      summary: Get IPSW Information
       operationId: ipswByIdentifierAndBuild
       description: >-
         GetIPSWInformation returns all known information for an IPSW as
@@ -3474,8 +3167,8 @@ paths:
               schema:
                 type: string
           content: {}
-      summary: V 4 . Get IPSW List For Version
-      operationId: V 4 . Get IPSW List For Version
+      summary: Get IPSW List For Version
+      operationId: ipswListForVersion
       description: GetIPSWListForVersion finds all IPSW files for a given iOS version
       tags:
         - Api
@@ -3508,8 +3201,8 @@ paths:
               example: >
                 <a
                 href="https://secure-appldnld.apple.com/iTunes11/041-8598.20130918.Exe55/iTunes64Setup.exe">Found</a>.
-      summary: V 4 . Download Itunes
-      operationId: V 4 . Download Itunes
+      summary: Download Itunes
+      operationId: itunesDownloadForPlatformAndVersion
       description: >-
         DownloadItunes redirects to download an iTunes installer as specified by
         its platform and version, and architecture for windows
@@ -3929,8 +3622,8 @@ paths:
               schema:
                 type: string
           content: {}
-      summary: V 4 . Find Itunes
-      operationId: V 4 . Find Itunes
+      summary: Find Itunes
+      operationId: itunesForPlatform
       description: >-
         FindItunes finds FindItunes versions for a given platform. specify
         either "windows" or "macOS"
@@ -4449,8 +4142,8 @@ paths:
               schema:
                 type: string
           content: {}
-      summary: V 4 . Keys Device List
-      operationId: V 4 . Keys Device List
+      summary: Keys Device List
+      operationId: firmwareKeysForIdentifier
       description: KeysDeviceList returns the firmwares which have keys for a given device
       tags:
         - Api
@@ -4965,8 +4658,8 @@ paths:
               schema:
                 type: string
           content: {}
-      summary: V 4 . Keys For IPSW
-      operationId: V 4 . Keys For IPSW
+      summary: Keys For IPSW
+      operationId: firmwareKeysForIdentifierAndBuild
       description: KeysForIPSW returns FirmwareKeys for a given IPSW
       tags:
         - Api
@@ -5080,8 +4773,8 @@ paths:
               schema:
                 type: string
           content: {}
-      summary: V 4 . Identify Model
-      operationId: V 4 . Identify Model
+      summary: Identify Model
+      operationId: identifierForModel
       description: IdentifyModel finds the identifier of a given model number
       tags:
         - Api
@@ -5157,8 +4850,8 @@ paths:
               example:
                 status: 404
                 message: not found
-      summary: V 4 . OTA Documentation
-      operationId: V 4 . OTA Documentation
+      summary: OTA Documentation
+      operationId: otaDocumentationForDeviceAndVersion
       description: >-
         OTADocumentation returns the documentation for a given device type and
         version
@@ -5199,8 +4892,8 @@ paths:
               example: >
                 <a
                 href="http://appldnld.apple.com/iOS7.1/031-00205.20140425.Th1s3/com_apple_MobileAsset_SoftwareUpdate/eca55b74f8f6539d000d9148f38cfe6eb5717cda.zip">Found</a>.
-      summary: V 4 . Download OTA
-      operationId: V 4 . Download OTA
+      summary: Download OTA
+      operationId: otaDownloadForIdentifierAndBuild
       description: >-
         DownloadOTA redirects to download an OTA Firmware as specified by its
         identifier, buildid and optionally prerequisite
@@ -5346,8 +5039,8 @@ paths:
                     <Signed>false</Signed>
                   </Data>
                 </Response>
-      summary: V 4 . Get OTA Information
-      operationId: V 4 . Get OTA Information
+      summary: Get OTA Information
+      operationId: otaInformationForIdentifierAndBuild
       description: >-
         GetOTAInformation returns all known information for an OTA specified by
         its identifier and build (and optionally
@@ -5921,8 +5614,8 @@ paths:
               schema:
                 type: string
           content: {}
-      summary: V 4 . Get OTA List For Version
-      operationId: V 4 . Get OTA List For Version
+      summary: Get OTA List For Version
+      operationId: otasForVersion
       description: GetOTAListForVersion finds all OTA files for a given iOS version
       tags:
         - Api
@@ -6211,16 +5904,109 @@ paths:
                     </Releases>
                   </Data>
                 </Response>
-      summary: V 4 . Releases
-      operationId: V 4 . Releases
+      summary: Releases
+      operationId: releases
       description: >-
         Releases returns the release timeline of all entities in the IPSW
         Downloads database
       tags:
         - Api
+      parameters:
 
 components:
-  schemas: {}
+  schemas:
+    Firmware:
+      type: object
+      properties:
+        identifier:
+          type: string
+        version:
+          type: string
+        buildid:
+          type: string
+        sha1sum:
+          type: string
+        md5sum:
+          type: string
+        filesize:
+          type: number
+        url:
+          type: string
+        releasedate:
+          nullable: true
+        uploaddate:
+          type: string
+        signed:
+          type: boolean
+    Device:
+      type: object
+      properties:
+        name:
+          type: string
+        identifier:
+          type: string
+        firmwares:
+          type: array
+          items:
+            type: object
+            properties:
+              identifier:
+                type: string
+              version:
+                type: string
+              buildid:
+                type: string
+              sha1sum:
+                type: string
+              md5sum:
+                type: string
+              filesize:
+                type: number
+              url:
+                type: string
+              releasedate:
+                type: string
+              uploaddate:
+                type: string
+              signed:
+                type: boolean
+            required:
+              - identifier
+              - version
+              - buildid
+              - sha1sum
+              - md5sum
+              - filesize
+              - url
+              - releasedate
+              - uploaddate
+              - signed
+        boards:
+          type: array
+          items:
+            type: object
+            properties:
+              boardconfig:
+                type: string
+              platform:
+                type: string
+              cpid:
+                type: number
+              bdid:
+                type: number
+            required:
+              - boardconfig
+              - platform
+              - cpid
+              - bdid
+        boardconfig:
+          type: string
+        platform:
+          type: string
+        cpid:
+          type: number
+        bdid:
+          type: number
 tags:
   - name: Api
 

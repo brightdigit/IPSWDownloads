@@ -118,7 +118,7 @@ public struct Client: APIProtocol {
                     switch chosenContentType {
                     case "application/json":
                         body = try await converter.getResponseBodyAsJSON(
-                            Operations.firmwaresForDevice.Output.Ok.Body.jsonPayload.self,
+                            Components.Schemas.Device.self,
                             from: responseBody,
                             transforming: { value in
                                 .json(value)
@@ -178,18 +178,18 @@ public struct Client: APIProtocol {
             }
         )
     }
-    /// V 4 . Get Devices
+    /// Get Devices
     ///
     /// GetDevices returns a list of all devices known to IPSW Downloads
     /// If you wish to only get devices which have Firmware Keys, add the ?keysOnly=true parameter.
     /// As of 2021-03-04, it is recommended that you use the "boards" property of each device, as devices can have multiple boards.
     ///
     /// - Remark: HTTP `GET /devices`.
-    /// - Remark: Generated from `#/paths//devices/get(V 4 . Get Devices)`.
-    public func V_space_4_space__period__space_Get_space_Devices(_ input: Operations.V_space_4_space__period__space_Get_space_Devices.Input) async throws -> Operations.V_space_4_space__period__space_Get_space_Devices.Output {
+    /// - Remark: Generated from `#/paths//devices/get(devices)`.
+    public func devices(_ input: Operations.devices.Input) async throws -> Operations.devices.Output {
         try await client.send(
             input: input,
-            forOperation: Operations.V_space_4_space__period__space_Get_space_Devices.id,
+            forOperation: Operations.devices.id,
             serializer: { input in
                 let path = try converter.renderedPath(
                     template: "/devices",
@@ -216,7 +216,7 @@ public struct Client: APIProtocol {
             deserializer: { response, responseBody in
                 switch response.status.code {
                 case 200:
-                    let headers: Operations.V_space_4_space__period__space_Get_space_Devices.Output.Ok.Headers = .init(
+                    let headers: Operations.devices.Output.Ok.Headers = .init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: try converter.getOptionalHeaderFieldAsURI(
                             in: response.headerFields,
                             name: "Access-Control-Allow-Methods",
@@ -244,7 +244,7 @@ public struct Client: APIProtocol {
                         )
                     )
                     let contentType = converter.extractContentTypeIfPresent(in: response.headerFields)
-                    let body: Operations.V_space_4_space__period__space_Get_space_Devices.Output.Ok.Body
+                    let body: Operations.devices.Output.Ok.Body
                     let chosenContentType = try converter.bestContentType(
                         received: contentType,
                         options: [
@@ -256,7 +256,7 @@ public struct Client: APIProtocol {
                     switch chosenContentType {
                     case "application/json":
                         body = try await converter.getResponseBodyAsJSON(
-                            Operations.V_space_4_space__period__space_Get_space_Devices.Output.Ok.Body.jsonPayload.self,
+                            Operations.devices.Output.Ok.Body.jsonPayload.self,
                             from: responseBody,
                             transforming: { value in
                                 .json(value)
@@ -297,16 +297,16 @@ public struct Client: APIProtocol {
             }
         )
     }
-    /// V 4 . Download IPSW
+    /// Download IPSW
     ///
     /// DownloadIPSW redirects to download an IPSW as specified by its identifier and buildid
     ///
     /// - Remark: HTTP `GET /ipsw/download/{identifier}/{buildid}`.
-    /// - Remark: Generated from `#/paths//ipsw/download/{identifier}/{buildid}/get(V 4 . Download IPSW)`.
-    public func V_space_4_space__period__space_Download_space_IPSW(_ input: Operations.V_space_4_space__period__space_Download_space_IPSW.Input) async throws -> Operations.V_space_4_space__period__space_Download_space_IPSW.Output {
+    /// - Remark: Generated from `#/paths//ipsw/download/{identifier}/{buildid}/get(ipswDownload)`.
+    public func ipswDownload(_ input: Operations.ipswDownload.Input) async throws -> Operations.ipswDownload.Output {
         try await client.send(
             input: input,
-            forOperation: Operations.V_space_4_space__period__space_Download_space_IPSW.id,
+            forOperation: Operations.ipswDownload.id,
             serializer: { input in
                 let path = try converter.renderedPath(
                     template: "/ipsw/download/{}/{}",
@@ -329,7 +329,7 @@ public struct Client: APIProtocol {
             deserializer: { response, responseBody in
                 switch response.status.code {
                 case 302:
-                    let headers: Operations.V_space_4_space__period__space_Download_space_IPSW.Output.Found.Headers = .init(
+                    let headers: Operations.ipswDownload.Output.Found.Headers = .init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: try converter.getOptionalHeaderFieldAsURI(
                             in: response.headerFields,
                             name: "Access-Control-Allow-Methods",
@@ -347,7 +347,7 @@ public struct Client: APIProtocol {
                         )
                     )
                     let contentType = converter.extractContentTypeIfPresent(in: response.headerFields)
-                    let body: Operations.V_space_4_space__period__space_Download_space_IPSW.Output.Found.Body
+                    let body: Operations.ipswDownload.Output.Found.Body
                     let chosenContentType = try converter.bestContentType(
                         received: contentType,
                         options: [
@@ -371,7 +371,7 @@ public struct Client: APIProtocol {
                         body: body
                     ))
                 case 404:
-                    let headers: Operations.V_space_4_space__period__space_Download_space_IPSW.Output.NotFound.Headers = .init(
+                    let headers: Operations.ipswDownload.Output.NotFound.Headers = .init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: try converter.getOptionalHeaderFieldAsURI(
                             in: response.headerFields,
                             name: "Access-Control-Allow-Methods",
@@ -401,7 +401,7 @@ public struct Client: APIProtocol {
             }
         )
     }
-    /// V 4 . Get IPSW Information
+    /// Get IPSW Information
     ///
     /// GetIPSWInformation returns all known information for an IPSW as specified by identifier and buildid
     ///
@@ -473,7 +473,7 @@ public struct Client: APIProtocol {
                     switch chosenContentType {
                     case "application/json":
                         body = try await converter.getResponseBodyAsJSON(
-                            Operations.ipswByIdentifierAndBuild.Output.Ok.Body.jsonPayload.self,
+                            Components.Schemas.Firmware.self,
                             from: responseBody,
                             transforming: { value in
                                 .json(value)
@@ -533,16 +533,16 @@ public struct Client: APIProtocol {
             }
         )
     }
-    /// V 4 . Get IPSW List For Version
+    /// Get IPSW List For Version
     ///
     /// GetIPSWListForVersion finds all IPSW files for a given iOS version
     ///
     /// - Remark: HTTP `GET /ipsw/{version}`.
-    /// - Remark: Generated from `#/paths//ipsw/{version}/get(V 4 . Get IPSW List For Version)`.
-    public func V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version(_ input: Operations.V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version.Input) async throws -> Operations.V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version.Output {
+    /// - Remark: Generated from `#/paths//ipsw/{version}/get(ipswListForVersion)`.
+    public func ipswListForVersion(_ input: Operations.ipswListForVersion.Input) async throws -> Operations.ipswListForVersion.Output {
         try await client.send(
             input: input,
-            forOperation: Operations.V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version.id,
+            forOperation: Operations.ipswListForVersion.id,
             serializer: { input in
                 let path = try converter.renderedPath(
                     template: "/ipsw/{}",
@@ -564,7 +564,7 @@ public struct Client: APIProtocol {
             deserializer: { response, responseBody in
                 switch response.status.code {
                 case 200:
-                    let headers: Operations.V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version.Output.Ok.Headers = .init(
+                    let headers: Operations.ipswListForVersion.Output.Ok.Headers = .init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: try converter.getOptionalHeaderFieldAsURI(
                             in: response.headerFields,
                             name: "Access-Control-Allow-Methods",
@@ -592,7 +592,7 @@ public struct Client: APIProtocol {
                         )
                     )
                     let contentType = converter.extractContentTypeIfPresent(in: response.headerFields)
-                    let body: Operations.V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version.Output.Ok.Body
+                    let body: Operations.ipswListForVersion.Output.Ok.Body
                     let chosenContentType = try converter.bestContentType(
                         received: contentType,
                         options: [
@@ -604,7 +604,7 @@ public struct Client: APIProtocol {
                     switch chosenContentType {
                     case "application/json":
                         body = try await converter.getResponseBodyAsJSON(
-                            Operations.V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version.Output.Ok.Body.jsonPayload.self,
+                            Operations.ipswListForVersion.Output.Ok.Body.jsonPayload.self,
                             from: responseBody,
                             transforming: { value in
                                 .json(value)
@@ -634,7 +634,7 @@ public struct Client: APIProtocol {
                         body: body
                     ))
                 case 404:
-                    let headers: Operations.V_space_4_space__period__space_Get_space_IPSW_space_List_space_For_space_Version.Output.NotFound.Headers = .init(
+                    let headers: Operations.ipswListForVersion.Output.NotFound.Headers = .init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: try converter.getOptionalHeaderFieldAsURI(
                             in: response.headerFields,
                             name: "Access-Control-Allow-Methods",
@@ -664,16 +664,16 @@ public struct Client: APIProtocol {
             }
         )
     }
-    /// V 4 . Download Itunes
+    /// Download Itunes
     ///
     /// DownloadItunes redirects to download an iTunes installer as specified by its platform and version, and architecture for windows
     ///
     /// - Remark: HTTP `GET /itunes/download/{platform}/{version}`.
-    /// - Remark: Generated from `#/paths//itunes/download/{platform}/{version}/get(V 4 . Download Itunes)`.
-    public func V_space_4_space__period__space_Download_space_Itunes(_ input: Operations.V_space_4_space__period__space_Download_space_Itunes.Input) async throws -> Operations.V_space_4_space__period__space_Download_space_Itunes.Output {
+    /// - Remark: Generated from `#/paths//itunes/download/{platform}/{version}/get(itunesDownloadForPlatformAndVersion)`.
+    public func itunesDownloadForPlatformAndVersion(_ input: Operations.itunesDownloadForPlatformAndVersion.Input) async throws -> Operations.itunesDownloadForPlatformAndVersion.Output {
         try await client.send(
             input: input,
-            forOperation: Operations.V_space_4_space__period__space_Download_space_Itunes.id,
+            forOperation: Operations.itunesDownloadForPlatformAndVersion.id,
             serializer: { input in
                 let path = try converter.renderedPath(
                     template: "/itunes/download/{}/{}",
@@ -703,7 +703,7 @@ public struct Client: APIProtocol {
             deserializer: { response, responseBody in
                 switch response.status.code {
                 case 302:
-                    let headers: Operations.V_space_4_space__period__space_Download_space_Itunes.Output.Found.Headers = .init(
+                    let headers: Operations.itunesDownloadForPlatformAndVersion.Output.Found.Headers = .init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: try converter.getOptionalHeaderFieldAsURI(
                             in: response.headerFields,
                             name: "Access-Control-Allow-Methods",
@@ -721,7 +721,7 @@ public struct Client: APIProtocol {
                         )
                     )
                     let contentType = converter.extractContentTypeIfPresent(in: response.headerFields)
-                    let body: Operations.V_space_4_space__period__space_Download_space_Itunes.Output.Found.Body
+                    let body: Operations.itunesDownloadForPlatformAndVersion.Output.Found.Body
                     let chosenContentType = try converter.bestContentType(
                         received: contentType,
                         options: [
@@ -756,16 +756,16 @@ public struct Client: APIProtocol {
             }
         )
     }
-    /// V 4 . Find Itunes
+    /// Find Itunes
     ///
     /// FindItunes finds FindItunes versions for a given platform. specify either "windows" or "macOS"
     ///
     /// - Remark: HTTP `GET /itunes/{platform}`.
-    /// - Remark: Generated from `#/paths//itunes/{platform}/get(V 4 . Find Itunes)`.
-    public func V_space_4_space__period__space_Find_space_Itunes(_ input: Operations.V_space_4_space__period__space_Find_space_Itunes.Input) async throws -> Operations.V_space_4_space__period__space_Find_space_Itunes.Output {
+    /// - Remark: Generated from `#/paths//itunes/{platform}/get(itunesForPlatform)`.
+    public func itunesForPlatform(_ input: Operations.itunesForPlatform.Input) async throws -> Operations.itunesForPlatform.Output {
         try await client.send(
             input: input,
-            forOperation: Operations.V_space_4_space__period__space_Find_space_Itunes.id,
+            forOperation: Operations.itunesForPlatform.id,
             serializer: { input in
                 let path = try converter.renderedPath(
                     template: "/itunes/{}",
@@ -787,7 +787,7 @@ public struct Client: APIProtocol {
             deserializer: { response, responseBody in
                 switch response.status.code {
                 case 200:
-                    let headers: Operations.V_space_4_space__period__space_Find_space_Itunes.Output.Ok.Headers = .init(
+                    let headers: Operations.itunesForPlatform.Output.Ok.Headers = .init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: try converter.getOptionalHeaderFieldAsURI(
                             in: response.headerFields,
                             name: "Access-Control-Allow-Methods",
@@ -815,7 +815,7 @@ public struct Client: APIProtocol {
                         )
                     )
                     let contentType = converter.extractContentTypeIfPresent(in: response.headerFields)
-                    let body: Operations.V_space_4_space__period__space_Find_space_Itunes.Output.Ok.Body
+                    let body: Operations.itunesForPlatform.Output.Ok.Body
                     let chosenContentType = try converter.bestContentType(
                         received: contentType,
                         options: [
@@ -827,7 +827,7 @@ public struct Client: APIProtocol {
                     switch chosenContentType {
                     case "application/json":
                         body = try await converter.getResponseBodyAsJSON(
-                            Operations.V_space_4_space__period__space_Find_space_Itunes.Output.Ok.Body.jsonPayload.self,
+                            Operations.itunesForPlatform.Output.Ok.Body.jsonPayload.self,
                             from: responseBody,
                             transforming: { value in
                                 .json(value)
@@ -857,7 +857,7 @@ public struct Client: APIProtocol {
                         body: body
                     ))
                 case 404:
-                    let headers: Operations.V_space_4_space__period__space_Find_space_Itunes.Output.NotFound.Headers = .init(
+                    let headers: Operations.itunesForPlatform.Output.NotFound.Headers = .init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: try converter.getOptionalHeaderFieldAsURI(
                             in: response.headerFields,
                             name: "Access-Control-Allow-Methods",
@@ -887,16 +887,16 @@ public struct Client: APIProtocol {
             }
         )
     }
-    /// V 4 . Keys Device List
+    /// Keys Device List
     ///
     /// KeysDeviceList returns the firmwares which have keys for a given device
     ///
     /// - Remark: HTTP `GET /keys/device/{identifier}`.
-    /// - Remark: Generated from `#/paths//keys/device/{identifier}/get(V 4 . Keys Device List)`.
-    public func V_space_4_space__period__space_Keys_space_Device_space_List(_ input: Operations.V_space_4_space__period__space_Keys_space_Device_space_List.Input) async throws -> Operations.V_space_4_space__period__space_Keys_space_Device_space_List.Output {
+    /// - Remark: Generated from `#/paths//keys/device/{identifier}/get(firmwareKeysForIdentifier)`.
+    public func firmwareKeysForIdentifier(_ input: Operations.firmwareKeysForIdentifier.Input) async throws -> Operations.firmwareKeysForIdentifier.Output {
         try await client.send(
             input: input,
-            forOperation: Operations.V_space_4_space__period__space_Keys_space_Device_space_List.id,
+            forOperation: Operations.firmwareKeysForIdentifier.id,
             serializer: { input in
                 let path = try converter.renderedPath(
                     template: "/keys/device/{}",
@@ -918,7 +918,7 @@ public struct Client: APIProtocol {
             deserializer: { response, responseBody in
                 switch response.status.code {
                 case 200:
-                    let headers: Operations.V_space_4_space__period__space_Keys_space_Device_space_List.Output.Ok.Headers = .init(
+                    let headers: Operations.firmwareKeysForIdentifier.Output.Ok.Headers = .init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: try converter.getOptionalHeaderFieldAsURI(
                             in: response.headerFields,
                             name: "Access-Control-Allow-Methods",
@@ -946,7 +946,7 @@ public struct Client: APIProtocol {
                         )
                     )
                     let contentType = converter.extractContentTypeIfPresent(in: response.headerFields)
-                    let body: Operations.V_space_4_space__period__space_Keys_space_Device_space_List.Output.Ok.Body
+                    let body: Operations.firmwareKeysForIdentifier.Output.Ok.Body
                     let chosenContentType = try converter.bestContentType(
                         received: contentType,
                         options: [
@@ -958,7 +958,7 @@ public struct Client: APIProtocol {
                     switch chosenContentType {
                     case "application/json":
                         body = try await converter.getResponseBodyAsJSON(
-                            Operations.V_space_4_space__period__space_Keys_space_Device_space_List.Output.Ok.Body.jsonPayload.self,
+                            Operations.firmwareKeysForIdentifier.Output.Ok.Body.jsonPayload.self,
                             from: responseBody,
                             transforming: { value in
                                 .json(value)
@@ -988,7 +988,7 @@ public struct Client: APIProtocol {
                         body: body
                     ))
                 case 404:
-                    let headers: Operations.V_space_4_space__period__space_Keys_space_Device_space_List.Output.NotFound.Headers = .init(
+                    let headers: Operations.firmwareKeysForIdentifier.Output.NotFound.Headers = .init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: try converter.getOptionalHeaderFieldAsURI(
                             in: response.headerFields,
                             name: "Access-Control-Allow-Methods",
@@ -1018,16 +1018,16 @@ public struct Client: APIProtocol {
             }
         )
     }
-    /// V 4 . Keys For IPSW
+    /// Keys For IPSW
     ///
     /// KeysForIPSW returns FirmwareKeys for a given IPSW
     ///
     /// - Remark: HTTP `GET /keys/ipsw/{identifier}/{buildid}`.
-    /// - Remark: Generated from `#/paths//keys/ipsw/{identifier}/{buildid}/get(V 4 . Keys For IPSW)`.
-    public func V_space_4_space__period__space_Keys_space_For_space_IPSW(_ input: Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.Input) async throws -> Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.Output {
+    /// - Remark: Generated from `#/paths//keys/ipsw/{identifier}/{buildid}/get(firmwareKeysForIdentifierAndBuild)`.
+    public func firmwareKeysForIdentifierAndBuild(_ input: Operations.firmwareKeysForIdentifierAndBuild.Input) async throws -> Operations.firmwareKeysForIdentifierAndBuild.Output {
         try await client.send(
             input: input,
-            forOperation: Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.id,
+            forOperation: Operations.firmwareKeysForIdentifierAndBuild.id,
             serializer: { input in
                 let path = try converter.renderedPath(
                     template: "/keys/ipsw/{}/{}",
@@ -1050,7 +1050,7 @@ public struct Client: APIProtocol {
             deserializer: { response, responseBody in
                 switch response.status.code {
                 case 200:
-                    let headers: Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.Output.Ok.Headers = .init(
+                    let headers: Operations.firmwareKeysForIdentifierAndBuild.Output.Ok.Headers = .init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: try converter.getOptionalHeaderFieldAsURI(
                             in: response.headerFields,
                             name: "Access-Control-Allow-Methods",
@@ -1078,7 +1078,7 @@ public struct Client: APIProtocol {
                         )
                     )
                     let contentType = converter.extractContentTypeIfPresent(in: response.headerFields)
-                    let body: Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.Output.Ok.Body
+                    let body: Operations.firmwareKeysForIdentifierAndBuild.Output.Ok.Body
                     let chosenContentType = try converter.bestContentType(
                         received: contentType,
                         options: [
@@ -1090,7 +1090,7 @@ public struct Client: APIProtocol {
                     switch chosenContentType {
                     case "application/json":
                         body = try await converter.getResponseBodyAsJSON(
-                            Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.Output.Ok.Body.jsonPayload.self,
+                            Operations.firmwareKeysForIdentifierAndBuild.Output.Ok.Body.jsonPayload.self,
                             from: responseBody,
                             transforming: { value in
                                 .json(value)
@@ -1120,7 +1120,7 @@ public struct Client: APIProtocol {
                         body: body
                     ))
                 case 404:
-                    let headers: Operations.V_space_4_space__period__space_Keys_space_For_space_IPSW.Output.NotFound.Headers = .init(
+                    let headers: Operations.firmwareKeysForIdentifierAndBuild.Output.NotFound.Headers = .init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: try converter.getOptionalHeaderFieldAsURI(
                             in: response.headerFields,
                             name: "Access-Control-Allow-Methods",
@@ -1150,16 +1150,16 @@ public struct Client: APIProtocol {
             }
         )
     }
-    /// V 4 . Identify Model
+    /// Identify Model
     ///
     /// IdentifyModel finds the identifier of a given model number
     ///
     /// - Remark: HTTP `GET /model/{model}`.
-    /// - Remark: Generated from `#/paths//model/{model}/get(V 4 . Identify Model)`.
-    public func V_space_4_space__period__space_Identify_space_Model(_ input: Operations.V_space_4_space__period__space_Identify_space_Model.Input) async throws -> Operations.V_space_4_space__period__space_Identify_space_Model.Output {
+    /// - Remark: Generated from `#/paths//model/{model}/get(identifierForModel)`.
+    public func identifierForModel(_ input: Operations.identifierForModel.Input) async throws -> Operations.identifierForModel.Output {
         try await client.send(
             input: input,
-            forOperation: Operations.V_space_4_space__period__space_Identify_space_Model.id,
+            forOperation: Operations.identifierForModel.id,
             serializer: { input in
                 let path = try converter.renderedPath(
                     template: "/model/{}",
@@ -1181,7 +1181,7 @@ public struct Client: APIProtocol {
             deserializer: { response, responseBody in
                 switch response.status.code {
                 case 200:
-                    let headers: Operations.V_space_4_space__period__space_Identify_space_Model.Output.Ok.Headers = .init(
+                    let headers: Operations.identifierForModel.Output.Ok.Headers = .init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: try converter.getOptionalHeaderFieldAsURI(
                             in: response.headerFields,
                             name: "Access-Control-Allow-Methods",
@@ -1209,7 +1209,7 @@ public struct Client: APIProtocol {
                         )
                     )
                     let contentType = converter.extractContentTypeIfPresent(in: response.headerFields)
-                    let body: Operations.V_space_4_space__period__space_Identify_space_Model.Output.Ok.Body
+                    let body: Operations.identifierForModel.Output.Ok.Body
                     let chosenContentType = try converter.bestContentType(
                         received: contentType,
                         options: [
@@ -1221,7 +1221,7 @@ public struct Client: APIProtocol {
                     switch chosenContentType {
                     case "application/json":
                         body = try await converter.getResponseBodyAsJSON(
-                            Operations.V_space_4_space__period__space_Identify_space_Model.Output.Ok.Body.jsonPayload.self,
+                            Operations.identifierForModel.Output.Ok.Body.jsonPayload.self,
                             from: responseBody,
                             transforming: { value in
                                 .json(value)
@@ -1251,7 +1251,7 @@ public struct Client: APIProtocol {
                         body: body
                     ))
                 case 404:
-                    let headers: Operations.V_space_4_space__period__space_Identify_space_Model.Output.NotFound.Headers = .init(
+                    let headers: Operations.identifierForModel.Output.NotFound.Headers = .init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: try converter.getOptionalHeaderFieldAsURI(
                             in: response.headerFields,
                             name: "Access-Control-Allow-Methods",
@@ -1281,16 +1281,16 @@ public struct Client: APIProtocol {
             }
         )
     }
-    /// V 4 . OTA Documentation
+    /// OTA Documentation
     ///
     /// OTADocumentation returns the documentation for a given device type and version
     ///
     /// - Remark: HTTP `GET /ota/documentation/{device}/{version}`.
-    /// - Remark: Generated from `#/paths//ota/documentation/{device}/{version}/get(V 4 . OTA Documentation)`.
-    public func V_space_4_space__period__space_OTA_space_Documentation(_ input: Operations.V_space_4_space__period__space_OTA_space_Documentation.Input) async throws -> Operations.V_space_4_space__period__space_OTA_space_Documentation.Output {
+    /// - Remark: Generated from `#/paths//ota/documentation/{device}/{version}/get(otaDocumentationForDeviceAndVersion)`.
+    public func otaDocumentationForDeviceAndVersion(_ input: Operations.otaDocumentationForDeviceAndVersion.Input) async throws -> Operations.otaDocumentationForDeviceAndVersion.Output {
         try await client.send(
             input: input,
-            forOperation: Operations.V_space_4_space__period__space_OTA_space_Documentation.id,
+            forOperation: Operations.otaDocumentationForDeviceAndVersion.id,
             serializer: { input in
                 let path = try converter.renderedPath(
                     template: "/ota/documentation/{}/{}",
@@ -1313,7 +1313,7 @@ public struct Client: APIProtocol {
             deserializer: { response, responseBody in
                 switch response.status.code {
                 case 200:
-                    let headers: Operations.V_space_4_space__period__space_OTA_space_Documentation.Output.Ok.Headers = .init(
+                    let headers: Operations.otaDocumentationForDeviceAndVersion.Output.Ok.Headers = .init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: try converter.getOptionalHeaderFieldAsURI(
                             in: response.headerFields,
                             name: "Access-Control-Allow-Methods",
@@ -1346,7 +1346,7 @@ public struct Client: APIProtocol {
                         )
                     )
                     let contentType = converter.extractContentTypeIfPresent(in: response.headerFields)
-                    let body: Operations.V_space_4_space__period__space_OTA_space_Documentation.Output.Ok.Body
+                    let body: Operations.otaDocumentationForDeviceAndVersion.Output.Ok.Body
                     let chosenContentType = try converter.bestContentType(
                         received: contentType,
                         options: [
@@ -1370,7 +1370,7 @@ public struct Client: APIProtocol {
                         body: body
                     ))
                 case 404:
-                    let headers: Operations.V_space_4_space__period__space_OTA_space_Documentation.Output.NotFound.Headers = .init(
+                    let headers: Operations.otaDocumentationForDeviceAndVersion.Output.NotFound.Headers = .init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: try converter.getOptionalHeaderFieldAsURI(
                             in: response.headerFields,
                             name: "Access-Control-Allow-Methods",
@@ -1398,7 +1398,7 @@ public struct Client: APIProtocol {
                         )
                     )
                     let contentType = converter.extractContentTypeIfPresent(in: response.headerFields)
-                    let body: Operations.V_space_4_space__period__space_OTA_space_Documentation.Output.NotFound.Body
+                    let body: Operations.otaDocumentationForDeviceAndVersion.Output.NotFound.Body
                     let chosenContentType = try converter.bestContentType(
                         received: contentType,
                         options: [
@@ -1408,7 +1408,7 @@ public struct Client: APIProtocol {
                     switch chosenContentType {
                     case "application/json":
                         body = try await converter.getResponseBodyAsJSON(
-                            Operations.V_space_4_space__period__space_OTA_space_Documentation.Output.NotFound.Body.jsonPayload.self,
+                            Operations.otaDocumentationForDeviceAndVersion.Output.NotFound.Body.jsonPayload.self,
                             from: responseBody,
                             transforming: { value in
                                 .json(value)
@@ -1433,16 +1433,16 @@ public struct Client: APIProtocol {
             }
         )
     }
-    /// V 4 . Download OTA
+    /// Download OTA
     ///
     /// DownloadOTA redirects to download an OTA Firmware as specified by its identifier, buildid and optionally prerequisite
     ///
     /// - Remark: HTTP `GET /ota/download/{identifier}/{buildid}`.
-    /// - Remark: Generated from `#/paths//ota/download/{identifier}/{buildid}/get(V 4 . Download OTA)`.
-    public func V_space_4_space__period__space_Download_space_OTA(_ input: Operations.V_space_4_space__period__space_Download_space_OTA.Input) async throws -> Operations.V_space_4_space__period__space_Download_space_OTA.Output {
+    /// - Remark: Generated from `#/paths//ota/download/{identifier}/{buildid}/get(otaDownloadForIdentifierAndBuild)`.
+    public func otaDownloadForIdentifierAndBuild(_ input: Operations.otaDownloadForIdentifierAndBuild.Input) async throws -> Operations.otaDownloadForIdentifierAndBuild.Output {
         try await client.send(
             input: input,
-            forOperation: Operations.V_space_4_space__period__space_Download_space_OTA.id,
+            forOperation: Operations.otaDownloadForIdentifierAndBuild.id,
             serializer: { input in
                 let path = try converter.renderedPath(
                     template: "/ota/download/{}/{}",
@@ -1472,7 +1472,7 @@ public struct Client: APIProtocol {
             deserializer: { response, responseBody in
                 switch response.status.code {
                 case 302:
-                    let headers: Operations.V_space_4_space__period__space_Download_space_OTA.Output.Found.Headers = .init(
+                    let headers: Operations.otaDownloadForIdentifierAndBuild.Output.Found.Headers = .init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: try converter.getOptionalHeaderFieldAsURI(
                             in: response.headerFields,
                             name: "Access-Control-Allow-Methods",
@@ -1490,7 +1490,7 @@ public struct Client: APIProtocol {
                         )
                     )
                     let contentType = converter.extractContentTypeIfPresent(in: response.headerFields)
-                    let body: Operations.V_space_4_space__period__space_Download_space_OTA.Output.Found.Body
+                    let body: Operations.otaDownloadForIdentifierAndBuild.Output.Found.Body
                     let chosenContentType = try converter.bestContentType(
                         received: contentType,
                         options: [
@@ -1525,17 +1525,17 @@ public struct Client: APIProtocol {
             }
         )
     }
-    /// V 4 . Get OTA Information
+    /// Get OTA Information
     ///
     /// GetOTAInformation returns all known information for an OTA specified by its identifier and build (and optionally
     /// prerequisite firmware)
     ///
     /// - Remark: HTTP `GET /ota/{identifier}/{buildid}`.
-    /// - Remark: Generated from `#/paths//ota/{identifier}/{buildid}/get(V 4 . Get OTA Information)`.
-    public func V_space_4_space__period__space_Get_space_OTA_space_Information(_ input: Operations.V_space_4_space__period__space_Get_space_OTA_space_Information.Input) async throws -> Operations.V_space_4_space__period__space_Get_space_OTA_space_Information.Output {
+    /// - Remark: Generated from `#/paths//ota/{identifier}/{buildid}/get(otaInformationForIdentifierAndBuild)`.
+    public func otaInformationForIdentifierAndBuild(_ input: Operations.otaInformationForIdentifierAndBuild.Input) async throws -> Operations.otaInformationForIdentifierAndBuild.Output {
         try await client.send(
             input: input,
-            forOperation: Operations.V_space_4_space__period__space_Get_space_OTA_space_Information.id,
+            forOperation: Operations.otaInformationForIdentifierAndBuild.id,
             serializer: { input in
                 let path = try converter.renderedPath(
                     template: "/ota/{}/{}",
@@ -1565,7 +1565,7 @@ public struct Client: APIProtocol {
             deserializer: { response, responseBody in
                 switch response.status.code {
                 case 200:
-                    let headers: Operations.V_space_4_space__period__space_Get_space_OTA_space_Information.Output.Ok.Headers = .init(
+                    let headers: Operations.otaInformationForIdentifierAndBuild.Output.Ok.Headers = .init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: try converter.getOptionalHeaderFieldAsURI(
                             in: response.headerFields,
                             name: "Access-Control-Allow-Methods",
@@ -1593,7 +1593,7 @@ public struct Client: APIProtocol {
                         )
                     )
                     let contentType = converter.extractContentTypeIfPresent(in: response.headerFields)
-                    let body: Operations.V_space_4_space__period__space_Get_space_OTA_space_Information.Output.Ok.Body
+                    let body: Operations.otaInformationForIdentifierAndBuild.Output.Ok.Body
                     let chosenContentType = try converter.bestContentType(
                         received: contentType,
                         options: [
@@ -1605,7 +1605,7 @@ public struct Client: APIProtocol {
                     switch chosenContentType {
                     case "application/json":
                         body = try await converter.getResponseBodyAsJSON(
-                            Operations.V_space_4_space__period__space_Get_space_OTA_space_Information.Output.Ok.Body.jsonPayload.self,
+                            Operations.otaInformationForIdentifierAndBuild.Output.Ok.Body.jsonPayload.self,
                             from: responseBody,
                             transforming: { value in
                                 .json(value)
@@ -1646,16 +1646,16 @@ public struct Client: APIProtocol {
             }
         )
     }
-    /// V 4 . Get OTA List For Version
+    /// Get OTA List For Version
     ///
     /// GetOTAListForVersion finds all OTA files for a given iOS version
     ///
     /// - Remark: HTTP `GET /ota/{version}`.
-    /// - Remark: Generated from `#/paths//ota/{version}/get(V 4 . Get OTA List For Version)`.
-    public func V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version(_ input: Operations.V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version.Input) async throws -> Operations.V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version.Output {
+    /// - Remark: Generated from `#/paths//ota/{version}/get(otasForVersion)`.
+    public func otasForVersion(_ input: Operations.otasForVersion.Input) async throws -> Operations.otasForVersion.Output {
         try await client.send(
             input: input,
-            forOperation: Operations.V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version.id,
+            forOperation: Operations.otasForVersion.id,
             serializer: { input in
                 let path = try converter.renderedPath(
                     template: "/ota/{}",
@@ -1677,7 +1677,7 @@ public struct Client: APIProtocol {
             deserializer: { response, responseBody in
                 switch response.status.code {
                 case 200:
-                    let headers: Operations.V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version.Output.Ok.Headers = .init(
+                    let headers: Operations.otasForVersion.Output.Ok.Headers = .init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: try converter.getOptionalHeaderFieldAsURI(
                             in: response.headerFields,
                             name: "Access-Control-Allow-Methods",
@@ -1705,7 +1705,7 @@ public struct Client: APIProtocol {
                         )
                     )
                     let contentType = converter.extractContentTypeIfPresent(in: response.headerFields)
-                    let body: Operations.V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version.Output.Ok.Body
+                    let body: Operations.otasForVersion.Output.Ok.Body
                     let chosenContentType = try converter.bestContentType(
                         received: contentType,
                         options: [
@@ -1717,7 +1717,7 @@ public struct Client: APIProtocol {
                     switch chosenContentType {
                     case "application/json":
                         body = try await converter.getResponseBodyAsJSON(
-                            Operations.V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version.Output.Ok.Body.jsonPayload.self,
+                            Operations.otasForVersion.Output.Ok.Body.jsonPayload.self,
                             from: responseBody,
                             transforming: { value in
                                 .json(value)
@@ -1747,7 +1747,7 @@ public struct Client: APIProtocol {
                         body: body
                     ))
                 case 404:
-                    let headers: Operations.V_space_4_space__period__space_Get_space_OTA_space_List_space_For_space_Version.Output.NotFound.Headers = .init(
+                    let headers: Operations.otasForVersion.Output.NotFound.Headers = .init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: try converter.getOptionalHeaderFieldAsURI(
                             in: response.headerFields,
                             name: "Access-Control-Allow-Methods",
@@ -1777,16 +1777,16 @@ public struct Client: APIProtocol {
             }
         )
     }
-    /// V 4 . Releases
+    /// Releases
     ///
     /// Releases returns the release timeline of all entities in the IPSW Downloads database
     ///
     /// - Remark: HTTP `GET /releases`.
-    /// - Remark: Generated from `#/paths//releases/get(V 4 . Releases)`.
-    public func V_space_4_space__period__space_Releases(_ input: Operations.V_space_4_space__period__space_Releases.Input) async throws -> Operations.V_space_4_space__period__space_Releases.Output {
+    /// - Remark: Generated from `#/paths//releases/get(releases)`.
+    public func releases(_ input: Operations.releases.Input) async throws -> Operations.releases.Output {
         try await client.send(
             input: input,
-            forOperation: Operations.V_space_4_space__period__space_Releases.id,
+            forOperation: Operations.releases.id,
             serializer: { input in
                 let path = try converter.renderedPath(
                     template: "/releases",
@@ -1806,7 +1806,7 @@ public struct Client: APIProtocol {
             deserializer: { response, responseBody in
                 switch response.status.code {
                 case 200:
-                    let headers: Operations.V_space_4_space__period__space_Releases.Output.Ok.Headers = .init(
+                    let headers: Operations.releases.Output.Ok.Headers = .init(
                         Access_hyphen_Control_hyphen_Allow_hyphen_Methods: try converter.getOptionalHeaderFieldAsURI(
                             in: response.headerFields,
                             name: "Access-Control-Allow-Methods",
@@ -1834,7 +1834,7 @@ public struct Client: APIProtocol {
                         )
                     )
                     let contentType = converter.extractContentTypeIfPresent(in: response.headerFields)
-                    let body: Operations.V_space_4_space__period__space_Releases.Output.Ok.Body
+                    let body: Operations.releases.Output.Ok.Body
                     let chosenContentType = try converter.bestContentType(
                         received: contentType,
                         options: [
@@ -1846,7 +1846,7 @@ public struct Client: APIProtocol {
                     switch chosenContentType {
                     case "application/json":
                         body = try await converter.getResponseBodyAsJSON(
-                            Operations.V_space_4_space__period__space_Releases.Output.Ok.Body.jsonPayload.self,
+                            Operations.releases.Output.Ok.Body.jsonPayload.self,
                             from: responseBody,
                             transforming: { value in
                                 .json(value)
