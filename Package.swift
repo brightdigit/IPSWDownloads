@@ -4,8 +4,11 @@
 import PackageDescription
 
 let package = Package(
-  name: "IPSW",
+  name: "IPSWDownloads",
   platforms: [.macOS(.v10_15), .iOS(.v13), .tvOS(.v13), .watchOS(.v6), .visionOS(.v1)],
+  products: [
+    .library(name: "IPSWDownloads", targets: ["IPSWDownloads"])
+  ],
   dependencies: [
     .package(url: "https://github.com/apple/swift-openapi-generator", from: "1.0.0"),
     .package(url: "https://github.com/apple/swift-openapi-runtime", from: "1.0.0"),
@@ -14,8 +17,8 @@ let package = Package(
   targets: [
     // Targets are the basic building blocks of a package, defining a module or a test suite.
     // Targets can depend on other targets in this package and products from dependencies.
-    .executableTarget(
-      name: "IPSW",
+    .target(
+      name: "IPSWDownloads",
       dependencies: [
         .product(name: "OpenAPIRuntime", package: "swift-openapi-runtime"),
         .product(name: "OpenAPIURLSession", package: "swift-openapi-urlsession")
