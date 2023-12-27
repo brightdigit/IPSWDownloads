@@ -2,6 +2,7 @@ function_parameter_count: 8
 identifier_name:
   excluded:
     - id
+    - ok
 excluded:
   - Tests
   - DerivedData

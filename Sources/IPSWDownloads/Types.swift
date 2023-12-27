@@ -387,6 +387,43 @@ public enum Servers {
 public enum Components {
   /// Types generated from the `#/components/schemas` section of the OpenAPI document.
   public enum Schemas {
+    /// - Remark: Generated from `#/components/schemas/Board`.
+    public struct Board: Codable, Hashable, Sendable {
+      /// - Remark: Generated from `#/components/schemas/Board/boardconfig`.
+      public var boardconfig: Swift.String
+      /// - Remark: Generated from `#/components/schemas/Board/platform`.
+      public var platform: Swift.String
+      /// - Remark: Generated from `#/components/schemas/Board/cpid`.
+      public var cpid: Swift.Double
+      /// - Remark: Generated from `#/components/schemas/Board/bdid`.
+      public var bdid: Swift.Double
+      /// Creates a new `Board`.
+      ///
+      /// - Parameters:
+      ///   - boardconfig:
+      ///   - platform:
+      ///   - cpid:
+      ///   - bdid:
+      public init(
+        boardconfig: Swift.String,
+        platform: Swift.String,
+        cpid: Swift.Double,
+        bdid: Swift.Double
+      ) {
+        self.boardconfig = boardconfig
+        self.platform = platform
+        self.cpid = cpid
+        self.bdid = bdid
+      }
+
+      public enum CodingKeys: String, CodingKey {
+        case boardconfig
+        case platform
+        case cpid
+        case bdid
+      }
+    }
+
     /// - Remark: Generated from `#/components/schemas/Firmware`.
     public struct Firmware: Codable, Hashable, Sendable {
       /// - Remark: Generated from `#/components/schemas/Firmware/identifier`.
@@ -463,127 +500,13 @@ public enum Components {
     /// - Remark: Generated from `#/components/schemas/Device`.
     public struct Device: Codable, Hashable, Sendable {
       /// - Remark: Generated from `#/components/schemas/Device/name`.
-      public var name: Swift.String?
+      public var name: Swift.String
       /// - Remark: Generated from `#/components/schemas/Device/identifier`.
-      public var identifier: Swift.String?
-      /// - Remark: Generated from `#/components/schemas/Device/firmwaresPayload`.
-      public struct firmwaresPayloadPayload: Codable, Hashable, Sendable {
-        /// - Remark: Generated from `#/components/schemas/Device/firmwaresPayload/identifier`.
-        public var identifier: Swift.String
-        /// - Remark: Generated from `#/components/schemas/Device/firmwaresPayload/version`.
-        public var version: Swift.String
-        /// - Remark: Generated from `#/components/schemas/Device/firmwaresPayload/buildid`.
-        public var buildid: Swift.String
-        /// - Remark: Generated from `#/components/schemas/Device/firmwaresPayload/sha1sum`.
-        public var sha1sum: Swift.String
-        /// - Remark: Generated from `#/components/schemas/Device/firmwaresPayload/md5sum`.
-        public var md5sum: Swift.String
-        /// - Remark: Generated from `#/components/schemas/Device/firmwaresPayload/filesize`.
-        public var filesize: Swift.Int
-        /// - Remark: Generated from `#/components/schemas/Device/firmwaresPayload/url`.
-        public var url: Swift.String
-        /// - Remark: Generated from `#/components/schemas/Device/firmwaresPayload/releasedate`.
-        public var releasedate: Foundation.Date
-        /// - Remark: Generated from `#/components/schemas/Device/firmwaresPayload/uploaddate`.
-        public var uploaddate: Swift.String
-        /// - Remark: Generated from `#/components/schemas/Device/firmwaresPayload/signed`.
-        public var signed: Swift.Bool
-        /// Creates a new `firmwaresPayloadPayload`.
-        ///
-        /// - Parameters:
-        ///   - identifier:
-        ///   - version:
-        ///   - buildid:
-        ///   - sha1sum:
-        ///   - md5sum:
-        ///   - filesize:
-        ///   - url:
-        ///   - releasedate:
-        ///   - uploaddate:
-        ///   - signed:
-        public init(
-          identifier: Swift.String,
-          version: Swift.String,
-          buildid: Swift.String,
-          sha1sum: Swift.String,
-          md5sum: Swift.String,
-          filesize: Swift.Int,
-          url: Swift.String,
-          releasedate: Foundation.Date,
-          uploaddate: Swift.String,
-          signed: Swift.Bool
-        ) {
-          self.identifier = identifier
-          self.version = version
-          self.buildid = buildid
-          self.sha1sum = sha1sum
-          self.md5sum = md5sum
-          self.filesize = filesize
-          self.url = url
-          self.releasedate = releasedate
-          self.uploaddate = uploaddate
-          self.signed = signed
-        }
-
-        public enum CodingKeys: String, CodingKey {
-          case identifier
-          case version
-          case buildid
-          case sha1sum
-          case md5sum
-          case filesize
-          case url
-          case releasedate
-          case uploaddate
-          case signed
-        }
-      }
-
+      public var identifier: Swift.String
       /// - Remark: Generated from `#/components/schemas/Device/firmwares`.
-      public typealias firmwaresPayload = [Components.Schemas.Device.firmwaresPayloadPayload]
-      /// - Remark: Generated from `#/components/schemas/Device/firmwares`.
-      public var firmwares: Components.Schemas.Device.firmwaresPayload?
-      /// - Remark: Generated from `#/components/schemas/Device/boardsPayload`.
-      public struct boardsPayloadPayload: Codable, Hashable, Sendable {
-        /// - Remark: Generated from `#/components/schemas/Device/boardsPayload/boardconfig`.
-        public var boardconfig: Swift.String
-        /// - Remark: Generated from `#/components/schemas/Device/boardsPayload/platform`.
-        public var platform: Swift.String
-        /// - Remark: Generated from `#/components/schemas/Device/boardsPayload/cpid`.
-        public var cpid: Swift.Double
-        /// - Remark: Generated from `#/components/schemas/Device/boardsPayload/bdid`.
-        public var bdid: Swift.Double
-        /// Creates a new `boardsPayloadPayload`.
-        ///
-        /// - Parameters:
-        ///   - boardconfig:
-        ///   - platform:
-        ///   - cpid:
-        ///   - bdid:
-        public init(
-          boardconfig: Swift.String,
-          platform: Swift.String,
-          cpid: Swift.Double,
-          bdid: Swift.Double
-        ) {
-          self.boardconfig = boardconfig
-          self.platform = platform
-          self.cpid = cpid
-          self.bdid = bdid
-        }
-
-        public enum CodingKeys: String, CodingKey {
-          case boardconfig
-          case platform
-          case cpid
-          case bdid
-        }
-      }
-
+      public var firmwares: [Components.Schemas.Firmware]
       /// - Remark: Generated from `#/components/schemas/Device/boards`.
-      public typealias boardsPayload = [Components.Schemas.Device.boardsPayloadPayload]
-      /// - Remark: Generated from `#/components/schemas/Device/boards`.
-      public var boards: Components.Schemas.Device.boardsPayload?
+      public var boards: [Components.Schemas.Board]
       /// - Remark: Generated from `#/components/schemas/Device/boardconfig`.
       public var boardconfig: Swift.String?
       /// - Remark: Generated from `#/components/schemas/Device/platform`.
@@ -604,10 +527,10 @@ public enum Components {
       ///   - cpid:
       ///   - bdid:
       public init(
-        name: Swift.String? = nil,
-        identifier: Swift.String? = nil,
-        firmwares: Components.Schemas.Device.firmwaresPayload? = nil,
-        boards: Components.Schemas.Device.boardsPayload? = nil,
+        name: Swift.String,
+        identifier: Swift.String,
+        firmwares: [Components.Schemas.Firmware],
+        boards: [Components.Schemas.Board],
         boardconfig: Swift.String? = nil,
         platform: Swift.String? = nil,
         cpid: Swift.Double? = nil,
@@ -1060,109 +983,13 @@ public enum Operations {
         public var headers: Operations.devices.Output.Ok.Headers
         /// - Remark: Generated from `#/paths/devices/GET/responses/200/content`.
         @frozen public enum Body: Sendable, Hashable {
-          /// - Remark: Generated from `#/paths/devices/GET/responses/200/content/jsonPayload`.
-          public struct jsonPayloadPayload: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/paths/devices/GET/responses/200/content/jsonPayload/name`.
-            public var name: Swift.String
-            /// - Remark: Generated from `#/paths/devices/GET/responses/200/content/jsonPayload/identifier`.
-            public var identifier: Swift.String
-            /// - Remark: Generated from `#/paths/devices/GET/responses/200/content/jsonPayload/boardsPayload`.
-            public struct boardsPayloadPayload: Codable, Hashable, Sendable {
-              /// - Remark: Generated from `#/paths/devices/GET/responses/200/content/jsonPayload/boardsPayload/boardconfig`.
-              public var boardconfig: Swift.String
-              /// - Remark: Generated from `#/paths/devices/GET/responses/200/content/jsonPayload/boardsPayload/platform`.
-              public var platform: Swift.String
-              /// - Remark: Generated from `#/paths/devices/GET/responses/200/content/jsonPayload/boardsPayload/cpid`.
-              public var cpid: Swift.Double
-              /// - Remark: Generated from `#/paths/devices/GET/responses/200/content/jsonPayload/boardsPayload/bdid`.
-              public var bdid: Swift.Double
-              /// Creates a new `boardsPayloadPayload`.
-              ///
-              /// - Parameters:
-              ///   - boardconfig:
-              ///   - platform:
-              ///   - cpid:
-              ///   - bdid:
-              public init(
-                boardconfig: Swift.String,
-                platform: Swift.String,
-                cpid: Swift.Double,
-                bdid: Swift.Double
-              ) {
-                self.boardconfig = boardconfig
-                self.platform = platform
-                self.cpid = cpid
-                self.bdid = bdid
-              }
-
-              public enum CodingKeys: String, CodingKey {
-                case boardconfig
-                case platform
-                case cpid
-                case bdid
-              }
-            }
-
-            /// - Remark: Generated from `#/paths/devices/GET/responses/200/content/jsonPayload/boards`.
-            public typealias boardsPayload = [Operations.devices.Output.Ok.Body.jsonPayloadPayload.boardsPayloadPayload]
-            /// - Remark: Generated from `#/paths/devices/GET/responses/200/content/jsonPayload/boards`.
-            public var boards: Operations.devices.Output.Ok.Body.jsonPayloadPayload.boardsPayload
-            /// - Remark: Generated from `#/paths/devices/GET/responses/200/content/jsonPayload/boardconfig`.
-            public var boardconfig: Swift.String
-            /// - Remark: Generated from `#/paths/devices/GET/responses/200/content/jsonPayload/platform`.
-            public var platform: Swift.String
-            /// - Remark: Generated from `#/paths/devices/GET/responses/200/content/jsonPayload/cpid`.
-            public var cpid: Swift.Double
-            /// - Remark: Generated from `#/paths/devices/GET/responses/200/content/jsonPayload/bdid`.
-            public var bdid: Swift.Double
-            /// Creates a new `jsonPayloadPayload`.
-            ///
-            /// - Parameters:
-            ///   - name:
-            ///   - identifier:
-            ///   - boards:
-            ///   - boardconfig:
-            ///   - platform:
-            ///   - cpid:
-            ///   - bdid:
-            public init(
-              name: Swift.String,
-              identifier: Swift.String,
-              boards: Operations.devices.Output.Ok.Body.jsonPayloadPayload.boardsPayload,
-              boardconfig: Swift.String,
-              platform: Swift.String,
-              cpid: Swift.Double,
-              bdid: Swift.Double
-            ) {
-              self.name = name
-              self.identifier = identifier
-              self.boards = boards
-              self.boardconfig = boardconfig
-              self.platform = platform
-              self.cpid = cpid
-              self.bdid = bdid
-            }
-
-            public enum CodingKeys: String, CodingKey {
-              case name
-              case identifier
-              case boards
-              case boardconfig
-              case platform
-              case cpid
-              case bdid
-            }
-          }
-
-          /// - Remark: Generated from `#/paths/devices/GET/responses/200/content/json`.
-          public typealias jsonPayload = [Operations.devices.Output.Ok.Body.jsonPayloadPayload]
           /// - Remark: Generated from `#/paths/devices/GET/responses/200/content/application\/json`.
-          case json(Operations.devices.Output.Ok.Body.jsonPayload)
+          case json([OpenAPIRuntime.OpenAPIValueContainer])
           /// The associated value of the enum case if `self` is `.json`.
           ///
           /// - Throws: An error if `self` is not `.json`.
           /// - SeeAlso: `.json`.
-          public var json: Operations.devices.Output.Ok.Body.jsonPayload {
+          public var json: [OpenAPIRuntime.OpenAPIValueContainer] {
             get throws {
               switch self {
               case let .json(body):
@@ -1942,200 +1769,13 @@ public enum Operations {
         public var headers: Operations.ipswListForVersion.Output.Ok.Headers
         /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content`.
         @frozen public enum Body: Sendable, Hashable {
-          /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json`.
-          @frozen public enum jsonPayload: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/Case1Payload`.
-            public struct Case1PayloadPayload: Codable, Hashable, Sendable {
-              /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/Case1Payload/identifier`.
-              public var identifier: Swift.String
-              /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/Case1Payload/version`.
-              public var version: Swift.String
-              /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/Case1Payload/buildid`.
-              public var buildid: Swift.String
-              /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/Case1Payload/sha1sum`.
-              public var sha1sum: Swift.String
-              /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/Case1Payload/md5sum`.
-              public var md5sum: Swift.String
-              /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/Case1Payload/filesize`.
-              public var filesize: Swift.Double
-              /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/Case1Payload/url`.
-              public var url: Swift.String
-              /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/Case1Payload/releasedate`.
-              public var releasedate: OpenAPIRuntime.OpenAPIValueContainer?
-              /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/Case1Payload/uploaddate`.
-              public var uploaddate: Swift.String
-              /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/Case1Payload/signed`.
-              public var signed: Swift.Bool
-              /// Creates a new `Case1PayloadPayload`.
-              ///
-              /// - Parameters:
-              ///   - identifier:
-              ///   - version:
-              ///   - buildid:
-              ///   - sha1sum:
-              ///   - md5sum:
-              ///   - filesize:
-              ///   - url:
-              ///   - releasedate:
-              ///   - uploaddate:
-              ///   - signed:
-              public init(
-                identifier: Swift.String,
-                version: Swift.String,
-                buildid: Swift.String,
-                sha1sum: Swift.String,
-                md5sum: Swift.String,
-                filesize: Swift.Double,
-                url: Swift.String,
-                releasedate: OpenAPIRuntime.OpenAPIValueContainer? = nil,
-                uploaddate: Swift.String,
-                signed: Swift.Bool
-              ) {
-                self.identifier = identifier
-                self.version = version
-                self.buildid = buildid
-                self.sha1sum = sha1sum
-                self.md5sum = md5sum
-                self.filesize = filesize
-                self.url = url
-                self.releasedate = releasedate
-                self.uploaddate = uploaddate
-                self.signed = signed
-              }
-
-              public enum CodingKeys: String, CodingKey {
-                case identifier
-                case version
-                case buildid
-                case sha1sum
-                case md5sum
-                case filesize
-                case url
-                case releasedate
-                case uploaddate
-                case signed
-              }
-            }
-
-            /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/case1`.
-            public typealias Case1Payload = [Operations.ipswListForVersion.Output.Ok.Body.jsonPayload.Case1PayloadPayload]
-            /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/case1`.
-            case case1(Operations.ipswListForVersion.Output.Ok.Body.jsonPayload.Case1Payload)
-            /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/Case2Payload`.
-            public struct Case2PayloadPayload: Codable, Hashable, Sendable {
-              /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/Case2Payload/identifier`.
-              public var identifier: Swift.String
-              /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/Case2Payload/version`.
-              public var version: Swift.String
-              /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/Case2Payload/buildid`.
-              public var buildid: Swift.String
-              /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/Case2Payload/sha1sum`.
-              public var sha1sum: Swift.String
-              /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/Case2Payload/md5sum`.
-              public var md5sum: Swift.String
-              /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/Case2Payload/filesize`.
-              public var filesize: Swift.Double
-              /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/Case2Payload/url`.
-              public var url: Swift.String
-              /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/Case2Payload/releasedate`.
-              public var releasedate: Swift.String
-              /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/Case2Payload/uploaddate`.
-              public var uploaddate: Swift.String
-              /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/Case2Payload/signed`.
-              public var signed: Swift.Bool
-              /// Creates a new `Case2PayloadPayload`.
-              ///
-              /// - Parameters:
-              ///   - identifier:
-              ///   - version:
-              ///   - buildid:
-              ///   - sha1sum:
-              ///   - md5sum:
-              ///   - filesize:
-              ///   - url:
-              ///   - releasedate:
-              ///   - uploaddate:
-              ///   - signed:
-              public init(
-                identifier: Swift.String,
-                version: Swift.String,
-                buildid: Swift.String,
-                sha1sum: Swift.String,
-                md5sum: Swift.String,
-                filesize: Swift.Double,
-                url: Swift.String,
-                releasedate: Swift.String,
-                uploaddate: Swift.String,
-                signed: Swift.Bool
-              ) {
-                self.identifier = identifier
-                self.version = version
-                self.buildid = buildid
-                self.sha1sum = sha1sum
-                self.md5sum = md5sum
-                self.filesize = filesize
-                self.url = url
-                self.releasedate = releasedate
-                self.uploaddate = uploaddate
-                self.signed = signed
-              }
-
-              public enum CodingKeys: String, CodingKey {
-                case identifier
-                case version
-                case buildid
-                case sha1sum
-                case md5sum
-                case filesize
-                case url
-                case releasedate
-                case uploaddate
-                case signed
-              }
-            }
-
-            /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/case2`.
-            public typealias Case2Payload = [Operations.ipswListForVersion.Output.Ok.Body.jsonPayload.Case2PayloadPayload]
-            /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/json/case2`.
-            case case2(Operations.ipswListForVersion.Output.Ok.Body.jsonPayload.Case2Payload)
-            public init(from decoder: any Decoder) throws {
-              var errors: [any Error] = []
-              do {
-                self = try .case1(decoder.decodeFromSingleValueContainer())
-                return
-              } catch {
-                errors.append(error)
-              }
-              do {
-                self = try .case2(decoder.decodeFromSingleValueContainer())
-                return
-              } catch {
-                errors.append(error)
-              }
-              throw Swift.DecodingError.failedToDecodeOneOfSchema(
-                type: Self.self,
-                codingPath: decoder.codingPath,
-                errors: errors
-              )
-            }
-
-            public func encode(to encoder: any Encoder) throws {
-              switch self {
-              case let .case1(value):
-                try encoder.encodeToSingleValueContainer(value)
-              case let .case2(value):
-                try encoder.encodeToSingleValueContainer(value)
-              }
-            }
-          }
-
           /// - Remark: Generated from `#/paths/ipsw/{version}/GET/responses/200/content/application\/json`.
-          case json(Operations.ipswListForVersion.Output.Ok.Body.jsonPayload)
+          case json([OpenAPIRuntime.OpenAPIValueContainer])
           /// The associated value of the enum case if `self` is `.json`.
           ///
           /// - Throws: An error if `self` is not `.json`.
           /// - SeeAlso: `.json`.
-          public var json: Operations.ipswListForVersion.Output.Ok.Body.jsonPayload {
+          public var json: [OpenAPIRuntime.OpenAPIValueContainer] {
             get throws {
               switch self {
               case let .json(body):

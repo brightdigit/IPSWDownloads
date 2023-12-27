@@ -259,7 +259,7 @@ public struct Client: APIProtocol {
           switch chosenContentType {
           case "application/json":
             body = try await converter.getResponseBodyAsJSON(
-              Operations.devices.Output.Ok.Body.jsonPayload.self,
+              [OpenAPIRuntime.OpenAPIValueContainer].self,
               from: responseBody,
               transforming: { value in
                 .json(value)
@@ -610,7 +610,7 @@ public struct Client: APIProtocol {
           switch chosenContentType {
           case "application/json":
             body = try await converter.getResponseBodyAsJSON(
-              Operations.ipswListForVersion.Output.Ok.Body.jsonPayload.self,
+              [OpenAPIRuntime.OpenAPIValueContainer].self,
               from: responseBody,
               transforming: { value in
                 .json(value)

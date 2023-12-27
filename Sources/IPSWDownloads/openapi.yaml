@@ -1689,46 +1689,8 @@ paths:
               schema:
                 type: array
                 items:
-                  type: object
-                  properties:
-                    name:
-                      type: string
-                    identifier:
-                      type: string
-                    boards:
-                      type: array
-                      items:
-                        type: object
-                        properties:
-                          boardconfig:
-                            type: string
-                          platform:
-                            type: string
-                          cpid:
-                            type: number
-                          bdid:
-                            type: number
-                        required:
-                          - boardconfig
-                          - platform
-                          - cpid
-                          - bdid
-                    boardconfig:
-                      type: string
-                    platform:
-                      type: string
-                    cpid:
-                      type: number
-                    bdid:
-                      type: number
-                  required:
-                    - name
-                    - identifier
-                    - boards
-                    - boardconfig
-                    - platform
-                    - cpid
-                    - bdid
+                  schema:
+                    $ref: '#/components/schemas/Device'
               example:
                 - name: iPhone 2G
                   identifier: iPhone1,1
@@ -2316,77 +2278,10 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - type: array
-                    items:
-                      type: object
-                      properties:
-                        identifier:
-                          type: string
-                        version:
-                          type: string
-                        buildid:
-                          type: string
-                        sha1sum:
-                          type: string
-                        md5sum:
-                          type: string
-                        filesize:
-                          type: number
-                        url:
-                          type: string
-                        releasedate:
-                          nullable: true
-                        uploaddate:
-                          type: string
-                        signed:
-                          type: boolean
-                      required:
-                        - identifier
-                        - version
-                        - buildid
-                        - sha1sum
-                        - md5sum
-                        - filesize
-                        - url
-                        - releasedate
-                        - uploaddate
-                        - signed
-                  - type: array
-                    items:
-                      type: object
-                      properties:
-                        identifier:
-                          type: string
-                        version:
-                          type: string
-                        buildid:
-                          type: string
-                        sha1sum:
-                          type: string
-                        md5sum:
-                          type: string
-                        filesize:
-                          type: number
-                        url:
-                          type: string
-                        releasedate:
-                          type: string
-                        uploaddate:
-                          type: string
-                        signed:
-                          type: boolean
-                      required:
-                        - identifier
-                        - version
-                        - buildid
-                        - sha1sum
-                        - md5sum
-                        - filesize
-                        - url
-                        - releasedate
-                        - uploaddate
-                        - signed
+                type: array
+                items:
+                  schema:
+                    $ref: '#/components/schemas/Firmware'
               examples:
                 example1:
                   value:
@@ -5915,6 +5810,22 @@ paths:
 
 components:
   schemas:
+    Board:
+      type: object
+      properties:
+        boardconfig:
+          type: string
+        platform:
+          type: string
+        cpid:
+          type: number
+        bdid:
+          type: number
+      required:
+        - boardconfig
+        - platform
+        - cpid
+        - bdid
     Firmware:
       type: object
       required:
@@ -5954,6 +5865,11 @@ components:
           type: boolean
     Device:
       type: object
+      required:
+        - name
+        - identifier
+        - firmwares
+        - boards
       properties:
         name:
           type: string
@@ -5962,59 +5878,11 @@ components:
         firmwares:
           type: array
           items:
-            type: object
-            properties:
-              identifier:
-                type: string
-              version:
-                type: string
-              buildid:
-                type: string
-              sha1sum:
-                type: string
-              md5sum:
-                type: string
-              filesize:
-                type: integer
-              url:
-                type: string
-                format: uri
-              releasedate:
-                type: string
-                format: date-time
-              uploaddate:
-                type: string
-              signed:
-                type: boolean
-            required:
-              - identifier
-              - version
-              - buildid
-              - sha1sum
-              - md5sum
-              - filesize
-              - url
-              - releasedate
-              - uploaddate
-              - signed
+            $ref: '#/components/schemas/Firmware'
         boards:
           type: array
           items:
-            type: object
-            properties:
-              boardconfig:
-                type: string
-              platform:
-                type: string
-              cpid:
-                type: number
-              bdid:
-                type: number
-            required:
-              - boardconfig
-              - platform
-              - cpid
-              - bdid
+            $ref: '#/components/schemas/Board'
         boardconfig:
           type: string
         platform:
