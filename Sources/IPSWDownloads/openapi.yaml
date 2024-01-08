@@ -3149,56 +3149,9 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - type: array
-                    items:
-                      type: object
-                      properties:
-                        platform:
-                          type: string
-                        version:
-                          type: string
-                        datefound:
-                          type: string
-                        url:
-                          type: string
-                        64biturl:
-                          type: string
-                        releasedate:
-                          type: string
-                        uploaddate:
-                          type: string
-                      required:
-                        - platform
-                        - version
-                        - datefound
-                        - url
-                        - 64biturl
-                        - releasedate
-                        - uploaddate
-                  - type: array
-                    items:
-                      type: object
-                      properties:
-                        platform:
-                          type: string
-                        version:
-                          type: string
-                        datefound:
-                          type: string
-                        url:
-                          type: string
-                        releasedate:
-                          type: string
-                        uploaddate:
-                          type: string
-                      required:
-                        - platform
-                        - version
-                        - datefound
-                        - url
-                        - releasedate
-                        - uploaddate
+                type: array
+                items:
+                  $ref: '#/components/schemas/iTunes'
               examples:
                 example1:
                   value:
@@ -5810,6 +5763,35 @@ paths:
 
 components:
   schemas:
+    iTunes:
+      type: object
+      properties:
+        platform:
+          type: string
+        version:
+          type: string
+        datefound:
+          type: string
+          format: date-time
+        url:
+          type: string
+          format: uri
+        64biturl:
+          type: string
+          format: uri
+        releasedate:
+          type: string
+          format: date-time
+        uploaddate:
+          type: string
+          format: date-time
+      required:
+        - platform
+        - version
+        - datefound
+        - url
+        - releasedate
+        - uploaddate
     Board:
       type: object
       properties:
