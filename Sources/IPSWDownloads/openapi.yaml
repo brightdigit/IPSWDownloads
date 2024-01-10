@@ -3510,50 +3510,9 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - type: array
-                    items:
-                      type: object
-                      properties:
-                        identifier:
-                          type: string
-                        buildid:
-                          type: string
-                        codename:
-                          type: string
-                        baseband:
-                          type: string
-                        updateramdiskexists:
-                          type: boolean
-                        restoreramdiskexists:
-                          type: boolean
-                      required:
-                        - identifier
-                        - buildid
-                        - codename
-                        - baseband
-                        - updateramdiskexists
-                        - restoreramdiskexists
-                  - type: array
-                    items:
-                      type: object
-                      properties:
-                        identifier:
-                          type: string
-                        buildid:
-                          type: string
-                        codename:
-                          type: string
-                        updateramdiskexists:
-                          type: boolean
-                        restoreramdiskexists:
-                          type: boolean
-                      required:
-                        - identifier
-                        - buildid
-                        - codename
-                        - updateramdiskexists
-                        - restoreramdiskexists
+                type: array
+                items:
+                  $ref: '#/components/schemas/FirmwareKey'
               examples:
                 example1:
                   value:
@@ -4028,81 +3987,10 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - type: object
-                    properties:
-                      identifier:
-                        type: string
-                      buildid:
-                        type: string
-                      codename:
-                        type: string
-                      updateramdiskexists:
-                        type: boolean
-                      restoreramdiskexists:
-                        type: boolean
-                      keys:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            image:
-                              type: string
-                            filename:
-                              type: string
-                            kbag:
-                              type: string
-                            key:
-                              type: string
-                            iv:
-                              type: string
-                            date:
-                              type: string
-                          required:
-                            - image
-                            - filename
-                            - kbag
-                            - key
-                            - iv
-                            - date
-                  - type: object
-                    properties:
-                      identifier:
-                        type: string
-                      buildid:
-                        type: string
-                      codename:
-                        type: string
-                      baseband:
-                        type: string
-                      updateramdiskexists:
-                        type: boolean
-                      restoreramdiskexists:
-                        type: boolean
-                      keys:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            image:
-                              type: string
-                            filename:
-                              type: string
-                            kbag:
-                              type: string
-                            key:
-                              type: string
-                            iv:
-                              type: string
-                            date:
-                              type: string
-                          required:
-                            - image
-                            - filename
-                            - kbag
-                            - key
-                            - iv
-                            - date
+                type: array
+                items:
+                  schema:
+                    $ref: '#/components/schemas/FirmwareKey'
               examples:
                 example1:
                   value:
@@ -5763,6 +5651,54 @@ paths:
 
 components:
   schemas:
+    Key:
+      type: object
+      properties:
+        image:
+          type: string
+        filename:
+          type: string
+        kbag:
+          type: string
+        key:
+          type: string
+        iv:
+          type: string
+        date:
+          type: string
+          format: date-time
+      required:
+        - image
+        - filename
+        - kbag
+        - key
+        - iv
+        - date
+    FirmwareKey:
+      type: object
+      properties:
+        identifier:
+          type: string
+        buildid:
+          type: string
+        codename:
+          type: string
+        baseband:
+          type: string
+        updateramdiskexists:
+          type: boolean
+        restoreramdiskexists:
+          type: boolean
+        keys:
+          type: array
+          items:
+            $ref: '#/components/schemas/Key'
+      required:
+        - identifier
+        - buildid
+        - codename
+        - updateramdiskexists
+        - restoreramdiskexists
     iTunes:
       type: object
       properties:

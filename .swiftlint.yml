@@ -17,3 +17,10 @@ disabled_rules:
   - cyclomatic_complexity
   - closure_body_length
   - file_length
+custom_rules:
+  payload_disallow: # 1
+    name: "Payload Disallowed" # 2
+    regex: '\w+Payload' # 3
+    capture_group: 0 # 4
+    message: "Do not use Payload for identifier." # 5
+    severity: error # 6
