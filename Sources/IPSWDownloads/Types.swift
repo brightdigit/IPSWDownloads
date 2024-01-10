@@ -387,6 +387,195 @@ public enum Servers {
 public enum Components {
   /// Types generated from the `#/components/schemas` section of the OpenAPI document.
   public enum Schemas {
+    /// - Remark: Generated from `#/components/schemas/NotFoundDetails`.
+    public struct NotFoundDetails: Codable, Hashable, Sendable {
+      /// - Remark: Generated from `#/components/schemas/NotFoundDetails/status`.
+      public var status: Swift.Double?
+      /// - Remark: Generated from `#/components/schemas/NotFoundDetails/message`.
+      public var message: Swift.String?
+      /// Creates a new `NotFoundDetails`.
+      ///
+      /// - Parameters:
+      ///   - status:
+      ///   - message:
+      public init(
+        status: Swift.Double? = nil,
+        message: Swift.String? = nil
+      ) {
+        self.status = status
+        self.message = message
+      }
+
+      public enum CodingKeys: String, CodingKey {
+        case status
+        case message
+      }
+    }
+
+    /// - Remark: Generated from `#/components/schemas/ReleaseDate`.
+    public struct ReleaseDate: Codable, Hashable, Sendable {
+      /// - Remark: Generated from `#/components/schemas/ReleaseDate/date`.
+      public var date: Swift.String
+      /// - Remark: Generated from `#/components/schemas/ReleaseDate/releases`.
+      public var releases: [OpenAPIRuntime.OpenAPIValueContainer]
+      /// Creates a new `ReleaseDate`.
+      ///
+      /// - Parameters:
+      ///   - date:
+      ///   - releases:
+      public init(
+        date: Swift.String,
+        releases: [OpenAPIRuntime.OpenAPIValueContainer]
+      ) {
+        self.date = date
+        self.releases = releases
+      }
+
+      public enum CodingKeys: String, CodingKey {
+        case date
+        case releases
+      }
+    }
+
+    /// - Remark: Generated from `#/components/schemas/ReleaseEntry`.
+    public struct ReleaseEntry: Codable, Hashable, Sendable {
+      /// - Remark: Generated from `#/components/schemas/ReleaseEntry/name`.
+      public var name: Swift.String
+      /// - Remark: Generated from `#/components/schemas/ReleaseEntry/date`.
+      public var date: Foundation.Date
+      /// - Remark: Generated from `#/components/schemas/ReleaseEntry/count`.
+      public var count: Swift.Double
+      /// - Remark: Generated from `#/components/schemas/ReleaseEntry/type`.
+      public var _type: Swift.String
+      /// Creates a new `ReleaseEntry`.
+      ///
+      /// - Parameters:
+      ///   - name:
+      ///   - date:
+      ///   - count:
+      ///   - _type:
+      public init(
+        name: Swift.String,
+        date: Foundation.Date,
+        count: Swift.Double,
+        _type: Swift.String
+      ) {
+        self.name = name
+        self.date = date
+        self.count = count
+        self._type = _type
+      }
+
+      public enum CodingKeys: String, CodingKey {
+        case name
+        case date
+        case count
+        case _type = "type"
+      }
+    }
+
+    /// - Remark: Generated from `#/components/schemas/OTA`.
+    public struct OTA: Codable, Hashable, Sendable {
+      /// - Remark: Generated from `#/components/schemas/OTA/identifier`.
+      public var identifier: Swift.String
+      /// - Remark: Generated from `#/components/schemas/OTA/buildid`.
+      public var buildid: Swift.String
+      /// - Remark: Generated from `#/components/schemas/OTA/version`.
+      public var version: Swift.String
+      /// - Remark: Generated from `#/components/schemas/OTA/url`.
+      public var url: Swift.String
+      /// - Remark: Generated from `#/components/schemas/OTA/filesize`.
+      public var filesize: Swift.Double
+      /// - Remark: Generated from `#/components/schemas/OTA/prerequisitebuildid`.
+      public var prerequisitebuildid: Swift.String
+      /// - Remark: Generated from `#/components/schemas/OTA/prerequisiteversion`.
+      public var prerequisiteversion: Swift.String
+      /// - Remark: Generated from `#/components/schemas/OTA/releasetype`.
+      public var releasetype: Swift.String
+      /// - Remark: Generated from `#/components/schemas/OTA/uploaddate`.
+      public var uploaddate: Foundation.Date
+      /// - Remark: Generated from `#/components/schemas/OTA/releasedate`.
+      public var releasedate: Foundation.Date
+      /// - Remark: Generated from `#/components/schemas/OTA/marketingversion`.
+      public var marketingversion: OpenAPIRuntime.OpenAPIValueContainer?
+      /// - Remark: Generated from `#/components/schemas/OTA/signed`.
+      public var signed: Swift.Bool
+      /// Creates a new `OTA`.
+      ///
+      /// - Parameters:
+      ///   - identifier:
+      ///   - buildid:
+      ///   - version:
+      ///   - url:
+      ///   - filesize:
+      ///   - prerequisitebuildid:
+      ///   - prerequisiteversion:
+      ///   - releasetype:
+      ///   - uploaddate:
+      ///   - releasedate:
+      ///   - marketingversion:
+      ///   - signed:
+      public init(
+        identifier: Swift.String,
+        buildid: Swift.String,
+        version: Swift.String,
+        url: Swift.String,
+        filesize: Swift.Double,
+        prerequisitebuildid: Swift.String,
+        prerequisiteversion: Swift.String,
+        releasetype: Swift.String,
+        uploaddate: Foundation.Date,
+        releasedate: Foundation.Date,
+        marketingversion: OpenAPIRuntime.OpenAPIValueContainer? = nil,
+        signed: Swift.Bool
+      ) {
+        self.identifier = identifier
+        self.buildid = buildid
+        self.version = version
+        self.url = url
+        self.filesize = filesize
+        self.prerequisitebuildid = prerequisitebuildid
+        self.prerequisiteversion = prerequisiteversion
+        self.releasetype = releasetype
+        self.uploaddate = uploaddate
+        self.releasedate = releasedate
+        self.marketingversion = marketingversion
+        self.signed = signed
+      }
+
+      public enum CodingKeys: String, CodingKey {
+        case identifier
+        case buildid
+        case version
+        case url
+        case filesize
+        case prerequisitebuildid
+        case prerequisiteversion
+        case releasetype
+        case uploaddate
+        case releasedate
+        case marketingversion
+        case signed
+      }
+    }
+
+    /// - Remark: Generated from `#/components/schemas/Model`.
+    public struct Model: Codable, Hashable, Sendable {
+      /// - Remark: Generated from `#/components/schemas/Model/identifier`.
+      public var identifier: Swift.String?
+      /// Creates a new `Model`.
+      ///
+      /// - Parameters:
+      ///   - identifier:
+      public init(identifier: Swift.String? = nil) {
+        self.identifier = identifier
+      }
+
+      public enum CodingKeys: String, CodingKey {
+        case identifier
+      }
+    }
+
     /// - Remark: Generated from `#/components/schemas/Key`.
     public struct Key: Codable, Hashable, Sendable {
       /// - Remark: Generated from `#/components/schemas/Key/image`.
@@ -400,7 +589,7 @@ public enum Components {
       /// - Remark: Generated from `#/components/schemas/Key/iv`.
       public var iv: Swift.String
       /// - Remark: Generated from `#/components/schemas/Key/date`.
-      public var date: Swift.String
+      public var date: Foundation.Date
       /// Creates a new `Key`.
       ///
       /// - Parameters:
@@ -416,7 +605,7 @@ public enum Components {
         kbag: Swift.String,
         key: Swift.String,
         iv: Swift.String,
-        date: Swift.String
+        date: Foundation.Date
       ) {
         self.image = image
         self.filename = filename
@@ -3331,30 +3520,13 @@ public enum Operations {
         public var headers: Operations.identifierForModel.Output.Ok.Headers
         /// - Remark: Generated from `#/paths/model/{model}/GET/responses/200/content`.
         @frozen public enum Body: Sendable, Hashable {
-          /// - Remark: Generated from `#/paths/model/{model}/GET/responses/200/content/json`.
-          public struct jsonPayload: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/paths/model/{model}/GET/responses/200/content/json/identifier`.
-            public var identifier: Swift.String?
-            /// Creates a new `jsonPayload`.
-            ///
-            /// - Parameters:
-            ///   - identifier:
-            public init(identifier: Swift.String? = nil) {
-              self.identifier = identifier
-            }
-
-            public enum CodingKeys: String, CodingKey {
-              case identifier
-            }
-          }
-
           /// - Remark: Generated from `#/paths/model/{model}/GET/responses/200/content/application\/json`.
-          case json(Operations.identifierForModel.Output.Ok.Body.jsonPayload)
+          case json(Components.Schemas.Model)
           /// The associated value of the enum case if `self` is `.json`.
           ///
           /// - Throws: An error if `self` is not `.json`.
           /// - SeeAlso: `.json`.
-          public var json: Operations.identifierForModel.Output.Ok.Body.jsonPayload {
+          public var json: Components.Schemas.Model {
             get throws {
               switch self {
               case let .json(body):
@@ -3756,38 +3928,13 @@ public enum Operations {
         public var headers: Operations.otaDocumentationForDeviceAndVersion.Output.NotFound.Headers
         /// - Remark: Generated from `#/paths/ota/documentation/{device}/{version}/GET/responses/404/content`.
         @frozen public enum Body: Sendable, Hashable {
-          /// - Remark: Generated from `#/paths/ota/documentation/{device}/{version}/GET/responses/404/content/json`.
-          public struct jsonPayload: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/paths/ota/documentation/{device}/{version}/GET/responses/404/content/json/status`.
-            public var status: Swift.Double?
-            /// - Remark: Generated from `#/paths/ota/documentation/{device}/{version}/GET/responses/404/content/json/message`.
-            public var message: Swift.String?
-            /// Creates a new `jsonPayload`.
-            ///
-            /// - Parameters:
-            ///   - status:
-            ///   - message:
-            public init(
-              status: Swift.Double? = nil,
-              message: Swift.String? = nil
-            ) {
-              self.status = status
-              self.message = message
-            }
-
-            public enum CodingKeys: String, CodingKey {
-              case status
-              case message
-            }
-          }
-
           /// - Remark: Generated from `#/paths/ota/documentation/{device}/{version}/GET/responses/404/content/application\/json`.
-          case json(Operations.otaDocumentationForDeviceAndVersion.Output.NotFound.Body.jsonPayload)
+          case json(Components.Schemas.NotFoundDetails)
           /// The associated value of the enum case if `self` is `.json`.
           ///
           /// - Throws: An error if `self` is not `.json`.
           /// - SeeAlso: `.json`.
-          public var json: Operations.otaDocumentationForDeviceAndVersion.Output.NotFound.Body.jsonPayload {
+          public var json: Components.Schemas.NotFoundDetails {
             get throws {
               switch self {
               case let .json(body):
@@ -4190,98 +4337,13 @@ public enum Operations {
         public var headers: Operations.otaInformationForIdentifierAndBuild.Output.Ok.Headers
         /// - Remark: Generated from `#/paths/ota/{identifier}/{buildid}/GET/responses/200/content`.
         @frozen public enum Body: Sendable, Hashable {
-          /// - Remark: Generated from `#/paths/ota/{identifier}/{buildid}/GET/responses/200/content/json`.
-          public struct jsonPayload: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/paths/ota/{identifier}/{buildid}/GET/responses/200/content/json/identifier`.
-            public var identifier: Swift.String?
-            /// - Remark: Generated from `#/paths/ota/{identifier}/{buildid}/GET/responses/200/content/json/buildid`.
-            public var buildid: Swift.String?
-            /// - Remark: Generated from `#/paths/ota/{identifier}/{buildid}/GET/responses/200/content/json/version`.
-            public var version: Swift.String?
-            /// - Remark: Generated from `#/paths/ota/{identifier}/{buildid}/GET/responses/200/content/json/url`.
-            public var url: Swift.String?
-            /// - Remark: Generated from `#/paths/ota/{identifier}/{buildid}/GET/responses/200/content/json/filesize`.
-            public var filesize: Swift.Double?
-            /// - Remark: Generated from `#/paths/ota/{identifier}/{buildid}/GET/responses/200/content/json/prerequisitebuildid`.
-            public var prerequisitebuildid: Swift.String?
-            /// - Remark: Generated from `#/paths/ota/{identifier}/{buildid}/GET/responses/200/content/json/prerequisiteversion`.
-            public var prerequisiteversion: Swift.String?
-            /// - Remark: Generated from `#/paths/ota/{identifier}/{buildid}/GET/responses/200/content/json/releasetype`.
-            public var releasetype: Swift.String?
-            /// - Remark: Generated from `#/paths/ota/{identifier}/{buildid}/GET/responses/200/content/json/uploaddate`.
-            public var uploaddate: Swift.String?
-            /// - Remark: Generated from `#/paths/ota/{identifier}/{buildid}/GET/responses/200/content/json/releasedate`.
-            public var releasedate: Swift.String?
-            /// - Remark: Generated from `#/paths/ota/{identifier}/{buildid}/GET/responses/200/content/json/marketingversion`.
-            public var marketingversion: OpenAPIRuntime.OpenAPIValueContainer?
-            /// - Remark: Generated from `#/paths/ota/{identifier}/{buildid}/GET/responses/200/content/json/signed`.
-            public var signed: Swift.Bool?
-            /// Creates a new `jsonPayload`.
-            ///
-            /// - Parameters:
-            ///   - identifier:
-            ///   - buildid:
-            ///   - version:
-            ///   - url:
-            ///   - filesize:
-            ///   - prerequisitebuildid:
-            ///   - prerequisiteversion:
-            ///   - releasetype:
-            ///   - uploaddate:
-            ///   - releasedate:
-            ///   - marketingversion:
-            ///   - signed:
-            public init(
-              identifier: Swift.String? = nil,
-              buildid: Swift.String? = nil,
-              version: Swift.String? = nil,
-              url: Swift.String? = nil,
-              filesize: Swift.Double? = nil,
-              prerequisitebuildid: Swift.String? = nil,
-              prerequisiteversion: Swift.String? = nil,
-              releasetype: Swift.String? = nil,
-              uploaddate: Swift.String? = nil,
-              releasedate: Swift.String? = nil,
-              marketingversion: OpenAPIRuntime.OpenAPIValueContainer? = nil,
-              signed: Swift.Bool? = nil
-            ) {
-              self.identifier = identifier
-              self.buildid = buildid
-              self.version = version
-              self.url = url
-              self.filesize = filesize
-              self.prerequisitebuildid = prerequisitebuildid
-              self.prerequisiteversion = prerequisiteversion
-              self.releasetype = releasetype
-              self.uploaddate = uploaddate
-              self.releasedate = releasedate
-              self.marketingversion = marketingversion
-              self.signed = signed
-            }
-
-            public enum CodingKeys: String, CodingKey {
-              case identifier
-              case buildid
-              case version
-              case url
-              case filesize
-              case prerequisitebuildid
-              case prerequisiteversion
-              case releasetype
-              case uploaddate
-              case releasedate
-              case marketingversion
-              case signed
-            }
-          }
-
           /// - Remark: Generated from `#/paths/ota/{identifier}/{buildid}/GET/responses/200/content/application\/json`.
-          case json(Operations.otaInformationForIdentifierAndBuild.Output.Ok.Body.jsonPayload)
+          case json(Components.Schemas.OTA)
           /// The associated value of the enum case if `self` is `.json`.
           ///
           /// - Throws: An error if `self` is not `.json`.
           /// - SeeAlso: `.json`.
-          public var json: Operations.otaInformationForIdentifierAndBuild.Output.Ok.Body.jsonPayload {
+          public var json: Components.Schemas.OTA {
             get throws {
               switch self {
               case let .json(body):
@@ -4514,100 +4576,13 @@ public enum Operations {
         public var headers: Operations.otasForVersion.Output.Ok.Headers
         /// - Remark: Generated from `#/paths/ota/{version}/GET/responses/200/content`.
         @frozen public enum Body: Sendable, Hashable {
-          /// - Remark: Generated from `#/paths/ota/{version}/GET/responses/200/content/jsonPayload`.
-          public struct jsonPayloadPayload: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/paths/ota/{version}/GET/responses/200/content/jsonPayload/identifier`.
-            public var identifier: Swift.String
-            /// - Remark: Generated from `#/paths/ota/{version}/GET/responses/200/content/jsonPayload/buildid`.
-            public var buildid: Swift.String
-            /// - Remark: Generated from `#/paths/ota/{version}/GET/responses/200/content/jsonPayload/version`.
-            public var version: Swift.String
-            /// - Remark: Generated from `#/paths/ota/{version}/GET/responses/200/content/jsonPayload/url`.
-            public var url: Swift.String
-            /// - Remark: Generated from `#/paths/ota/{version}/GET/responses/200/content/jsonPayload/filesize`.
-            public var filesize: Swift.Double
-            /// - Remark: Generated from `#/paths/ota/{version}/GET/responses/200/content/jsonPayload/prerequisitebuildid`.
-            public var prerequisitebuildid: Swift.String
-            /// - Remark: Generated from `#/paths/ota/{version}/GET/responses/200/content/jsonPayload/prerequisiteversion`.
-            public var prerequisiteversion: Swift.String
-            /// - Remark: Generated from `#/paths/ota/{version}/GET/responses/200/content/jsonPayload/releasetype`.
-            public var releasetype: Swift.String
-            /// - Remark: Generated from `#/paths/ota/{version}/GET/responses/200/content/jsonPayload/uploaddate`.
-            public var uploaddate: Swift.String
-            /// - Remark: Generated from `#/paths/ota/{version}/GET/responses/200/content/jsonPayload/releasedate`.
-            public var releasedate: Swift.String
-            /// - Remark: Generated from `#/paths/ota/{version}/GET/responses/200/content/jsonPayload/marketingversion`.
-            public var marketingversion: OpenAPIRuntime.OpenAPIValueContainer?
-            /// - Remark: Generated from `#/paths/ota/{version}/GET/responses/200/content/jsonPayload/signed`.
-            public var signed: Swift.Bool
-            /// Creates a new `jsonPayloadPayload`.
-            ///
-            /// - Parameters:
-            ///   - identifier:
-            ///   - buildid:
-            ///   - version:
-            ///   - url:
-            ///   - filesize:
-            ///   - prerequisitebuildid:
-            ///   - prerequisiteversion:
-            ///   - releasetype:
-            ///   - uploaddate:
-            ///   - releasedate:
-            ///   - marketingversion:
-            ///   - signed:
-            public init(
-              identifier: Swift.String,
-              buildid: Swift.String,
-              version: Swift.String,
-              url: Swift.String,
-              filesize: Swift.Double,
-              prerequisitebuildid: Swift.String,
-              prerequisiteversion: Swift.String,
-              releasetype: Swift.String,
-              uploaddate: Swift.String,
-              releasedate: Swift.String,
-              marketingversion: OpenAPIRuntime.OpenAPIValueContainer? = nil,
-              signed: Swift.Bool
-            ) {
-              self.identifier = identifier
-              self.buildid = buildid
-              self.version = version
-              self.url = url
-              self.filesize = filesize
-              self.prerequisitebuildid = prerequisitebuildid
-              self.prerequisiteversion = prerequisiteversion
-              self.releasetype = releasetype
-              self.uploaddate = uploaddate
-              self.releasedate = releasedate
-              self.marketingversion = marketingversion
-              self.signed = signed
-            }
-
-            public enum CodingKeys: String, CodingKey {
-              case identifier
-              case buildid
-              case version
-              case url
-              case filesize
-              case prerequisitebuildid
-              case prerequisiteversion
-              case releasetype
-              case uploaddate
-              case releasedate
-              case marketingversion
-              case signed
-            }
-          }
-
-          /// - Remark: Generated from `#/paths/ota/{version}/GET/responses/200/content/json`.
-          public typealias jsonPayload = [Operations.otasForVersion.Output.Ok.Body.jsonPayloadPayload]
           /// - Remark: Generated from `#/paths/ota/{version}/GET/responses/200/content/application\/json`.
-          case json(Operations.otasForVersion.Output.Ok.Body.jsonPayload)
+          case json([OpenAPIRuntime.OpenAPIValueContainer])
           /// The associated value of the enum case if `self` is `.json`.
           ///
           /// - Throws: An error if `self` is not `.json`.
           /// - SeeAlso: `.json`.
-          public var json: Operations.otasForVersion.Output.Ok.Body.jsonPayload {
+          public var json: [OpenAPIRuntime.OpenAPIValueContainer] {
             get throws {
               switch self {
               case let .json(body):
@@ -4882,79 +4857,13 @@ public enum Operations {
         public var headers: Operations.releases.Output.Ok.Headers
         /// - Remark: Generated from `#/paths/releases/GET/responses/200/content`.
         @frozen public enum Body: Sendable, Hashable {
-          /// - Remark: Generated from `#/paths/releases/GET/responses/200/content/jsonPayload`.
-          public struct jsonPayloadPayload: Codable, Hashable, Sendable {
-            /// - Remark: Generated from `#/paths/releases/GET/responses/200/content/jsonPayload/date`.
-            public var date: Swift.String
-            /// - Remark: Generated from `#/paths/releases/GET/responses/200/content/jsonPayload/releasesPayload`.
-            public struct releasesPayloadPayload: Codable, Hashable, Sendable {
-              /// - Remark: Generated from `#/paths/releases/GET/responses/200/content/jsonPayload/releasesPayload/name`.
-              public var name: Swift.String
-              /// - Remark: Generated from `#/paths/releases/GET/responses/200/content/jsonPayload/releasesPayload/date`.
-              public var date: Swift.String
-              /// - Remark: Generated from `#/paths/releases/GET/responses/200/content/jsonPayload/releasesPayload/count`.
-              public var count: Swift.Double
-              /// - Remark: Generated from `#/paths/releases/GET/responses/200/content/jsonPayload/releasesPayload/type`.
-              public var _type: Swift.String
-              /// Creates a new `releasesPayloadPayload`.
-              ///
-              /// - Parameters:
-              ///   - name:
-              ///   - date:
-              ///   - count:
-              ///   - _type:
-              public init(
-                name: Swift.String,
-                date: Swift.String,
-                count: Swift.Double,
-                _type: Swift.String
-              ) {
-                self.name = name
-                self.date = date
-                self.count = count
-                self._type = _type
-              }
-
-              public enum CodingKeys: String, CodingKey {
-                case name
-                case date
-                case count
-                case _type = "type"
-              }
-            }
-
-            /// - Remark: Generated from `#/paths/releases/GET/responses/200/content/jsonPayload/releases`.
-            public typealias releasesPayload = [Operations.releases.Output.Ok.Body.jsonPayloadPayload.releasesPayloadPayload]
-            /// - Remark: Generated from `#/paths/releases/GET/responses/200/content/jsonPayload/releases`.
-            public var releases: Operations.releases.Output.Ok.Body.jsonPayloadPayload.releasesPayload
-            /// Creates a new `jsonPayloadPayload`.
-            ///
-            /// - Parameters:
-            ///   - date:
-            ///   - releases:
-            public init(
-              date: Swift.String,
-              releases: Operations.releases.Output.Ok.Body.jsonPayloadPayload.releasesPayload
-            ) {
-              self.date = date
-              self.releases = releases
-            }
-
-            public enum CodingKeys: String, CodingKey {
-              case date
-              case releases
-            }
-          }
-
-          /// - Remark: Generated from `#/paths/releases/GET/responses/200/content/json`.
-          public typealias jsonPayload = [Operations.releases.Output.Ok.Body.jsonPayloadPayload]
           /// - Remark: Generated from `#/paths/releases/GET/responses/200/content/application\/json`.
-          case json(Operations.releases.Output.Ok.Body.jsonPayload)
+          case json([OpenAPIRuntime.OpenAPIValueContainer])
           /// The associated value of the enum case if `self` is `.json`.
           ///
           /// - Throws: An error if `self` is not `.json`.
           /// - SeeAlso: `.json`.
-          public var json: Operations.releases.Output.Ok.Body.jsonPayload {
+          public var json: [OpenAPIRuntime.OpenAPIValueContainer] {
             get throws {
               switch self {
               case let .json(body):
