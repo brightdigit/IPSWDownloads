@@ -3,6 +3,21 @@ identifier_name:
   excluded:
     - id
     - ok
+    - iv
+    - iTunes
+    - Access_hyphen_Control_hyphen_Allow_hyphen_Methods
+    - Access_hyphen_Control_hyphen_Allow_hyphen_Origin
+    - Cache_hyphen_Control
+    - X_hyphen_Data_hyphen_Location
+    - application_x_hyphen_plist
+    - text_html_charset_utf_hyphen_8
+    - X_hyphen_Frame_hyphen_Options
+    - Expires
+    - Location
+type_name:
+  excluded:
+  - iTunes
+  - Ok
 excluded:
   - Tests
   - DerivedData
@@ -20,7 +35,7 @@ disabled_rules:
 custom_rules:
   payload_disallow: # 1
     name: "Payload Disallowed" # 2
-    regex: '\w+Payload' # 3
+    regex: '\\b(?!UndocumentedPayload\b)\w+Payload\b' # 3
     capture_group: 0 # 4
     message: "Do not use Payload for identifier." # 5
     severity: error # 6

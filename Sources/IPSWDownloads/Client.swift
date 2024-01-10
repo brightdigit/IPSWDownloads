@@ -1232,7 +1232,7 @@ public struct Client: APIProtocol {
           switch chosenContentType {
           case "application/json":
             body = try await converter.getResponseBodyAsJSON(
-              Operations.identifierForModel.Output.Ok.Body.jsonPayload.self,
+              Components.Schemas.Model.self,
               from: responseBody,
               transforming: { value in
                 .json(value)
@@ -1420,7 +1420,7 @@ public struct Client: APIProtocol {
           switch chosenContentType {
           case "application/json":
             body = try await converter.getResponseBodyAsJSON(
-              Operations.otaDocumentationForDeviceAndVersion.Output.NotFound.Body.jsonPayload.self,
+              Components.Schemas.NotFoundDetails.self,
               from: responseBody,
               transforming: { value in
                 .json(value)
@@ -1619,7 +1619,7 @@ public struct Client: APIProtocol {
           switch chosenContentType {
           case "application/json":
             body = try await converter.getResponseBodyAsJSON(
-              Operations.otaInformationForIdentifierAndBuild.Output.Ok.Body.jsonPayload.self,
+              Components.Schemas.OTA.self,
               from: responseBody,
               transforming: { value in
                 .json(value)
@@ -1732,7 +1732,7 @@ public struct Client: APIProtocol {
           switch chosenContentType {
           case "application/json":
             body = try await converter.getResponseBodyAsJSON(
-              Operations.otasForVersion.Output.Ok.Body.jsonPayload.self,
+              [OpenAPIRuntime.OpenAPIValueContainer].self,
               from: responseBody,
               transforming: { value in
                 .json(value)
@@ -1862,7 +1862,7 @@ public struct Client: APIProtocol {
           switch chosenContentType {
           case "application/json":
             body = try await converter.getResponseBodyAsJSON(
-              Operations.releases.Output.Ok.Body.jsonPayload.self,
+              [OpenAPIRuntime.OpenAPIValueContainer].self,
               from: responseBody,
               transforming: { value in
                 .json(value)

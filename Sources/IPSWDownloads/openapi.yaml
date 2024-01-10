@@ -4439,10 +4439,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  identifier:
-                    type: string
+                  $ref: '#/components/schemas/Model'
               examples:
                 example1:
                   value:
@@ -4577,12 +4574,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  status:
-                    type: number
-                  message:
-                    type: string
+                $ref: '#/components/schemas/NotFoundDetails'
               example:
                 status: 404
                 message: not found
@@ -4681,32 +4673,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  identifier:
-                    type: string
-                  buildid:
-                    type: string
-                  version:
-                    type: string
-                  url:
-                    type: string
-                  filesize:
-                    type: number
-                  prerequisitebuildid:
-                    type: string
-                  prerequisiteversion:
-                    type: string
-                  releasetype:
-                    type: string
-                  uploaddate:
-                    type: string
-                  releasedate:
-                    type: string
-                  marketingversion:
-                    nullable: true
-                  signed:
-                    type: boolean
+                $ref: '#/components/schemas/OTA'
               example:
                 identifier: iPhone3,3
                 buildid: 11D201
@@ -4833,45 +4800,8 @@ paths:
               schema:
                 type: array
                 items:
-                  type: object
-                  properties:
-                    identifier:
-                      type: string
-                    buildid:
-                      type: string
-                    version:
-                      type: string
-                    url:
-                      type: string
-                    filesize:
-                      type: number
-                    prerequisitebuildid:
-                      type: string
-                    prerequisiteversion:
-                      type: string
-                    releasetype:
-                      type: string
-                    uploaddate:
-                      type: string
-                    releasedate:
-                      type: string
-                    marketingversion:
-                      nullable: true
-                    signed:
-                      type: boolean
-                  required:
-                    - identifier
-                    - buildid
-                    - version
-                    - url
-                    - filesize
-                    - prerequisitebuildid
-                    - prerequisiteversion
-                    - releasetype
-                    - uploaddate
-                    - releasedate
-                    - marketingversion
-                    - signed
+                  schema:
+                    $ref: '#/components/schemas/OTA'
               examples:
                 example1:
                   value:
@@ -5390,31 +5320,8 @@ paths:
               schema:
                 type: array
                 items:
-                  type: object
-                  properties:
-                    date:
-                      type: string
-                    releases:
-                      type: array
-                      items:
-                        type: object
-                        properties:
-                          name:
-                            type: string
-                          date:
-                            type: string
-                          count:
-                            type: number
-                          type:
-                            type: string
-                        required:
-                          - name
-                          - date
-                          - count
-                          - type
-                  required:
-                    - date
-                    - releases
+                  schema:
+                    $ref: '#/components/schemas/ReleaseDate'
               example:
                 - date: '2021-03-04'
                   releases:
@@ -5651,6 +5558,91 @@ paths:
 
 components:
   schemas:
+    NotFoundDetails:
+      type: object
+      properties:
+        status:
+          type: number
+        message:
+          type: string
+    ReleaseDate:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+        releases:
+          type: array
+          items:
+            schema:
+              $ref: '#/components/schemas/ReleaseEntry'
+      required:
+        - date
+        - releases
+    ReleaseEntry:
+      type: object
+      properties:
+        name:
+          type: string
+        date:
+          type: string
+          format: date-time
+        count:
+          type: number
+        type:
+          type: string
+      required:
+        - name
+        - date
+        - count
+        - type
+    OTA:
+      type: object
+      properties:
+        identifier:
+          type: string
+        buildid:
+          type: string
+        version:
+          type: string
+        url:
+          type: string
+        filesize:
+          type: number
+        prerequisitebuildid:
+          type: string
+        prerequisiteversion:
+          type: string
+        releasetype:
+          type: string
+        uploaddate:
+          type: string
+          format: date-time
+        releasedate:
+          type: string
+          format: date-time
+        marketingversion:
+          nullable: true
+        signed:
+          type: boolean
+      required:
+        - identifier
+        - buildid
+        - version
+        - url
+        - filesize
+        - prerequisitebuildid
+        - prerequisiteversion
+        - releasetype
+        - uploaddate
+        - releasedate
+        - marketingversion
+        - signed
+    Model:
+      type: object
+      properties:
+        identifier:
+          type: string
     Key:
       type: object
       properties:
