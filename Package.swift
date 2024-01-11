@@ -23,10 +23,7 @@ let package = Package(
         .product(name: "OpenAPIRuntime", package: "swift-openapi-runtime"),
         .product(name: "OpenAPIURLSession", package: "swift-openapi-urlsession")
       ],
-      exclude: [
-        "openapi-generator-config.yaml",
-        "openapi.yaml"
-      ]
+      plugins: [.plugin(name: "OpenAPIGenerator", package: "swift-openapi-generator")]
     )
   ]
 )

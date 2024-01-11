@@ -5,17 +5,6 @@ packages:
   IPSWDownloads:
     path: .
 aggregateTargets:
-  Generate:
-    name: Generate Code
-    settings:
-      FORMAT_ONLY: true
-    buildScripts:
-      - path: Scripts/generate.sh
-        name: Generate Code
-        basedOnDependencyAnalysis: false
-      - path: Scripts/lint.sh
-        name: Lint
-        basedOnDependencyAnalysis: false
   Lint:
     buildScripts:
       - path: Scripts/lint.sh
