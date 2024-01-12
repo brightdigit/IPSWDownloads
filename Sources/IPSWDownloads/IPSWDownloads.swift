@@ -7,6 +7,11 @@
 import OpenAPIRuntime
 import Foundation
 
+enum FirmwareType : String {
+  case ipsw
+  case ota
+}
+
 /// A hand-written Swift API for the greeting service, one that doesn't leak any generated code.
 public struct IPSWDownloads {
   
@@ -28,6 +33,15 @@ public struct IPSWDownloads {
             )
         )
     }
+  
+  func firmwaresForDevice(withIdentifier identifier: String, type: FirmwareType) async throws {
+    let input = Operations.firmwaresForDevice.Input(
+      path: .init(identifier: identifier),
+      query: .init(_type: type.rawValue)
+    )
+    let firmwares = try await self.underlyingClient.firmwaresForDevice(input)
+    //self.underlyingClient.firmwaresForDevice(Operations.firmwaresForDevice.Input)
+  }
 //
 //    /// Fetches the customized greeting for the provided name.
 //    /// - Parameter name: The name for which to provide a greeting, or nil to get a default.
