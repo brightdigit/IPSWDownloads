@@ -5562,7 +5562,7 @@ components:
       type: object
       properties:
         status:
-          type: number
+          type: integer
         message:
           type: string
     ReleaseDate:
@@ -5588,7 +5588,7 @@ components:
           type: string
           format: date-time
         count:
-          type: number
+          type: integer
         type:
           type: string
       required:
@@ -5608,7 +5608,7 @@ components:
         url:
           type: string
         filesize:
-          type: number
+          type: integer
         prerequisitebuildid:
           type: string
         prerequisiteversion:
@@ -5728,9 +5728,9 @@ components:
         platform:
           type: string
         cpid:
-          type: number
+          type: integer
         bdid:
-          type: number
+          type: integer
       required:
         - boardconfig
         - platform
@@ -5761,7 +5761,7 @@ components:
         md5sum:
           type: string
         filesize:
-          type: number
+          type: integer
         url:
           type: string
           format: uri
@@ -5798,9 +5798,9 @@ components:
         platform:
           type: string
         cpid:
-          type: number
+          type: integer
         bdid:
-          type: number
+          type: integer
 tags:
   - name: Api
 
