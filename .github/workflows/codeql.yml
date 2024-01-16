@@ -70,7 +70,7 @@ jobs:
     #   modify them (or add more) to build your code if your project, please refer to the EXAMPLE below for guidance.
 
     - name: Build
-    - run: |
+      run: |
         echo "Run, Build Application"
         swift build
 
