@@ -117,5 +117,6 @@ excluded:
   - Tests
   - DerivedData
   - .build
+  - Sources/IPSWDownloads/Generated
 indentation_width:
   indentation_width: 2

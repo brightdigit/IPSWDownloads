@@ -1,4 +1,6 @@
 name: IPSWDownloads
+options:
+  preGenCommand: ./Scripts/generate.sh
 settings:
   LINT_MODE: ${LINT_MODE}
 packages:
