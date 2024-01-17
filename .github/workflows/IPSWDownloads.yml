@@ -4,9 +4,6 @@ on:
     branches-ignore:
       - '*WIP'
 
-env:
-  CODEQL_ENABLE_EXPERIMENTAL_FEATURES_SWIFT: true
-
 jobs:
   build-ubuntu:
     name: Build on Ubuntu
@@ -86,12 +83,12 @@ jobs:
             watchOSVersion: "10.2"
             watchName: "Apple Watch Series 9 (45mm)"
             iPhoneName: "iPhone 15 Pro"          
-          - runs-on: macos-13
+          - runs-on: macos-13-arm64
             xcode: "/Applications/Xcode_15.2.app"
             iOSVersion: "17.2"
             watchOSVersion: "10.2"
             watchName: "Apple Watch Ultra 2 (49mm)"
-            iPhoneName: "iPhone 15 Pro"
+            iPhoneName: "iPhone 15 Pro Max"
     steps:
       - uses: actions/checkout@v3
       - name: Cache swift package modules
