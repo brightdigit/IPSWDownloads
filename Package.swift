@@ -1,5 +1,5 @@
 // swift-tools-version: 5.9
-
+// swiftlint:disable explicit_acl explicit_top_level_acl
 import PackageDescription
 
 let package = Package(
@@ -20,6 +20,11 @@ let package = Package(
         .product(name: "OpenAPIRuntime", package: "swift-openapi-runtime"),
         .product(name: "OpenAPIURLSession", package: "swift-openapi-urlsession")
       ]
+    ),
+    .testTarget(
+      name: "IPSWDownloadsTests",
+      dependencies: ["IPSWDownloads"]
     )
   ]
 )
+// swiftlint:enable explicit_acl explicit_top_level_acl

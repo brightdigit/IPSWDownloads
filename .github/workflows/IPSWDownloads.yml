@@ -56,14 +56,15 @@ jobs:
         run: echo "$GITHUB_WORKSPACE/swift-${SWIFT_VER}-RELEASE-ubuntu${RELEASE_DOT}/usr/bin" >> $GITHUB_PATH
       - name: Build
         run: swift build
-      # - name: Run tests
-      #   run: swift test --enable-test-discovery --enable-code-coverage
-      # - name: Prepare Code Coverage
-      #   run: llvm-cov export -format="lcov" .build/x86_64-unknown-linux-gnu/debug/${{ env.PACKAGE_NAME }}PackageTests.xctest -instr-profile .build/debug/codecov/default.profdata > info.lcov
-      # - name: Upload to CodeCov.io
-      #   run: bash <(curl https://codecov.io/bash) -F spm -F ${RELEASE_NAME} -F ${SWIFT_VER}
-      #   env:
-      #     CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      - name: Run tests
+        run: swift test --enable-test-discovery --enable-code-coverage
+      - name: Prepare Code Coverage
+        run: llvm-cov export -format="lcov" .build/x86_64-unknown-linux-gnu/debug/${{ env.PACKAGE_NAME }}PackageTests.xctest -instr-profile .build/debug/codecov/default.profdata > info.lcov
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          flags: spm,${RELEASE_NAME},${SWIFT_VER} 
   build-macos:
     name: Build on macOS
     env:
@@ -131,13 +132,13 @@ jobs:
       - name: Perform CodeQL Analysis
         if: startsWith(matrix.xcode,'/Applications/Xcode_15.1')
         uses: github/codeql-action/analyze@v3
-      # - name: Run Swift Package tests
-      #   run: swift test -v --enable-code-coverage
-      # - uses: sersoft-gmbh/swift-coverage-action@v4
-      # - name: Upload SPM to CodeCov.io
-      #   run: bash <(curl https://codecov.io/bash) -F spm -F macOS -F ${XCODE_NAME}
-      #   env:
-      #     CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      - name: Run Swift Package tests
+        run: swift test -v --enable-code-coverage
+      - uses: sersoft-gmbh/swift-coverage-action@v4
+      - name: Upload SPM to CodeCov.io
+        run: bash <(curl https://codecov.io/bash) -F spm -F macOS -F ${XCODE_NAME}
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
       - name: Clean up spm build directory
         run: rm -rf .build
       - name: Lint
@@ -153,18 +154,19 @@ jobs:
       #       xcodebuild clean -scheme IPSWDownloads -destination 'generic/platform=iOS' | grep -q "CLEAN SUCCEEDED" && SUCCESS=true
       #       ATTEMPT=$(($ATTEMPT+1))
       #     done
-      # - name: Run iOS target tests
-      #   run: xcodebuild test -scheme IPSWDownloads -sdk iphonesimulator -destination 'platform=iOS Simulator,name=${{ matrix.iPhoneName }},OS=${{ matrix.iOSVersion }}' -enableCodeCoverage YES build test
-      # - uses: sersoft-gmbh/swift-coverage-action@v4
-      # - name: Upload iOS Coverage to CodeCov.io
-      #   run: bash <(curl https://codecov.io/bash) -F iOS -F iOS${{ matrix.iOSVersion }} -F macOS -F ${XCODE_NAME}
-      #   env:
-      #     CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}      
-      # - name: Run watchOS target tests
-      #   run: xcodebuild test -scheme IPSWDownloads -sdk watchsimulator -destination 'platform=watchOS Simulator,name=${{ matrix.watchName }},OS=${{ matrix.watchOSVersion }}' -enableCodeCoverage YES build test
-      # - uses: sersoft-gmbh/swift-coverage-action@v4
-      # - name: Upload watchOS Coverage to CodeCov.io
-      #   run: bash <(curl https://codecov.io/bash) -F watchOS -F watchOS${{ matrix.watchOSVersion }} -F macOS -F ${XCODE_NAME}
-      #   env:
-      #     CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}          
-      #     token: ${{ secrets.CODECOV_TOKEN }}
+      - name: Run iOS target tests
+        run: xcodebuild test -scheme IPSWDownloads -sdk iphonesimulator -destination 'platform=iOS Simulator,name=${{ matrix.iPhoneName }},OS=${{ matrix.iOSVersion }}' -enableCodeCoverage YES build test
+      - uses: sersoft-gmbh/swift-coverage-action@v4
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          flags: iOS,iOS${{ matrix.iOSVersion }},macOS,${XCODE_NAME}  
+      - name: Run watchOS target tests
+        run: xcodebuild test -scheme IPSWDownloads -sdk watchsimulator -destination 'platform=watchOS Simulator,name=${{ matrix.watchName }},OS=${{ matrix.watchOSVersion }}' -enableCodeCoverage YES build test
+      - uses: sersoft-gmbh/swift-coverage-action@v4
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          flags: watchOS,watchOS${{ matrix.watchOSVersion }},macOS,${XCODE_NAME}

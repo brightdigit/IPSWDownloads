@@ -21,7 +21,7 @@ public struct Board {
 }
 
 extension Board {
-  init(component: Components.Schemas.Board) {
+  internal init(component: Components.Schemas.Board) {
     self.init(
       boardconfig: component.boardconfig,
       platform: component.platform,

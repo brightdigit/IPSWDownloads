@@ -6,6 +6,7 @@
 //
 import Foundation
 
-enum RuntimeError: Error {
+internal enum RuntimeError: Error {
   case invalidURL(String)
+  case invalidVersion(String)
 }

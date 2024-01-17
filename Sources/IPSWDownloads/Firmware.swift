@@ -8,7 +8,7 @@ import Foundation
 
 public struct Firmware {
   public let identifier: String
-  public let version: String
+  public let version: OperatingSystemVersion
   public let buildid: String
   public let sha1sum: String
   public let md5sum: String
@@ -20,7 +20,7 @@ public struct Firmware {
 
   public init(
     identifier: String,
-    version: String,
+    version: OperatingSystemVersion,
     buildid: String,
     sha1sum: String,
     md5sum: String,
@@ -44,10 +44,10 @@ public struct Firmware {
 }
 
 extension Firmware {
-  init(component: Components.Schemas.Firmware) throws {
+  internal init(component: Components.Schemas.Firmware) throws {
     try self.init(
       identifier: component.identifier,
-      version: component.version,
+      version: OperatingSystemVersion(string: component.version),
       buildid: component.buildid,
       sha1sum: component.sha1sum,
       md5sum: component.md5sum,

@@ -8,6 +8,7 @@ import Foundation
 import OpenAPIRuntime
 
 public struct IPSWDownloads {
+  // swiftlint:disable:next force_try
   public static let serverURL = try! Servers.server1()
 
   /// The underlying generated client to make HTTP requests to GreetingService.
@@ -36,11 +37,11 @@ public struct IPSWDownloads {
     withIdentifier identifier: String,
     type: FirmwareType
   ) async throws -> Device {
-    let input = Operations.firmwaresForDevice.Input(
+    let input = Operations.getDevice.Input(
       path: .init(identifier: identifier),
       query: .init(_type: type.rawValue)
     )
-    let device = try await underlyingClient.firmwaresForDevice(input).ok.body.json
+    let device = try await underlyingClient.getDevice(input).ok.body.json
     return try Device(component: device)
   }
 }

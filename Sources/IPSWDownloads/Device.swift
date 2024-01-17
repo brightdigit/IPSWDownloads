@@ -21,7 +21,7 @@ public struct Device {
 }
 
 extension Device {
-  init(component: Components.Schemas.Device) throws {
+  internal init(component: Components.Schemas.Device) throws {
     try self.init(
       name: component.name,
       identifier: component.identifier,

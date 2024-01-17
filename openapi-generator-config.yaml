@@ -2,3 +2,6 @@ generate:
   - types
   - client
 accessModifier: internal
+filter:
+  operations:
+    - getDevice
