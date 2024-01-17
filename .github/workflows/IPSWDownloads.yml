@@ -79,12 +79,18 @@ jobs:
             iOSVersion: "17.0.1"
             watchOSVersion: "10.0"
             watchName: "Apple Watch Series 9 (41mm)"
-            iPhoneName: "iPhone 15 Pro"
+            iPhoneName: "iPhone 15"
           - runs-on: macos-13
             xcode: "/Applications/Xcode_15.1.app"
             iOSVersion: "17.2"
             watchOSVersion: "10.2"
-            watchName: "Apple Watch Ultra (49mm)"
+            watchName: "Apple Watch Series 9 (45mm)"
+            iPhoneName: "iPhone 15 Pro"          
+          - runs-on: macos-13
+            xcode: "/Applications/Xcode_15.2.app"
+            iOSVersion: "17.2"
+            watchOSVersion: "10.2"
+            watchName: "Apple Watch Ultra 2 (49mm)"
             iPhoneName: "iPhone 15 Pro Max"
     steps:
       - uses: actions/checkout@v3
@@ -101,7 +107,7 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
       - name: Cache mint
-        if: ${{ github.event_name == 'pull_request' && ( github.base_ref == 'main' || endsWith( github.ref_name , 'Prep') ) && matrix.xcode == '/Applications/Xcode_15.1.app' }}
+        if: ${{ github.event_name == 'pull_request' && ( github.base_ref == 'main' || endsWith( github.ref_name , 'Prep') ) && matrix.xcode == '/Applications/Xcode_15.2.app' }}
         id: cache-mint
         uses: actions/cache@v3
         env:
@@ -118,19 +124,19 @@ jobs:
       - name: Setup Xcode
         run: sudo xcode-select -s ${{ matrix.xcode }}/Contents/Developer
       - name: Install mint
-        if: ${{ github.event_name == 'pull_request' && ( github.base_ref == 'main' || endsWith( github.ref_name , 'Prep') ) && matrix.xcode == '/Applications/Xcode_15.1.app' }}
+        if: ${{ github.event_name == 'pull_request' && ( github.base_ref == 'main' || endsWith( github.ref_name , 'Prep') ) && matrix.xcode == '/Applications/Xcode_15.2.app' }}
         run: |
           brew update
           brew install mint
       - name: Initialize CodeQL
-        if: startsWith(matrix.xcode,'/Applications/Xcode_15.1')
+        if: startsWith(matrix.xcode,'/Applications/Xcode_15.2')
         uses: github/codeql-action/init@v3
         with:
           languages: ${{ matrix.language }}
       - name: Build
         run: swift build
       - name: Perform CodeQL Analysis
-        if: startsWith(matrix.xcode,'/Applications/Xcode_15.1')
+        if: startsWith(matrix.xcode,'/Applications/Xcode_15.2')
         uses: github/codeql-action/analyze@v3
       - name: Run Swift Package tests
         run: swift test -v --enable-code-coverage
@@ -143,7 +149,7 @@ jobs:
         run: rm -rf .build
       - name: Lint
         run: ./scripts/lint.sh
-        if: ${{ github.event_name == 'pull_request' && ( github.base_ref == 'main' || endsWith( github.ref_name , 'Prep') ) && matrix.xcode == '/Applications/Xcode_15.1.app' }}
+        if: ${{ github.event_name == 'pull_request' && ( github.base_ref == 'main' || endsWith( github.ref_name , 'Prep') ) && matrix.xcode == '/Applications/Xcode_15.2.app' }}
       # - name: Dump PIF
       #   if: startsWith(matrix.xcode,'/Applications/Xcode_14')
       #   run: |
