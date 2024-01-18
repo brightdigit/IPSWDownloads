@@ -1,8 +1,8 @@
 //
-//  RuntimeError.swift
+//  Data.swift
 //  IPSWDownloads
 //
-//  Created by RuntimeError.swift
+//  Created by Data.swift
 //  Copyright © 2024 BrightDigit.
 //
 //  Permission is hereby granted, free of charge, to any person
@@ -28,9 +28,21 @@
 //
 
 import Foundation
+extension Data {
+  internal init(hexString: String) throws {
+    var data = Data(capacity: hexString.count / 2)
 
-internal enum RuntimeError: Error {
-  case invalidURL(String)
-  case invalidVersion(String)
-  case invalidDataHexString(String)
+    var index = hexString.startIndex
+    while index < hexString.endIndex {
+      let byteString = hexString[index ..< hexString.index(index, offsetBy: 2)]
+      if let byte = UInt8(byteString, radix: 16) {
+        data.append(byte)
+      } else {
+        throw RuntimeError.invalidDataHexString(hexString)
+      }
+      index = hexString.index(index, offsetBy: 2)
+    }
+
+    self = data
+  }
 }

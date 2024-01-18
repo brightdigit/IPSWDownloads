@@ -39,7 +39,7 @@ final class IPSWDownloadsTest: XCTestCase {
     client = IPSWDownloads(transport: URLSessionTransport())
   }
 
-  func testExample() async throws {
+  func testDeviceWithIdentifier() async throws {
     let device = try await client.device(withIdentifier: "VirtualMac2,1", type: .ipsw)
     XCTAssertEqual(device.identifier, "VirtualMac2,1")
     XCTAssertGreaterThan(device.firmwares.count, 10)
