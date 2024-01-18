@@ -1,3 +1,6 @@
+<p align="center">
+    <img alt="IPSWDownloads" title="IPSWDownloads" src="ipsw_logo_200.png" height="200">
+</p>
 <h1 align="center"> IPSWDownloads </h1>
 
 Provides a Swift-friendly API into the API for [IPSW Downloads](http://ipsw.me). Used by [Bushel](https://getbushel.app).
