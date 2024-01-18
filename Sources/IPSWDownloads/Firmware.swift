@@ -41,10 +41,10 @@ public struct Firmware {
   public let buildid: String
 
   /// The SHA-1 checksum of the firmware.
-  public let sha1sum: Data
+  public let sha1sum: Data?
 
   /// The MD5 checksum of the firmware.
-  public let md5sum: Data
+  public let md5sum: Data?
 
   /// The size of the firmware file in bytes.
   public let filesize: Int
@@ -78,8 +78,8 @@ public struct Firmware {
     identifier: String,
     version: OperatingSystemVersion,
     buildid: String,
-    sha1sum: Data,
-    md5sum: Data,
+    sha1sum: Data?,
+    md5sum: Data?,
     filesize: Int,
     url: URL,
     releasedate: Date,
@@ -110,8 +110,8 @@ extension Firmware {
       identifier: component.identifier,
       version: OperatingSystemVersion(string: component.version),
       buildid: component.buildid,
-      sha1sum: Data(hexString: component.sha1sum),
-      md5sum: Data(hexString: component.md5sum),
+      sha1sum: Data(hexString: component.sha1sum, emptyIsNil: true),
+      md5sum: Data(hexString: component.md5sum, emptyIsNil: true),
       filesize: component.filesize,
       url: URL(validatingURL: component.url),
       releasedate: component.releasedate,

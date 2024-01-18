@@ -62,6 +62,8 @@ public class DataTests: XCTestCase {
 
     for value in values {
       _ = try Data(hexString: value)
+      try XCTAssertNotNil(Data(hexString: value, emptyIsNil: true))
+      try XCTAssertNotNil(Data(hexString: value, emptyIsNil: false))
     }
   }
 
@@ -79,5 +81,9 @@ public class DataTests: XCTestCase {
       }
       XCTAssertEqual(string, actual)
     }
+  }
+  
+  func testInitStringEmpty() throws {
+    try XCTAssertNil(Data(hexString: "", emptyIsNil: true))
   }
 }
