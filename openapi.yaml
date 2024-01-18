@@ -1636,7 +1636,7 @@ paths:
                 type: string
           content: {}
       summary: Get Firmwares For Device
-      operationId: firmwaresForDevice
+      operationId: getDevice
       description: >-
         GetFirmwaresForDevice returns Firmwares for a given Device. An optional
         "type" get parameter may be
@@ -1689,46 +1689,8 @@ paths:
               schema:
                 type: array
                 items:
-                  type: object
-                  properties:
-                    name:
-                      type: string
-                    identifier:
-                      type: string
-                    boards:
-                      type: array
-                      items:
-                        type: object
-                        properties:
-                          boardconfig:
-                            type: string
-                          platform:
-                            type: string
-                          cpid:
-                            type: number
-                          bdid:
-                            type: number
-                        required:
-                          - boardconfig
-                          - platform
-                          - cpid
-                          - bdid
-                    boardconfig:
-                      type: string
-                    platform:
-                      type: string
-                    cpid:
-                      type: number
-                    bdid:
-                      type: number
-                  required:
-                    - name
-                    - identifier
-                    - boards
-                    - boardconfig
-                    - platform
-                    - cpid
-                    - bdid
+                  schema:
+                    $ref: '#/components/schemas/Device'
               example:
                 - name: iPhone 2G
                   identifier: iPhone1,1
@@ -2316,77 +2278,10 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - type: array
-                    items:
-                      type: object
-                      properties:
-                        identifier:
-                          type: string
-                        version:
-                          type: string
-                        buildid:
-                          type: string
-                        sha1sum:
-                          type: string
-                        md5sum:
-                          type: string
-                        filesize:
-                          type: number
-                        url:
-                          type: string
-                        releasedate:
-                          nullable: true
-                        uploaddate:
-                          type: string
-                        signed:
-                          type: boolean
-                      required:
-                        - identifier
-                        - version
-                        - buildid
-                        - sha1sum
-                        - md5sum
-                        - filesize
-                        - url
-                        - releasedate
-                        - uploaddate
-                        - signed
-                  - type: array
-                    items:
-                      type: object
-                      properties:
-                        identifier:
-                          type: string
-                        version:
-                          type: string
-                        buildid:
-                          type: string
-                        sha1sum:
-                          type: string
-                        md5sum:
-                          type: string
-                        filesize:
-                          type: number
-                        url:
-                          type: string
-                        releasedate:
-                          type: string
-                        uploaddate:
-                          type: string
-                        signed:
-                          type: boolean
-                      required:
-                        - identifier
-                        - version
-                        - buildid
-                        - sha1sum
-                        - md5sum
-                        - filesize
-                        - url
-                        - releasedate
-                        - uploaddate
-                        - signed
+                type: array
+                items:
+                  schema:
+                    $ref: '#/components/schemas/Firmware'
               examples:
                 example1:
                   value:
@@ -3254,56 +3149,9 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - type: array
-                    items:
-                      type: object
-                      properties:
-                        platform:
-                          type: string
-                        version:
-                          type: string
-                        datefound:
-                          type: string
-                        url:
-                          type: string
-                        64biturl:
-                          type: string
-                        releasedate:
-                          type: string
-                        uploaddate:
-                          type: string
-                      required:
-                        - platform
-                        - version
-                        - datefound
-                        - url
-                        - 64biturl
-                        - releasedate
-                        - uploaddate
-                  - type: array
-                    items:
-                      type: object
-                      properties:
-                        platform:
-                          type: string
-                        version:
-                          type: string
-                        datefound:
-                          type: string
-                        url:
-                          type: string
-                        releasedate:
-                          type: string
-                        uploaddate:
-                          type: string
-                      required:
-                        - platform
-                        - version
-                        - datefound
-                        - url
-                        - releasedate
-                        - uploaddate
+                type: array
+                items:
+                  $ref: '#/components/schemas/iTunes'
               examples:
                 example1:
                   value:
@@ -3662,50 +3510,9 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - type: array
-                    items:
-                      type: object
-                      properties:
-                        identifier:
-                          type: string
-                        buildid:
-                          type: string
-                        codename:
-                          type: string
-                        baseband:
-                          type: string
-                        updateramdiskexists:
-                          type: boolean
-                        restoreramdiskexists:
-                          type: boolean
-                      required:
-                        - identifier
-                        - buildid
-                        - codename
-                        - baseband
-                        - updateramdiskexists
-                        - restoreramdiskexists
-                  - type: array
-                    items:
-                      type: object
-                      properties:
-                        identifier:
-                          type: string
-                        buildid:
-                          type: string
-                        codename:
-                          type: string
-                        updateramdiskexists:
-                          type: boolean
-                        restoreramdiskexists:
-                          type: boolean
-                      required:
-                        - identifier
-                        - buildid
-                        - codename
-                        - updateramdiskexists
-                        - restoreramdiskexists
+                type: array
+                items:
+                  $ref: '#/components/schemas/FirmwareKey'
               examples:
                 example1:
                   value:
@@ -4180,81 +3987,10 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - type: object
-                    properties:
-                      identifier:
-                        type: string
-                      buildid:
-                        type: string
-                      codename:
-                        type: string
-                      updateramdiskexists:
-                        type: boolean
-                      restoreramdiskexists:
-                        type: boolean
-                      keys:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            image:
-                              type: string
-                            filename:
-                              type: string
-                            kbag:
-                              type: string
-                            key:
-                              type: string
-                            iv:
-                              type: string
-                            date:
-                              type: string
-                          required:
-                            - image
-                            - filename
-                            - kbag
-                            - key
-                            - iv
-                            - date
-                  - type: object
-                    properties:
-                      identifier:
-                        type: string
-                      buildid:
-                        type: string
-                      codename:
-                        type: string
-                      baseband:
-                        type: string
-                      updateramdiskexists:
-                        type: boolean
-                      restoreramdiskexists:
-                        type: boolean
-                      keys:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            image:
-                              type: string
-                            filename:
-                              type: string
-                            kbag:
-                              type: string
-                            key:
-                              type: string
-                            iv:
-                              type: string
-                            date:
-                              type: string
-                          required:
-                            - image
-                            - filename
-                            - kbag
-                            - key
-                            - iv
-                            - date
+                type: array
+                items:
+                  schema:
+                    $ref: '#/components/schemas/FirmwareKey'
               examples:
                 example1:
                   value:
@@ -4703,10 +4439,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  identifier:
-                    type: string
+                  $ref: '#/components/schemas/Model'
               examples:
                 example1:
                   value:
@@ -4841,12 +4574,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  status:
-                    type: number
-                  message:
-                    type: string
+                $ref: '#/components/schemas/NotFoundDetails'
               example:
                 status: 404
                 message: not found
@@ -4945,32 +4673,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  identifier:
-                    type: string
-                  buildid:
-                    type: string
-                  version:
-                    type: string
-                  url:
-                    type: string
-                  filesize:
-                    type: number
-                  prerequisitebuildid:
-                    type: string
-                  prerequisiteversion:
-                    type: string
-                  releasetype:
-                    type: string
-                  uploaddate:
-                    type: string
-                  releasedate:
-                    type: string
-                  marketingversion:
-                    nullable: true
-                  signed:
-                    type: boolean
+                $ref: '#/components/schemas/OTA'
               example:
                 identifier: iPhone3,3
                 buildid: 11D201
@@ -5097,45 +4800,8 @@ paths:
               schema:
                 type: array
                 items:
-                  type: object
-                  properties:
-                    identifier:
-                      type: string
-                    buildid:
-                      type: string
-                    version:
-                      type: string
-                    url:
-                      type: string
-                    filesize:
-                      type: number
-                    prerequisitebuildid:
-                      type: string
-                    prerequisiteversion:
-                      type: string
-                    releasetype:
-                      type: string
-                    uploaddate:
-                      type: string
-                    releasedate:
-                      type: string
-                    marketingversion:
-                      nullable: true
-                    signed:
-                      type: boolean
-                  required:
-                    - identifier
-                    - buildid
-                    - version
-                    - url
-                    - filesize
-                    - prerequisitebuildid
-                    - prerequisiteversion
-                    - releasetype
-                    - uploaddate
-                    - releasedate
-                    - marketingversion
-                    - signed
+                  schema:
+                    $ref: '#/components/schemas/OTA'
               examples:
                 example1:
                   value:
@@ -5654,31 +5320,8 @@ paths:
               schema:
                 type: array
                 items:
-                  type: object
-                  properties:
-                    date:
-                      type: string
-                    releases:
-                      type: array
-                      items:
-                        type: object
-                        properties:
-                          name:
-                            type: string
-                          date:
-                            type: string
-                          count:
-                            type: number
-                          type:
-                            type: string
-                        required:
-                          - name
-                          - date
-                          - count
-                          - type
-                  required:
-                    - date
-                    - releases
+                  schema:
+                    $ref: '#/components/schemas/ReleaseDate'
               example:
                 - date: '2021-03-04'
                   releases:
@@ -5915,8 +5558,197 @@ paths:
 
 components:
   schemas:
+    NotFoundDetails:
+      type: object
+      properties:
+        status:
+          type: integer
+        message:
+          type: string
+    ReleaseDate:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+        releases:
+          type: array
+          items:
+            schema:
+              $ref: '#/components/schemas/ReleaseEntry'
+      required:
+        - date
+        - releases
+    ReleaseEntry:
+      type: object
+      properties:
+        name:
+          type: string
+        date:
+          type: string
+          format: date-time
+        count:
+          type: integer
+        type:
+          type: string
+      required:
+        - name
+        - date
+        - count
+        - type
+    OTA:
+      type: object
+      properties:
+        identifier:
+          type: string
+        buildid:
+          type: string
+        version:
+          type: string
+        url:
+          type: string
+        filesize:
+          type: integer
+        prerequisitebuildid:
+          type: string
+        prerequisiteversion:
+          type: string
+        releasetype:
+          type: string
+        uploaddate:
+          type: string
+          format: date-time
+        releasedate:
+          type: string
+          format: date-time
+        marketingversion:
+          nullable: true
+        signed:
+          type: boolean
+      required:
+        - identifier
+        - buildid
+        - version
+        - url
+        - filesize
+        - prerequisitebuildid
+        - prerequisiteversion
+        - releasetype
+        - uploaddate
+        - releasedate
+        - marketingversion
+        - signed
+    Model:
+      type: object
+      properties:
+        identifier:
+          type: string
+    Key:
+      type: object
+      properties:
+        image:
+          type: string
+        filename:
+          type: string
+        kbag:
+          type: string
+        key:
+          type: string
+        iv:
+          type: string
+        date:
+          type: string
+          format: date-time
+      required:
+        - image
+        - filename
+        - kbag
+        - key
+        - iv
+        - date
+    FirmwareKey:
+      type: object
+      properties:
+        identifier:
+          type: string
+        buildid:
+          type: string
+        codename:
+          type: string
+        baseband:
+          type: string
+        updateramdiskexists:
+          type: boolean
+        restoreramdiskexists:
+          type: boolean
+        keys:
+          type: array
+          items:
+            $ref: '#/components/schemas/Key'
+      required:
+        - identifier
+        - buildid
+        - codename
+        - updateramdiskexists
+        - restoreramdiskexists
+    iTunes:
+      type: object
+      properties:
+        platform:
+          type: string
+        version:
+          type: string
+        datefound:
+          type: string
+          format: date-time
+        url:
+          type: string
+          format: uri
+        64biturl:
+          type: string
+          format: uri
+        releasedate:
+          type: string
+          format: date-time
+        uploaddate:
+          type: string
+          format: date-time
+      required:
+        - platform
+        - version
+        - datefound
+        - url
+        - releasedate
+        - uploaddate
+    Board:
+      type: object
+      properties:
+        boardconfig:
+          type: string
+        platform:
+          type: string
+        cpid:
+          type: integer
+        bdid:
+          type: integer
+      required:
+        - boardconfig
+        - platform
+        - cpid
+        - bdid
     Firmware:
       type: object
+      required:
+        - identifier
+        - version
+        - buildid
+        - sha1sum
+        - md5sum
+        - filesize
+        - url
+        - releasedate
+        - uploaddate
+        - signed
       properties:
         identifier:
           type: string
@@ -5929,17 +5761,25 @@ components:
         md5sum:
           type: string
         filesize:
-          type: number
+          type: integer
         url:
           type: string
+          format: uri
         releasedate:
-          nullable: true
+          type: string
+          format: date-time
         uploaddate:
           type: string
+          format: date-time
         signed:
           type: boolean
     Device:
       type: object
+      required:
+        - name
+        - identifier
+        - firmwares
+        - boards
       properties:
         name:
           type: string
@@ -5948,65 +5788,19 @@ components:
         firmwares:
           type: array
           items:
-            type: object
-            properties:
-              identifier:
-                type: string
-              version:
-                type: string
-              buildid:
-                type: string
-              sha1sum:
-                type: string
-              md5sum:
-                type: string
-              filesize:
-                type: number
-              url:
-                type: string
-              releasedate:
-                type: string
-              uploaddate:
-                type: string
-              signed:
-                type: boolean
-            required:
-              - identifier
-              - version
-              - buildid
-              - sha1sum
-              - md5sum
-              - filesize
-              - url
-              - releasedate
-              - uploaddate
-              - signed
+            $ref: '#/components/schemas/Firmware'
         boards:
           type: array
           items:
-            type: object
-            properties:
-              boardconfig:
-                type: string
-              platform:
-                type: string
-              cpid:
-                type: number
-              bdid:
-                type: number
-            required:
-              - boardconfig
-              - platform
-              - cpid
-              - bdid
+            $ref: '#/components/schemas/Board'
         boardconfig:
           type: string
         platform:
           type: string
         cpid:
-          type: number
+          type: integer
         bdid:
-          type: number
+          type: integer
 tags:
   - name: Api
 
