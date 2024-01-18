@@ -6,7 +6,10 @@
 //
 import Foundation
 
+/// Type of Firmware file.
 public enum FirmwareType: String {
+  /// IPSW File
   case ipsw
+  /// OTA Firmware
   case ota
 }
