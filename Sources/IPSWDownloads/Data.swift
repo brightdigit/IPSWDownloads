@@ -45,12 +45,12 @@ extension Data {
 
     self = data
   }
-  
+
   internal init?(hexString: String, emptyIsNil: Bool) throws {
     if emptyIsNil, hexString.isEmpty {
       return nil
     }
-    
+
     try self.init(hexString: hexString)
   }
 }
