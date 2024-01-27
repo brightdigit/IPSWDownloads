@@ -17,10 +17,10 @@ jobs:
         runs-on: [ubuntu-20.04, ubuntu-22.04]
         swift-version: [5.9]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Cache swift package modules
         id: cache-spm-linux
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         env:
           cache-name: SPM
         with:
@@ -37,7 +37,7 @@ jobs:
         run: echo "RELEASE_NAME=$(lsb_release -sc)"  >> $GITHUB_ENV
       - name: Cache swift
         id: cache-swift-linux
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         env:
           cache-name: swift
         with:
@@ -90,10 +90,10 @@ jobs:
             watchName: "Apple Watch Ultra 2 (49mm)"
             iPhoneName: "iPhone 15 Pro Max"
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Cache swift package modules
         id: cache-spm-macos
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         env:
           cache-name: cache-spm
         with:
@@ -106,7 +106,7 @@ jobs:
       - name: Cache mint
         if: ${{ github.event_name == 'pull_request' && ( github.base_ref == 'main' || endsWith( github.ref_name , 'Prep') ) && matrix.xcode == '/Applications/Xcode_15.2.app' }}
         id: cache-mint
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         env:
           cache-name: cache-mint
         with:
