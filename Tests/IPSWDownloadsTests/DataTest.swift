@@ -1,8 +1,8 @@
 //
-//  OperatingSystemVersionTest.swift
+//  DataTest.swift
 //  IPSWDownloads
 //
-//  Created by OperatingSystemVersionTest.swift
+//  Created by DataTest.swift
 //  Copyright © 2024 BrightDigit.
 //
 //  Permission is hereby granted, free of charge, to any person
@@ -27,49 +27,43 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
+import Foundation
 @testable import IPSWDownloads
 import XCTest
 
-extension OperatingSystemVersion: Equatable {
-  public static func == (lhs: OperatingSystemVersion, rhs: OperatingSystemVersion) -> Bool {
-    lhs.majorVersion == rhs.majorVersion &&
-      lhs.minorVersion == rhs.minorVersion &&
-      lhs.patchVersion == rhs.patchVersion
-  }
+extension String {
+  static let validHexCharacters = "0123456789abcdefABCDEF"
 
-  static func random() -> OperatingSystemVersion {
-    .init(
-      majorVersion: .random(in: 1 ... 25),
-      minorVersion: .random(in: 0 ... 25),
-      patchVersion: Bool.random() ? .random(in: 1 ... 25) : 0
-    )
-  }
+  static func random(ofLength length: Int, validCharacters: String) -> String {
+    guard !validCharacters.isEmpty else {
+      return ""
+    }
 
-  func string(trimZeroPatch: Bool) -> String {
-    let values: [Int?] = [
-      majorVersion,
-      minorVersion,
-      (!trimZeroPatch || patchVersion > 0) ? patchVersion : nil
-    ]
-    return values.compactMap {
-      $0?.description
-    }.joined(separator: ".")
-  }
+    var randomString = ""
 
-  func parsed(trimZeroPatch: Bool) throws -> OperatingSystemVersion {
-    try .init(string: string(trimZeroPatch: trimZeroPatch))
+    for _ in 0 ..< length {
+      let randomIndex = Int.random(in: 0 ..< validCharacters.count)
+      let character = validCharacters[validCharacters.index(validCharacters.startIndex, offsetBy: randomIndex)]
+      randomString.append(character)
+    }
+
+    return randomString
   }
 }
 
-public class OperatingSystemVersionTests: XCTestCase {
+public class DataTests: XCTestCase {
   func testInitStringValid() throws {
     let validCount = Int.random(in: 20 ... 50)
-    let values: [OperatingSystemVersion] = (0 ..< validCount).map { _ in
-      .random()
+    let values: [String] = (0 ..< validCount).map { _ in
+      Int.random(in: 5 ... 25)
+    }.map { length in
+      .random(ofLength: length * 2, validCharacters: String.validHexCharacters)
     }
+
     for value in values {
-      try XCTAssertEqual(value, value.parsed(trimZeroPatch: false))
-      try XCTAssertEqual(value, value.parsed(trimZeroPatch: true))
+      _ = try Data(hexString: value)
+      try XCTAssertNotNil(Data(hexString: value, emptyIsNil: true))
+      try XCTAssertNotNil(Data(hexString: value, emptyIsNil: false))
     }
   }
 
@@ -81,11 +75,15 @@ public class OperatingSystemVersionTests: XCTestCase {
     for string in strings {
       var actual: String?
       do {
-        _ = try OperatingSystemVersion(string: string)
-      } catch let RuntimeError.invalidVersion(value) {
+        _ = try Data(hexString: string)
+      } catch let RuntimeError.invalidDataHexString(value) {
         actual = value
       }
       XCTAssertEqual(string, actual)
     }
+  }
+  
+  func testInitStringEmpty() throws {
+    try XCTAssertNil(Data(hexString: "", emptyIsNil: true))
   }
 }

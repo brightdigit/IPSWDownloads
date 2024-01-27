@@ -15,7 +15,7 @@ Provides a Swift-friendly API into the API for [IPSW Downloads](http://ipsw.me).
 
 [![Codecov](https://img.shields.io/codecov/c/github/brightdigit/IPSWDownloads)](https://codecov.io/gh/brightdigit/IPSWDownloads)
 [![CodeFactor](https://www.codefactor.io/repository/github/brightdigit/IPSWDownloads/badge)](https://www.codefactor.io/repository/github/brightdigit/IPSWDownloads)
-[![codebeat badge](https://codebeat.co/badges/a891b07c-4cdb-42cf-a97c-bfae45b378d6)](https://codebeat.co/projects/github-com-brightdigit-IPSWDownloads-main)
+[![codebeat badge](https://codebeat.co/badges/a891b07c-4cdb-42cf-a97c-bfae45b378d6)](https://codebeat.co/projects/github-com-brightdigit-ipswdownloads-main)
 [![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/brightdigit/IPSWDownloads)](https://codeclimate.com/github/brightdigit/IPSWDownloads)
 [![Code Climate technical debt](https://img.shields.io/codeclimate/tech-debt/brightdigit/IPSWDownloads?label=debt)](https://codeclimate.com/github/brightdigit/IPSWDownloads)
 [![Code Climate issues](https://img.shields.io/codeclimate/issues/brightdigit/IPSWDownloads)](https://codeclimate.com/github/brightdigit/IPSWDownloads)

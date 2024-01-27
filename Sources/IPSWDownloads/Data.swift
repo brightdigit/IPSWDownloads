@@ -1,8 +1,8 @@
 //
-//  OperatingSystemVersion.swift
+//  Data.swift
 //  IPSWDownloads
 //
-//  Created by OperatingSystemVersion.swift
+//  Created by Data.swift
 //  Copyright © 2024 BrightDigit.
 //
 //  Permission is hereby granted, free of charge, to any person
@@ -28,19 +28,29 @@
 //
 
 import Foundation
+extension Data {
+  internal init(hexString: String) throws {
+    var data = Data(capacity: hexString.count / 2)
 
-extension OperatingSystemVersion {
-  internal init(string: String) throws {
-    let components = string.components(separatedBy: ".").compactMap(Int.init)
-
-    guard components.count == 2 || components.count == 3 else {
-      throw RuntimeError.invalidVersion(string)
+    var index = hexString.startIndex
+    while index < hexString.endIndex {
+      let byteString = hexString[index ..< hexString.index(index, offsetBy: 2)]
+      if let byte = UInt8(byteString, radix: 16) {
+        data.append(byte)
+      } else {
+        throw RuntimeError.invalidDataHexString(hexString)
+      }
+      index = hexString.index(index, offsetBy: 2)
     }
 
-    self.init(
-      majorVersion: components[0],
-      minorVersion: components[1],
-      patchVersion: components.count == 3 ? components[2] : 0
-    )
+    self = data
+  }
+
+  internal init?(hexString: String, emptyIsNil: Bool) throws {
+    if emptyIsNil, hexString.isEmpty {
+      return nil
+    }
+
+    try self.init(hexString: hexString)
   }
 }
