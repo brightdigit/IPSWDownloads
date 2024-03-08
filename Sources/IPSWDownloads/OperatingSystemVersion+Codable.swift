@@ -1,5 +1,5 @@
 //
-//  OperatingSystemVersion.swift
+//  OperatingSystemVersion+Codable.swift
 //  IPSWDownloads
 //
 //  Created by Leo Dion.
@@ -31,9 +31,6 @@ import Foundation
 
 extension OperatingSystemVersion:
   Codable,
-  Hashable,
-  Equatable,
-  Comparable,
   CustomDebugStringConvertible,
   CustomStringConvertible {
   public enum CodingKeys: String, CodingKey {
@@ -53,11 +50,11 @@ extension OperatingSystemVersion:
   }
 
   public var description: String {
-    [majorVersion, minorVersion, patchVersion].map(String.init).joined(separator: ".")
+    string()
   }
 
   public init(string: String) throws {
-    let components = string.components(separatedBy: ".").compactMap(Int.init)
+    let components = Self.componentsFrom(string)
 
     guard components.count == 2 || components.count == 3 else {
       throw RuntimeError.invalidVersion(string)
@@ -133,30 +130,8 @@ extension OperatingSystemVersion:
     try? decoder.singleValueContainer()
   }
 
-  public static func == (
-    lhs: OperatingSystemVersion,
-    rhs: OperatingSystemVersion
-  ) -> Bool {
-    lhs.majorVersion == rhs.majorVersion &&
-      lhs.minorVersion == rhs.minorVersion &&
-      lhs.patchVersion == rhs.patchVersion
-  }
-
   private static func componentsFrom(_ string: String) -> [Int] {
     string.components(separatedBy: ".").compactMap(Int.init)
-  }
-
-  public static func < (
-    lhs: OperatingSystemVersion,
-    rhs: OperatingSystemVersion
-  ) -> Bool {
-    guard lhs.majorVersion == rhs.majorVersion else {
-      return lhs.majorVersion < rhs.majorVersion
-    }
-    guard lhs.minorVersion == rhs.minorVersion else {
-      return lhs.minorVersion < rhs.minorVersion
-    }
-    return lhs.patchVersion < rhs.patchVersion
   }
 
   public func encode(to encoder: any Encoder) throws {
@@ -174,15 +149,20 @@ extension OperatingSystemVersion:
     }
   }
 
-  public func hash(into hasher: inout Hasher) {
-    majorVersion.hash(into: &hasher)
-    minorVersion.hash(into: &hasher)
-    patchVersion.hash(into: &hasher)
+  internal func string(trimZeroPatch: Bool = false) -> String {
+    let values: [Int?] = [
+      majorVersion,
+      minorVersion,
+      (!trimZeroPatch || patchVersion > 0) ? patchVersion : nil
+    ]
+    return values.compactMap {
+      $0?.description
+    }
+    .joined(separator: ".")
   }
 
   private func encodeAsString(to encoder: any Encoder) throws {
     var container = encoder.singleValueContainer()
-
     try container.encode(description)
   }
 

@@ -38,21 +38,6 @@ extension OperatingSystemVersion {
       patchVersion: Bool.random() ? .random(in: 1 ... 25) : 0
     )
   }
-
-  func string(trimZeroPatch: Bool) -> String {
-    let values: [Int?] = [
-      majorVersion,
-      minorVersion,
-      (!trimZeroPatch || patchVersion > 0) ? patchVersion : nil
-    ]
-    return values.compactMap {
-      $0?.description
-    }.joined(separator: ".")
-  }
-
-  func parsed(trimZeroPatch: Bool) throws -> OperatingSystemVersion {
-    try .init(string: string(trimZeroPatch: trimZeroPatch))
-  }
 }
 
 public class OperatingSystemVersionTests: XCTestCase {
@@ -62,8 +47,80 @@ public class OperatingSystemVersionTests: XCTestCase {
       .random()
     }
     for value in values {
-      try XCTAssertEqual(value, value.parsed(trimZeroPatch: false))
-      try XCTAssertEqual(value, value.parsed(trimZeroPatch: true))
+      try XCTAssertEqual(value,
+                         .init(string:
+                           value.description))
+      try XCTAssertEqual(value,
+                         .init(string:
+                           value.string(trimZeroPatch: false)))
+      try XCTAssertEqual(value,
+                         .init(string: value.string(trimZeroPatch: true)))
+    }
+  }
+
+  func testInitIntComponents() throws {
+    let validCount = Int.random(in: 20 ... 50)
+    let values: [OperatingSystemVersion] = (0 ..< validCount).map { _ in
+      .random()
+    }
+
+    for value in values {
+      try XCTAssertEqual(
+        .init(components: [value.majorVersion, value.minorVersion, value.patchVersion]), value
+      )
+      guard value.patchVersion == 0 else {
+        continue
+      }
+
+      try XCTAssertEqual(
+        .init(components: [value.majorVersion, value.minorVersion]), value
+      )
+    }
+  }
+
+  func testCompare() throws {
+    let validCount = Int.random(in: 20 ... 50)
+    let values: [OperatingSystemVersion] = (0 ..< validCount).map { _ in
+      .random()
+    }
+
+    for value in values {
+      let greaterThanMajor = OperatingSystemVersion(
+        majorVersion: value.majorVersion + 1,
+        minorVersion: value.minorVersion,
+        patchVersion: value.patchVersion
+      )
+      let greaterThanMinor = OperatingSystemVersion(
+        majorVersion: value.majorVersion,
+        minorVersion: value.minorVersion + 1,
+        patchVersion: value.patchVersion
+      )
+      let greaterThanPatch = OperatingSystemVersion(
+        majorVersion: value.majorVersion,
+        minorVersion: value.minorVersion,
+        patchVersion: value.patchVersion + 1
+      )
+      let lessThanMajor = OperatingSystemVersion(
+        majorVersion: value.majorVersion - 1,
+        minorVersion: value.minorVersion,
+        patchVersion: value.patchVersion
+      )
+
+      XCTAssertGreaterThan(greaterThanMajor, value)
+      XCTAssertGreaterThan(greaterThanMinor, value)
+      XCTAssertGreaterThan(greaterThanPatch, value)
+      XCTAssertGreaterThan(value, lessThanMajor)
+
+//      let lessThanMinor = OperatingSystemVersion(
+//        majorVersion: value.majorVersion,
+//        minorVersion: value.minorVersion - 1,
+//        patchVersion: value.patchVersion
+//      )
+//      let lessThanPatch = OperatingSystemVersion(
+//        majorVersion: value.majorVersion,
+//        minorVersion: value.minorVersion,
+//        patchVersion: value.patchVersion - 1
+//      )
     }
   }
 
