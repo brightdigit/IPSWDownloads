@@ -2,7 +2,7 @@
 //  RuntimeError.swift
 //  IPSWDownloads
 //
-//  Created by RuntimeError.swift
+//  Created by Leo Dion.
 //  Copyright © 2024 BrightDigit.
 //
 //  Permission is hereby granted, free of charge, to any person
@@ -29,7 +29,7 @@
 
 import Foundation
 
-internal enum RuntimeError: Error {
+internal enum RuntimeError: Error, Sendable {
   case invalidURL(String)
   case invalidVersion(String)
   case invalidDataHexString(String)

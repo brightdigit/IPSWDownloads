@@ -2,7 +2,7 @@
 //  IPSWDownloads.swift
 //  IPSWDownloads
 //
-//  Created by IPSWDownloads.swift
+//  Created by Leo Dion.
 //  Copyright © 2024 BrightDigit.
 //
 //  Permission is hereby granted, free of charge, to any person
@@ -32,7 +32,7 @@ import OpenAPIRuntime
 
 /// Client for downloading current and previous versions
 /// of Apple's iOS Firmware, iTunes and OTA updates.
-public struct IPSWDownloads {
+public struct IPSWDownloads: Sendable {
   // swiftlint:disable:next force_try
   private static let serverURL = try! Servers.server1()
 

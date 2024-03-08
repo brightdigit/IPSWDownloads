@@ -2,7 +2,7 @@
 //  Board.swift
 //  IPSWDownloads
 //
-//  Created by Board.swift
+//  Created by Leo Dion.
 //  Copyright © 2024 BrightDigit.
 //
 //  Permission is hereby granted, free of charge, to any person
@@ -30,7 +30,7 @@
 import Foundation
 
 /// A struct representing a board with configuration details.
-public struct Board {
+public struct Board: Sendable, Codable, Hashable, Equatable {
   /// The configuration of the board.
   public let boardconfig: String
 
