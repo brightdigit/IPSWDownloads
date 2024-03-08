@@ -33,11 +33,10 @@ $MINT_CMD bootstrap -m Mintfile
 
 if [ -z "$CI" ]; then
 	$MINT_RUN swiftformat .
-	$MINT_RUN swiftlint autocorrect
+	$MINT_RUN swiftlint --autocorrect
 fi
 
 if [ -z "$FORMAT_ONLY"]; then
-	$MINT_RUN periphery scan
 	$MINT_RUN swiftformat --lint $SWIFTFORMAT_OPTIONS .
 	$MINT_RUN swiftlint lint $SWIFTLINT_OPTIONS
 fi
