@@ -30,13 +30,7 @@
 @testable import IPSWDownloads
 import XCTest
 
-extension OperatingSystemVersion: Equatable {
-  public static func == (lhs: OperatingSystemVersion, rhs: OperatingSystemVersion) -> Bool {
-    lhs.majorVersion == rhs.majorVersion &&
-      lhs.minorVersion == rhs.minorVersion &&
-      lhs.patchVersion == rhs.patchVersion
-  }
-
+extension OperatingSystemVersion {
   static func random() -> OperatingSystemVersion {
     .init(
       majorVersion: .random(in: 1 ... 25),
