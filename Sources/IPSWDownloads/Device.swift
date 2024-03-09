@@ -2,7 +2,7 @@
 //  Device.swift
 //  IPSWDownloads
 //
-//  Created by Device.swift
+//  Created by Leo Dion.
 //  Copyright © 2024 BrightDigit.
 //
 //  Permission is hereby granted, free of charge, to any person
@@ -30,7 +30,7 @@
 import Foundation
 
 /// A struct representing an Apple device along with its firmware and supported boards.
-public struct Device {
+public struct Device: Sendable, Codable, Hashable, Equatable {
   /// The name of the Apple device.
   public let name: String
 

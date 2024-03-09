@@ -2,7 +2,7 @@
 //  FirmwareType.swift
 //  IPSWDownloads
 //
-//  Created by FirmwareType.swift
+//  Created by Leo Dion.
 //  Copyright © 2024 BrightDigit.
 //
 //  Permission is hereby granted, free of charge, to any person
@@ -30,7 +30,7 @@
 import Foundation
 
 /// Type of Firmware file.
-public enum FirmwareType: String {
+public enum FirmwareType: String, Sendable, Codable, Hashable, Equatable {
   /// IPSW File
   case ipsw
   /// OTA Firmware

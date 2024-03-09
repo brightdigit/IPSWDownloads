@@ -2,7 +2,7 @@
 //  Firmware.swift
 //  IPSWDownloads
 //
-//  Created by Firmware.swift
+//  Created by Leo Dion.
 //  Copyright © 2024 BrightDigit.
 //
 //  Permission is hereby granted, free of charge, to any person
@@ -30,7 +30,7 @@
 import Foundation
 
 /// A struct representing firmware details of a device.
-public struct Firmware {
+public struct Firmware: Sendable, Codable, Hashable, Equatable {
   /// The unique identifier of the firmware.
   public let identifier: String
 

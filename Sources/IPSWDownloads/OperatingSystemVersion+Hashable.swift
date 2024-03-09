@@ -1,8 +1,8 @@
 //
-//  OperatingSystemVersion.swift
+//  OperatingSystemVersion+Hashable.swift
 //  IPSWDownloads
 //
-//  Created by OperatingSystemVersion.swift
+//  Created by Leo Dion.
 //  Copyright © 2024 BrightDigit.
 //
 //  Permission is hereby granted, free of charge, to any person
@@ -29,18 +29,35 @@
 
 import Foundation
 
-extension OperatingSystemVersion {
-  internal init(string: String) throws {
-    let components = string.components(separatedBy: ".").compactMap(Int.init)
+extension OperatingSystemVersion:
+  Hashable,
+  Equatable,
+  Comparable {
+  public static func == (
+    lhs: OperatingSystemVersion,
+    rhs: OperatingSystemVersion
+  ) -> Bool {
+    lhs.majorVersion == rhs.majorVersion &&
+      lhs.minorVersion == rhs.minorVersion &&
+      lhs.patchVersion == rhs.patchVersion
+  }
 
-    guard components.count == 2 || components.count == 3 else {
-      throw RuntimeError.invalidVersion(string)
+  public static func < (
+    lhs: OperatingSystemVersion,
+    rhs: OperatingSystemVersion
+  ) -> Bool {
+    guard lhs.majorVersion == rhs.majorVersion else {
+      return lhs.majorVersion < rhs.majorVersion
     }
+    guard lhs.minorVersion == rhs.minorVersion else {
+      return lhs.minorVersion < rhs.minorVersion
+    }
+    return lhs.patchVersion < rhs.patchVersion
+  }
 
-    self.init(
-      majorVersion: components[0],
-      minorVersion: components[1],
-      patchVersion: components.count == 3 ? components[2] : 0
-    )
+  public func hash(into hasher: inout Hasher) {
+    majorVersion.hash(into: &hasher)
+    minorVersion.hash(into: &hasher)
+    patchVersion.hash(into: &hasher)
   }
 }

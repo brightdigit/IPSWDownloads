@@ -2,7 +2,7 @@
 //  DataTest.swift
 //  IPSWDownloads
 //
-//  Created by DataTest.swift
+//  Created by Leo Dion.
 //  Copyright © 2024 BrightDigit.
 //
 //  Permission is hereby granted, free of charge, to any person
@@ -82,7 +82,7 @@ public class DataTests: XCTestCase {
       XCTAssertEqual(string, actual)
     }
   }
-  
+
   func testInitStringEmpty() throws {
     try XCTAssertNil(Data(hexString: "", emptyIsNil: true))
   }
