@@ -28,6 +28,7 @@
 //
 
 import Foundation
+import OperatingSystemVersion
 
 /// A struct representing firmware details of a device.
 public struct Firmware: Sendable, Codable, Hashable, Equatable {

@@ -9,14 +9,28 @@ let package = Package(
     .library(name: "IPSWDownloads", targets: ["IPSWDownloads"])
   ],
   dependencies: [
-    .package(url: "https://github.com/apple/swift-openapi-generator", from: "1.0.0"),
-    .package(url: "https://github.com/apple/swift-openapi-runtime", from: "1.0.0"),
-    .package(url: "https://github.com/apple/swift-openapi-urlsession", from: "1.0.0")
+    .package(
+      url: "https://github.com/brightdigit/OperatingSystemVersion",
+      from: "1.0.0-beta.1"
+    ),
+    .package(
+      url: "https://github.com/apple/swift-openapi-generator",
+      from: "1.0.0"
+    ),
+    .package(
+      url: "https://github.com/apple/swift-openapi-runtime",
+      from: "1.0.0"
+    ),
+    .package(
+      url: "https://github.com/apple/swift-openapi-urlsession",
+      from: "1.0.0"
+    )
   ],
   targets: [
     .target(
       name: "IPSWDownloads",
       dependencies: [
+        .product(name: "OperatingSystemVersion", package: "OperatingSystemVersion"),
         .product(name: "OpenAPIRuntime", package: "swift-openapi-runtime"),
         .product(name: "OpenAPIURLSession", package: "swift-openapi-urlsession")
       ],
