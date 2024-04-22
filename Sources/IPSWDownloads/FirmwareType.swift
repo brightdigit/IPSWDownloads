@@ -27,7 +27,7 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-import Foundation
+public import Foundation
 
 /// Type of Firmware file.
 public enum FirmwareType: String, Sendable, Codable, Hashable, Equatable {

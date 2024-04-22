@@ -27,7 +27,8 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-import Foundation
+public import Foundation
+
 extension Data {
   internal init(hexString: String) throws {
     var data = Data(capacity: hexString.count / 2)
