@@ -27,14 +27,14 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-import Foundation
-import OpenAPIRuntime
+public import Foundation
+public import OpenAPIRuntime
 
 /// Client for downloading current and previous versions
 /// of Apple's iOS Firmware, iTunes and OTA updates.
 public struct IPSWDownloads: Sendable {
   // swiftlint:disable:next force_try
-  private static let serverURL = try! Servers.server1()
+  private static let serverURL = try! Servers.Server1.url()
 
   /// The underlying generated client to make HTTP requests to IPSWDownloads.
   private let underlyingClient: any APIProtocol
