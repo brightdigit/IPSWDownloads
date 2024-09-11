@@ -130,6 +130,8 @@ jobs:
       - name: Run Swift Package tests
         run: swift test -v --enable-code-coverage
       - uses: sersoft-gmbh/swift-coverage-action@v4
+        with:
+          fail-on-empty-output: true
       - name: Upload SPM to CodeCov.io
         run: bash <(curl https://codecov.io/bash) -F spm -F macOS -F ${XCODE_NAME}
         env:
@@ -140,7 +142,7 @@ jobs:
         run: ./scripts/lint.sh
         if: ${{ github.event_name == 'pull_request' && ( github.base_ref == 'main' || endsWith( github.ref_name , 'Prep') ) && matrix.xcode == '/Applications/Xcode_15.2.app' }}
       - name: Run iOS target tests
-        run: xcodebuild test -scheme IPSWDownloads -sdk iphonesimulator -destination 'platform=iOS Simulator,name=${{ matrix.iPhoneName }},OS=${{ matrix.iOSVersion }}' -enableCodeCoverage YES build test
+        run: xcodebuild test -scheme ${{ env.PACKAGE_NAME }} -sdk iphonesimulator -destination 'platform=iOS Simulator,name=${{ matrix.iPhoneName }},OS=${{ matrix.iOSVersion }}' -enableCodeCoverage YES build test
       - uses: sersoft-gmbh/swift-coverage-action@v4
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
@@ -148,8 +150,10 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           flags: iOS,iOS${{ matrix.iOSVersion }},macOS,${{ env.XCODE_NAME }}  
       - name: Run watchOS target tests
-        run: xcodebuild test -scheme IPSWDownloads -sdk watchsimulator -destination 'platform=watchOS Simulator,name=${{ matrix.watchName }},OS=${{ matrix.watchOSVersion }}' -enableCodeCoverage YES build test
+        run: xcodebuild test -scheme ${{ env.PACKAGE_NAME }} -sdk watchsimulator -destination 'platform=watchOS Simulator,name=${{ matrix.watchName }},OS=${{ matrix.watchOSVersion }}' -enableCodeCoverage YES build test
       - uses: sersoft-gmbh/swift-coverage-action@v4
+        with:
+          fail-on-empty-output: true
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
         with:
