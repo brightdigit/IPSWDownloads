@@ -86,8 +86,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-openapi-urlsession",
       "state" : {
-        "revision" : "aac0a8273fa1186641e0b336da3f1be01aa6a0eb",
-        "version" : "1.0.0"
+        "revision" : "9bf4c712ad7989d6a91dbe68748b8829a50837e4",
+        "version" : "1.0.2"
       }
     },
     {
