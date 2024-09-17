@@ -15,7 +15,7 @@ jobs:
     strategy:
       matrix:
         runs-on: [ubuntu-20.04, ubuntu-22.04]
-        swift-version: [5.9, "5.10"]
+        swift-version: [5.9, "5.10", "6.0"]
     steps:
       - uses: actions/checkout@v4
       - name: Cache swift package modules
@@ -58,7 +58,7 @@ jobs:
       - name: Prepare Code Coverage
         run: llvm-cov export -format="lcov" .build/x86_64-unknown-linux-gnu/debug/${{ env.PACKAGE_NAME }}PackageTests.xctest -instr-profile .build/debug/codecov/default.profdata > info.lcov
       - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           flags: spm,${{ env.RELEASE_NAME }},${{ env.SWIFT_VER }} 
@@ -145,7 +145,7 @@ jobs:
         run: xcodebuild test -scheme ${{ env.PACKAGE_NAME }} -sdk iphonesimulator -destination 'platform=iOS Simulator,name=${{ matrix.iPhoneName }},OS=${{ matrix.iOSVersion }}' -enableCodeCoverage YES build test
       - uses: sersoft-gmbh/swift-coverage-action@v4
       - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           flags: iOS,iOS${{ matrix.iOSVersion }},macOS,${{ env.XCODE_NAME }}  
@@ -155,7 +155,7 @@ jobs:
         with:
           fail-on-empty-output: true
       - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           flags: watchOS,watchOS${{ matrix.watchOSVersion }},macOS,${{ env.XCODE_NAME }}
