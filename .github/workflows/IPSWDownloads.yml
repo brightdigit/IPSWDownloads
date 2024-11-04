@@ -89,6 +89,12 @@ jobs:
             watchOSVersion: "10.2"
             watchName: "Apple Watch Ultra 2 (49mm)"
             iPhoneName: "iPhone 15 Pro Max"
+          - runs-on: macos-15
+            xcode: "/Applications/Xcode_16.1.app"
+            iOSVersion: "18.1"
+            watchOSVersion: "11.1"
+            watchName: "Apple Watch Ultra 2 (49mm)"
+            iPhoneName: "iPhone 16"            
     steps:
       - uses: actions/checkout@v4
       - name: Cache swift package modules
@@ -104,7 +110,7 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
       - name: Cache mint
-        if: ${{ github.event_name == 'pull_request' && ( github.base_ref == 'main' || endsWith( github.ref_name , 'Prep') ) && matrix.xcode == '/Applications/Xcode_15.2.app' }}
+        if: ${{ github.event_name == 'pull_request' && ( github.base_ref == 'main' || endsWith( github.ref_name , 'Prep') ) && matrix.xcode == '/Applications/Xcode_16.1.app' }}
         id: cache-mint
         uses: actions/cache@v4
         env:
@@ -121,7 +127,7 @@ jobs:
       - name: Setup Xcode
         run: sudo xcode-select -s ${{ matrix.xcode }}/Contents/Developer
       - name: Install mint
-        if: ${{ github.event_name == 'pull_request' && ( github.base_ref == 'main' || endsWith( github.ref_name , 'Prep') ) && matrix.xcode == '/Applications/Xcode_15.2.app' }}
+        if: ${{ github.event_name == 'pull_request' && ( github.base_ref == 'main' || endsWith( github.ref_name , 'Prep') ) && matrix.xcode == '/Applications/Xcode_16.1.app' }}
         run: |
           brew update
           brew install mint
@@ -140,7 +146,7 @@ jobs:
         run: rm -rf .build
       - name: Lint
         run: ./scripts/lint.sh
-        if: ${{ github.event_name == 'pull_request' && ( github.base_ref == 'main' || endsWith( github.ref_name , 'Prep') ) && matrix.xcode == '/Applications/Xcode_15.2.app' }}
+        if: ${{ github.event_name == 'pull_request' && ( github.base_ref == 'main' || endsWith( github.ref_name , 'Prep') ) && matrix.xcode == '/Applications/Xcode_16.1.app' }}
       - name: Run iOS target tests
         run: xcodebuild test -scheme ${{ env.PACKAGE_NAME }} -sdk iphonesimulator -destination 'platform=iOS Simulator,name=${{ matrix.iPhoneName }},OS=${{ matrix.iOSVersion }}' -enableCodeCoverage YES build test
       - uses: sersoft-gmbh/swift-coverage-action@v4
