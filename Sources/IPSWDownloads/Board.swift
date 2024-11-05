@@ -27,7 +27,7 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-import Foundation
+public import Foundation
 
 /// A struct representing a board with configuration details.
 public struct Board: Sendable, Codable, Hashable, Equatable {

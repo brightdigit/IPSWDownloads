@@ -27,7 +27,7 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-import Foundation
+public import Foundation
 
 /// A struct representing an Apple device along with its firmware and supported boards.
 public struct Device: Sendable, Codable, Hashable, Equatable {

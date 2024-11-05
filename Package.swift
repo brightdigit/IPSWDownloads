@@ -42,7 +42,8 @@ let package = Package(
         .enableUpcomingFeature("ImplicitOpenExistentials"),
         .enableUpcomingFeature("StrictConcurrency"),
         .enableUpcomingFeature("DisableOutwardActorInference"),
-        .enableExperimentalFeature("StrictConcurrency")
+        .enableExperimentalFeature("StrictConcurrency"),
+        .enableExperimentalFeature("AccessLevelOnImport")
       ]
     ),
     .testTarget(

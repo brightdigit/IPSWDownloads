@@ -27,7 +27,7 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-import Foundation
+public import Foundation
 
 internal enum RuntimeError: Error, Sendable {
   case invalidURL(String)
