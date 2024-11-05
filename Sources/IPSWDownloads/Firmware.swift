@@ -27,7 +27,7 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-import Foundation
+public import Foundation
 import OperatingSystemVersion
 
 /// A struct representing firmware details of a device.

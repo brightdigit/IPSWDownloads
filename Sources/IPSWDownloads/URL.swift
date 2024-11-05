@@ -27,7 +27,7 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-import Foundation
+public import Foundation
 
 extension URL {
   /// Returns a validated server URL, or throws an error.

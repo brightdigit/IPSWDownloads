@@ -47,6 +47,15 @@ extension APIProtocol {
 
 /// Server URLs defined in the OpenAPI document.
 internal enum Servers {
+    internal enum Server1 {
+        internal static func url() throws -> Foundation.URL {
+            try Foundation.URL(
+                validatingOpenAPIServerURL: "https://api.ipsw.me/v4",
+                variables: []
+            )
+        }
+    }
+    @available(*, deprecated, renamed: "Servers.Server1.url")
     internal static func server1() throws -> Foundation.URL {
         try Foundation.URL(
             validatingOpenAPIServerURL: "https://api.ipsw.me/v4",
@@ -250,6 +259,8 @@ internal enum Operations {
         internal struct Input: Sendable, Hashable {
             /// - Remark: Generated from `#/paths/device/{identifier}/GET/path`.
             internal struct Path: Sendable, Hashable {
+                ///
+                ///
                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/path/identifier`.
                 internal var identifier: Swift.String
                 /// Creates a new `Path`.
@@ -263,6 +274,8 @@ internal enum Operations {
             internal var path: Operations.getDevice.Input.Path
             /// - Remark: Generated from `#/paths/device/{identifier}/GET/query`.
             internal struct Query: Sendable, Hashable {
+                ///
+                ///
                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/query/type`.
                 internal var _type: Swift.String
                 /// Creates a new `Query`.
@@ -302,7 +315,7 @@ internal enum Operations {
                 self.headers = headers
             }
         }
-        @frozen internal enum Output: Sendable, Hashable {
+        internal enum Output: Sendable, Hashable {
             internal struct Ok: Sendable, Hashable {
                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/headers`.
                 internal struct Headers: Sendable, Hashable {
@@ -341,7 +354,7 @@ internal enum Operations {
                 /// Received HTTP response headers
                 internal var headers: Operations.getDevice.Output.Ok.Headers
                 /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content`.
-                @frozen internal enum Body: Sendable, Hashable {
+                internal enum Body: Sendable, Hashable {
                     /// - Remark: Generated from `#/paths/device/{identifier}/GET/responses/200/content/application\/json`.
                     case json(Components.Schemas.Device)
                     /// The associated value of the enum case if `self` is `.json`.
@@ -501,7 +514,7 @@ internal enum Operations {
             /// A response with a code that is not documented in the OpenAPI document.
             case undocumented(statusCode: Swift.Int, OpenAPIRuntime.UndocumentedPayload)
         }
-        @frozen internal enum AcceptableContentType: AcceptableProtocol {
+        internal enum AcceptableContentType: AcceptableProtocol {
             case json
             case application_x_hyphen_plist
             case xml
