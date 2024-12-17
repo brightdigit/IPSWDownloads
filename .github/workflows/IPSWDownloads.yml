@@ -94,7 +94,13 @@ jobs:
             iOSVersion: "18.1"
             watchOSVersion: "11.1"
             watchName: "Apple Watch Ultra 2 (49mm)"
-            iPhoneName: "iPhone 16"            
+            iPhoneName: "iPhone 16"  
+          - runs-on: macos-15
+            xcode: "/Applications/Xcode_16.2.app"
+            iOSVersion: "18.2"
+            watchOSVersion: "11.2"
+            watchName: "Apple Watch Ultra 2 (49mm)"
+            iPhoneName: "iPhone 16 Pro"              
     steps:
       - uses: actions/checkout@v4
       - name: Cache swift package modules
