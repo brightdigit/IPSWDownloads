@@ -71,7 +71,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        config:
+        include:
           # SPM Build Matrix
           - runs-on: macos-13
             xcode: "/Applications/Xcode_15.0.1.app"
