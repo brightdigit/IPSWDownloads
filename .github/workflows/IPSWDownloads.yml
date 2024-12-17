@@ -142,10 +142,10 @@ jobs:
       - uses: actions/checkout@v4
       
       - name: Set Xcode Name
-        run: echo "XCODE_NAME=$(basename -- ${{ matrix.config.xcode }} | sed 's/\.[^.]*$//' | cut -d'_' -f2)" >> $GITHUB_ENV
+        run: echo "XCODE_NAME=$(basename -- ${{ matrix.xcode }} | sed 's/\.[^.]*$//' | cut -d'_' -f2)" >> $GITHUB_ENV
       
       - name: Setup Xcode
-        run: sudo xcode-select -s ${{ matrix.config.xcode }}/Contents/Developer
+        run: sudo xcode-select -s ${{ matrix.xcode }}/Contents/Developer
   
       # SPM Cache Step
       - name: Cache swift package modules
@@ -162,21 +162,21 @@ jobs:
             ${{ runner.os }}-
   
       - name: Build SPM
-        if: "!matrix.config.type"
+        if: "!matrix.type"
         run: swift build
   
       - name: Run Swift Package tests
-        if: "!matrix.config.type"
+        if: "!matrix.type"
         run: swift test -v --enable-code-coverage
   
       # Common iOS/watchOS Test Steps
       - name: Run Device Tests
-        if: matrix.config.type
+        if: matrix.type
         run: >
           xcodebuild test
           -scheme ${{ env.PACKAGE_NAME }}
-          -sdk ${{ matrix.config.type == 'ios' && 'iphonesimulator' || 'watchsimulator' }}
-          -destination 'platform=${{ matrix.config.type == 'ios' && 'iOS Simulator' || 'watchOS Simulator' }},name=${{ matrix.config.deviceName }},OS=${{ matrix.config.osVersion }}'
+          -sdk ${{ matrix.type == 'ios' && 'iphonesimulator' || 'watchsimulator' }}
+          -destination 'platform=${{ matrix.type == 'ios' && 'iOS Simulator' || 'watchOS Simulator' }},name=${{ matrix.deviceName }},OS=${{ matrix.osVersion }}'
           -enableCodeCoverage YES
           build test
   
@@ -190,4 +190,4 @@ jobs:
         uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          flags: ${{ matrix.config.type && format('{0}{1}', matrix.config.type, matrix.config.osVersion) || 'spm' }}
+          flags: ${{ matrix.type && format('{0}{1}', matrix.type, matrix.osVersion) || 'spm' }}
