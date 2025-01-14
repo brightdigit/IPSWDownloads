@@ -1,5 +1,5 @@
 //
-//  URL.swift
+//  SemVer+CustomStringConvertible.swift
 //  IPSWDownloads
 //
 //  Created by Leo Dion.
@@ -27,14 +27,15 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-public import Foundation
-
-extension URL {
-  /// Returns a validated server URL, or throws an error.
-  /// - Parameter string: A URL string.
-  /// - Throws: If the provided string doesn't convert to URL.
-  public init(validatingURL string: String) throws {
-    guard let url = Self(string: string) else { throw RuntimeError.invalidURL(string) }
-    self = url
+extension SemVer: CustomStringConvertible {
+  public var description: String {
+    var version = "\(major).\(minor).\(patch)"
+    if let prerelease {
+      version += "-\(prerelease)"
+    }
+    if let buildMetadata {
+      version += "+\(buildMetadata)"
+    }
+    return version
   }
 }
