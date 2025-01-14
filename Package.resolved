@@ -1,5 +1,4 @@
 {
-  "originHash" : "fbb2ea6138c41c6f92d8bc2ca79baabda2b27ad45e05777925979fe74ac47b0f",
   "pins" : [
     {
       "identity" : "openapikit",
@@ -8,15 +7,6 @@
       "state" : {
         "revision" : "5b5ee49624dda5b3e3b85aff184f44a007862fb7",
         "version" : "3.3.0"
-      }
-    },
-    {
-      "identity" : "operatingsystemversion",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/brightdigit/OperatingSystemVersion",
-      "state" : {
-        "revision" : "bd3c70eb38da109ec6be9958e80ee495125d3232",
-        "version" : "1.0.0-beta.1"
       }
     },
     {
@@ -101,5 +91,5 @@
       }
     }
   ],
-  "version" : 3
+  "version" : 2
 }

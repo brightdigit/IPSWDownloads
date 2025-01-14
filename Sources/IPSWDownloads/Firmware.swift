@@ -3,7 +3,7 @@
 //  IPSWDownloads
 //
 //  Created by Leo Dion.
-//  Copyright © 2024 BrightDigit.
+//  Copyright © 2025 BrightDigit.
 //
 //  Permission is hereby granted, free of charge, to any person
 //  obtaining a copy of this software and associated documentation
@@ -28,7 +28,6 @@
 //
 
 public import Foundation
-public import OperatingSystemVersion
 
 /// A struct representing firmware details of a device.
 public struct Firmware: Sendable, Codable, Hashable, Equatable {
@@ -36,7 +35,7 @@ public struct Firmware: Sendable, Codable, Hashable, Equatable {
   public let identifier: String
 
   /// The version of the operating system associated with the firmware.
-  public let version: OperatingSystemVersion
+  public let version: SemVer
 
   /// The build ID of the firmware.
   public let buildid: String
@@ -77,7 +76,7 @@ public struct Firmware: Sendable, Codable, Hashable, Equatable {
   ///   - signed: A flag indicating whether the firmware is signed.
   public init(
     identifier: String,
-    version: OperatingSystemVersion,
+    version: SemVer,
     buildid: String,
     sha1sum: Data?,
     md5sum: Data?,
@@ -109,7 +108,7 @@ extension Firmware {
   internal init(component: Components.Schemas.Firmware) throws {
     try self.init(
       identifier: component.identifier,
-      version: OperatingSystemVersion(string: component.version),
+      version: SemVer(string: component.version),
       buildid: component.buildid,
       sha1sum: Data(hexString: component.sha1sum, emptyIsNil: true),
       md5sum: Data(hexString: component.md5sum, emptyIsNil: true),
