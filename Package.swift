@@ -10,6 +10,10 @@ let package = Package(
   ],
   dependencies: [
     .package(
+      url: "https://github.com/brightdigit/OSVer",
+      .branch("v1.0.0")
+    ),
+    .package(
       url: "https://github.com/apple/swift-openapi-generator",
       from: "1.7.0"
     ),
@@ -27,7 +31,8 @@ let package = Package(
       name: "IPSWDownloads",
       dependencies: [
         .product(name: "OpenAPIRuntime", package: "swift-openapi-runtime"),
-        .product(name: "OpenAPIURLSession", package: "swift-openapi-urlsession")
+        .product(name: "OpenAPIURLSession", package: "swift-openapi-urlsession"),
+        "OSVer"
       ],
       swiftSettings: [
         .enableUpcomingFeature("BareSlashRegexLiterals"),
