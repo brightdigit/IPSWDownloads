@@ -36,7 +36,7 @@ let package = Package(
   dependencies: [
     .package(
       url: "https://github.com/brightdigit/OSVer",
-      from: "1.0.0-beta.2"
+      from: "1.0.0"
     ),
     .package(
       url: "https://github.com/apple/swift-openapi-generator",
