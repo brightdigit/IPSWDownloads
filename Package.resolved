@@ -10,6 +10,15 @@
       }
     },
     {
+      "identity" : "osver",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/brightdigit/OSVer",
+      "state" : {
+        "revision" : "448f170babc2f6c9897194a4b42719994639325d",
+        "version" : "1.0.0-beta.2"
+      }
+    },
+    {
       "identity" : "swift-algorithms",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-algorithms",
