@@ -1,5 +1,5 @@
 {
-  "originHash" : "00d861eead4e28fa337b278d2d511a6198f127112c118be7766595be3c753d71",
+  "originHash" : "9f574955ef0130be7e1fe953482632ac44d725494ed52b98d4d42876690d8f65",
   "pins" : [
     {
       "identity" : "openapikit",
@@ -15,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/brightdigit/OSVer",
       "state" : {
-        "branch" : "v1.0.0",
-        "revision" : "0aee8cb4d6957a9066f12abc41ccb89de658446a"
+        "branch" : "v1.0.0-beta.2",
+        "revision" : "17d10a40b11fc959446d15e13acbbcb56ba89d6c"
       }
     },
     {
