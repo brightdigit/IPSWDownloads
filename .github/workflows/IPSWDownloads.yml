@@ -24,6 +24,13 @@ jobs:
             nightly: true
           - version: "6.2"
             nightly: true
+        exclude:
+          - os: noble
+            swift:
+              version: "5.9"
+          - os: noble
+            swift:
+              version: "5.10"
     steps:
       - uses: actions/checkout@v4
       - uses: brightdigit/swift-build@v1.3.1
