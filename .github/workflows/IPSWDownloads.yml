@@ -139,7 +139,7 @@ jobs:
             runs-on: macos-15
             xcode: "/Applications/Xcode_16.2.app"
             deviceName: "iPhone 16 Pro"
-            osVersion: "18.2"
+            osVersion: "18.3.1"
             download-platform: true
           - type: ios
             runs-on: macos-15
