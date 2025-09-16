@@ -203,7 +203,7 @@ jobs:
       - name: Build and Test
         uses: brightdigit/swift-build@v1.3.1
         with:
-          scheme: ${{ env.PACKAGE_NAME }}-Package
+          scheme: ${{ env.PACKAGE_NAME }}
           type: ${{ matrix.type }}
           xcode: ${{ matrix.xcode }}
           deviceName: ${{ matrix.deviceName }}
