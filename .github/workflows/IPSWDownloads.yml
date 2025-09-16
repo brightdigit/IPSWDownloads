@@ -116,31 +116,37 @@ jobs:
             xcode: "/Applications/Xcode_15.0.1.app"
             deviceName: "iPhone 15"
             osVersion: "17.0.1"
+            download-platform: true
           - type: ios
             runs-on: macos-13
             xcode: "/Applications/Xcode_15.1.app"
             deviceName: "iPhone 15 Pro"
             osVersion: "17.2"
+            download-platform: true
           - type: ios
             runs-on: macos-13
             xcode: "/Applications/Xcode_15.2.app"
             deviceName: "iPhone 15 Pro Max"
             osVersion: "17.2"
+            download-platform: true
           - type: ios
             runs-on: macos-15
             xcode: "/Applications/Xcode_16.1.app"
             deviceName: "iPhone 16"
             osVersion: "18.1"
+            download-platform: true
           - type: ios
             runs-on: macos-15
             xcode: "/Applications/Xcode_16.2.app"
             deviceName: "iPhone 16 Pro"
             osVersion: "18.2"
+            download-platform: true
           - type: ios
             runs-on: macos-15
             xcode: "/Applications/Xcode_16.4.app"
             deviceName: "iPhone 16 Pro"
             osVersion: "18.5"
+            download-platform: true
           - type: ios
             runs-on: macos-15
             xcode: "/Applications/Xcode_26.0.app"
@@ -154,26 +160,31 @@ jobs:
             xcode: "/Applications/Xcode_15.0.1.app"
             deviceName: "Apple Watch Series 9 (41mm)"
             osVersion: "10.0"
+            download-platform: true
           - type: watchos
             runs-on: macos-13
             xcode: "/Applications/Xcode_15.1.app"
             deviceName: "Apple Watch Series 9 (45mm)"
             osVersion: "10.2"
+            download-platform: true
           - type: watchos
             runs-on: macos-13
             xcode: "/Applications/Xcode_15.2.app"
             deviceName: "Apple Watch Ultra 2 (49mm)"
             osVersion: "10.2"
+            download-platform: true
           - type: watchos
             runs-on: macos-15
             xcode: "/Applications/Xcode_16.1.app"
             deviceName: "Apple Watch Ultra 2 (49mm)"
             osVersion: "11.1"
+            download-platform: true
           - type: watchos
             runs-on: macos-15
             xcode: "/Applications/Xcode_16.4.app"
             deviceName: "Apple Watch Ultra 2 (49mm)"
             osVersion: "11.5"
+            download-platform: true
           - type: watchos
             runs-on: macos-15
             xcode: "/Applications/Xcode_26.0.app"
