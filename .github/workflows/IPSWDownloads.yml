@@ -71,7 +71,7 @@ jobs:
     env:
       PACKAGE_NAME: IPSWDownloads
     runs-on: ${{ matrix.runs-on }}
-    if: "!contains(github.event.head_commit.message, 'ci skip')"
+    if: ${{ !contains(github.event.head_commit.message, 'ci skip') }}
     strategy:
       fail-fast: false
       matrix:
@@ -87,7 +87,22 @@ jobs:
             xcode: "/Applications/Xcode_16.1.app"
           - runs-on: macos-15
             xcode: "/Applications/Xcode_16.2.app"
-          
+          - runs-on: macos-15
+            xcode: "/Applications/Xcode_16.4.app"
+          - runs-on: macos-15
+            xcode: "/Applications/Xcode_26.0.app"
+
+          # macOS Build Matrix
+          - type: macos
+            runs-on: macos-13
+            xcode: "/Applications/Xcode_15.0.1.app"
+          - type: macos
+            runs-on: macos-15
+            xcode: "/Applications/Xcode_16.4.app"
+          - type: macos
+            runs-on: macos-15
+            xcode: "/Applications/Xcode_26.0.app"
+
           # iOS Build Matrix
           - type: ios
             runs-on: macos-13
@@ -114,7 +129,18 @@ jobs:
             xcode: "/Applications/Xcode_16.2.app"
             deviceName: "iPhone 16 Pro"
             osVersion: "18.2"
-  
+          - type: ios
+            runs-on: macos-15
+            xcode: "/Applications/Xcode_16.4.app"
+            deviceName: "iPhone 16 Pro"
+            osVersion: "18.5"
+          - type: ios
+            runs-on: macos-15
+            xcode: "/Applications/Xcode_26.0.app"
+            deviceName: "iPhone 17 Pro"
+            osVersion: "26.0"
+            download-platform: true
+
           # watchOS Build Matrix
           - type: watchos
             runs-on: macos-13
@@ -138,39 +164,9 @@ jobs:
             osVersion: "11.1"
           - type: watchos
             runs-on: macos-15
-            xcode: "/Applications/Xcode_16.2.app"
+            xcode: "/Applications/Xcode_16.4.app"
             deviceName: "Apple Watch Ultra 2 (49mm)"
-            osVersion: "11.2"
-
-          # SPM Build Matrix
-          - runs-on: macos-15
-            xcode: "/Applications/Xcode_26.0.app"
-
-          - runs-on: macos-15
-            xcode: "/Applications/Xcode_16.4.app"
-
-          # macOS Build Matrix
-          - type: macos
-            runs-on: macos-15
-            xcode: "/Applications/Xcode_26.0.app"
-
-          - type: macos
-            runs-on: macos-15
-            xcode: "/Applications/Xcode_16.4.app"
-
-          - type: macos
-            runs-on: macos-15
-            xcode: "/Applications/Xcode_26.0.app"
-                      
-          # iOS Build Matrix
-          - type: ios
-            runs-on: macos-15
-            xcode: "/Applications/Xcode_26.0.app"
-            deviceName: "iPhone 17 Pro"
-            osVersion: "26.0"
-            download-platform: true
-  
-          # watchOS Build Matrix
+            osVersion: "11.5"
           - type: watchos
             runs-on: macos-15
             xcode: "/Applications/Xcode_26.0.app"
@@ -186,7 +182,7 @@ jobs:
             osVersion: "26.0"
             download-platform: true
 
-          # visionOS Build Matrix              
+          # visionOS Build Matrix
           - type: visionos
             runs-on: macos-15
             xcode: "/Applications/Xcode_26.0.app"
@@ -221,7 +217,7 @@ jobs:
 
   lint:
     name: Linting
-    if: "!contains(github.event.head_commit.message, 'ci skip')"  
+    if: ${{ !contains(github.event.head_commit.message, 'ci skip') }}  
     runs-on: ubuntu-latest
     needs: [build-ubuntu, build-macos, build-windows]
     env:
