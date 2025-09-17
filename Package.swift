@@ -15,11 +15,11 @@ let package = Package(
     ),
     .package(
       url: "https://github.com/apple/swift-openapi-generator",
-      from: "1.7.0"
+      from: "1.10.0"
     ),
     .package(
       url: "https://github.com/apple/swift-openapi-runtime",
-      from: "1.8.0"
+      from: "1.8.2"
     ),
     .package(
       url: "https://github.com/apple/swift-openapi-urlsession",
