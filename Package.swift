@@ -14,10 +14,6 @@ let package = Package(
       from: "1.0.0"
     ),
     .package(
-      url: "https://github.com/apple/swift-openapi-generator",
-      from: "1.10.0"
-    ),
-    .package(
       url: "https://github.com/apple/swift-openapi-runtime",
       from: "1.8.2"
     ),
